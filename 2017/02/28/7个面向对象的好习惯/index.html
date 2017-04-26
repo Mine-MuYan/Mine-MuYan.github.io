@@ -1,0 +1,1086 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="转载," />
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="如果您尚未打算用OO原则创建应用程序，则使用 PHP 的面向对象（OO）的语言特性，这 7 个习惯将帮助您开始在过程编程与OO编程之间进行转换。">
+<meta name="keywords" content="转载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7个面向对象的好习惯">
+<meta property="og:url" content="http://Mine-MuYan.github.com/2017/02/28/7个面向对象的好习惯/index.html">
+<meta property="og:site_name" content="Mine-MuYan">
+<meta property="og:description" content="如果您尚未打算用OO原则创建应用程序，则使用 PHP 的面向对象（OO）的语言特性，这 7 个习惯将帮助您开始在过程编程与OO编程之间进行转换。">
+<meta property="og:updated_time" content="2017-03-09T08:55:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="7个面向对象的好习惯">
+<meta name="twitter:description" content="如果您尚未打算用OO原则创建应用程序，则使用 PHP 的面向对象（OO）的语言特性，这 7 个习惯将帮助您开始在过程编程与OO编程之间进行转换。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Mine-MuYan.github.com/2017/02/28/7个面向对象的好习惯/"/>
+
+
+
+
+
+  <title> 7个面向对象的好习惯 | Mine-MuYan </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mine-MuYan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Welcome to my blog.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+      
+        <li class="menu-item">
+            <a title="high 一下" href='javascript:(
+                function go() {
+
+                var songs = [
+                            "music/circles.mp3",
+                            "music/Beethoven Virus.mp3",
+                            "music/beautiful dump.mp3",
+                            "music/dangerous show.mp3",
+                            "music/Frontier.mp3",
+                            "music/jilejingtu.mp3",
+                            "music/Ringtone.mp3"
+                ];
+
+                function c() {
+                    var e = document.createElement("link");
+                    e.setAttribute("type", "text/css");
+                    e.setAttribute("rel", "stylesheet");
+                    e.setAttribute("href", f);
+                    e.setAttribute("class", l);
+                    document.body.appendChild(e)
+                }
+
+                function h() {
+                    var e = document.getElementsByClassName(l);
+                    for (var t = 0; t < e.length; t++) {
+                        document.body.removeChild(e[t])
+                    }
+                }
+
+                function p() {
+                    var e = document.createElement("div");
+                    e.setAttribute("class", a);
+                    document.body.appendChild(e);
+                    setTimeout(function() {
+                        document.body.removeChild(e)
+                    }, 100)
+                }
+
+                function d(e) {
+                    return {
+                        height : e.offsetHeight,
+                        width : e.offsetWidth
+                    }
+                }
+
+                function v(i) {
+                    var s = d(i);
+                    return s.height > e &amp;&amp; s.height < n &amp;&amp; s.width > t &amp;&amp; s.width < r
+                }
+
+                function m(e) {
+                    var t = e;
+                    var n = 0;
+                    while (!!t) {
+                        n += t.offsetTop;
+                        t = t.offsetParent
+                    }
+                    return n
+                }
+
+                function g() {
+                    var e = document.documentElement;
+                    if (!!window.innerWidth) {
+                        return window.innerHeight
+                    } else if (e &amp;&amp; !isNaN(e.clientHeight)) {
+                        return e.clientHeight
+                    }
+                    return 0
+                }
+
+                function y() {
+                    if (window.pageYOffset) {
+                        return window.pageYOffset
+                    }
+                    return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+                }
+
+                function E(e) {
+                    var t = m(e);
+                    return t >= w &amp;&amp; t <= b + w
+                }
+
+                function S() {
+                    var e = document.getElementById("audio_element_id");
+                    if(e != null){
+                        var index = parseInt(e.getAttribute("curSongIndex"));
+                        if(index > songs.length - 2) {
+                            index = 0;
+                        } else {
+                            index++;
+                        }
+                        e.setAttribute("curSongIndex", index);
+                        N();
+                    }
+
+                    e.src = i;
+                    e.play()
+                }
+
+                function x(e) {
+                    e.className += " " + s + " " + o
+                }
+
+                function T(e) {
+                    e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+                }
+
+                function N() {
+                    var e = document.getElementsByClassName(s);
+                    var t = new RegExp("\\b" + s + "\\b");
+                    for (var n = 0; n < e.length; ) {
+                        e[n].className = e[n].className.replace(t, "")
+                    }
+                }
+
+                function initAudioEle() {
+                    var e = document.getElementById("audio_element_id");
+                    if(e === null){
+                        e = document.createElement("audio");
+                        e.setAttribute("class", l);
+                        e.setAttribute("curSongIndex", 0);
+                        e.id = "audio_element_id";
+                        e.loop = false;
+                        e.bgcolor = 0;
+                        e.addEventListener("canplay", function() {
+                        setTimeout(function() {
+                            x(k)
+                        }, 500);
+                        setTimeout(function() {
+                            N();
+                            p();
+                            for (var e = 0; e < O.length; e++) {
+                                T(O[e])
+                            }
+                        }, 15500)
+                    }, true);
+                    e.addEventListener("ended", function() {
+                        N();
+                        h();
+                        go();
+                    }, true);
+                    e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+                    document.body.appendChild(e);
+                    }
+                }
+
+                initAudioEle();
+                var e = 30;
+                var t = 30;
+                var n = 350;
+                var r = 350;
+
+                var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+                var i = songs[curSongIndex];
+
+                var s = "mw-harlem_shake_me";
+                var o = "im_first";
+                var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+                var a = "mw-strobe_light";
+
+                /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
+                var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+
+                var l = "mw_added_css";
+                var b = g();
+                var w = y();
+                var C = document.getElementsByTagName("*");
+                var k = null;
+                for (var L = 0; L < C.length; L++) {
+                    var A = C[L];
+                    if (v(A)) {
+                        if (E(A)) {
+                            k = A;
+                            break
+                        }
+                    }
+                }
+                if (A === null) {
+                    console.warn("Could not find a node of the right size. Please try a different page.");
+                    return
+                }
+                c();
+                S();
+                var O = [];
+                for (var L = 0; L < C.length; L++) {
+                    var A = C[L];
+                    if (v(A)) {
+                        O.push(A)
+                    }
+                }
+                })()'>High一下</a>
+        </li>
+    </ul>
+  
+
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://Mine-MuYan.github.com/2017/02/28/7个面向对象的好习惯/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mine-MuYan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mine-MuYan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                7个面向对象的好习惯
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-28T10:07:41+08:00">
+                2017-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/28/7个面向对象的好习惯/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/02/28/7个面向对象的好习惯/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如果您尚未打算用OO原则创建应用程序，则使用 PHP 的面向对象（OO）的语言特性，这 7 个习惯将帮助您开始在过程编程与OO编程之间进行转换。<a id="more"></a></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在 PHP 编程早期，PHP 代码在本质上是限于面向过程的。<em>过程代码</em> 的特征在于使用过程构建应用程序块。过程通过允许过程之间的调用提供某种程度的重用。</p>
+<p>但是，没有面向对象的语言构造，程序员仍然可以把OO特性引入到 PHP 代码中。这样做有点困难并且会使代码难于阅读，因为它是混合范例（含有伪OO设计的过程语言）。使用 PHP 代码中的OO构造 — 例如能够定义和使用类、能够构建使用继承的类之间的关系以及能够定义接口 — 可以更轻松地构建符合优秀OO实践的代码。</p>
+<p>虽然没有过多模块化的纯过程设计运行得很好，但是OO设计的优点表现在维护上。由于典型应用程序的大部分生命周期都花费在维护上，因此代码维护是应用程序生命周期的重要部分。并且在开发过程中代码维护很容易被遗忘。如果在应用程序开发和部署方面存在竞争，那么长期可维护性可能被放在比较次要的地位。</p>
+<p><em>模块化</em>— 优秀OO设计的主要特性之一 — 可以帮助完成这样的维护。模块化将帮助封装更改，这样可以随着时间的推移更轻松地扩展和修改应用程序。</p>
+<p>总的来说，虽然构建OO软件的习惯不止 7 个，但是遵循这里的 7 个习惯可以使代码符合基本OO设计标准。它们将为您提供更牢固的基础，在此基础之上建立更多OO习惯并构建可轻松维护与扩展的软件。这些习惯针对模块化的几个主要特性。有关独立于语言的OO设计优点的更多信息，请参阅 <a href="#resources">参考资料</a>。</p>
+<p>7 个优秀 PHPOO习惯包括：</p>
+<ol>
+<li>保持谦虚。</li>
+<li>做个好邻居。</li>
+<li>避免看到美杜莎。</li>
+<li>利用最弱的链接。</li>
+<li>您是橡皮；我是胶水。</li>
+<li>限制传播。</li>
+<li>考虑使用模式。</li>
+</ol>
+<h2 id="保持谦虚"><a href="#保持谦虚" class="headerlink" title="保持谦虚"></a>保持谦虚</h2><p>保持谦虚指避免在类实现和函数实现中暴露自己。隐藏您的信息是一项基本习惯。如果不能养成隐藏实现细节的习惯，那么将很难养成任何其他习惯。信息隐藏也称为<em>封装</em>。</p>
+<p>直接公开公共字段是一个坏习惯的原因有很多，最重要的原因是让您在实现更改中没有应有的选择。使用OO概念隔离更改，而封装在确保所作更改在本质上不是病毒性（viral）更改方面扮演不可或缺的角色。<em>病毒性</em> 更改是开始时很小的更改 — 如将保存三个元素的数组更改为一个只包含两个元素的数组。突然，您发现需要更改越来越多的代码以适应本应十分微不足道的更改。</p>
+<p>开始隐藏信息的一种简单方法是保持字段私有并且用公共访问方法公开这些字段，就像家中的窗户一样。并没有让整面墙都朝外部开放，而只打开一两扇窗户（我将在 “<a href="#publicaccessor">好习惯：使用公共访问方法</a>” 中介绍访问方法的更多信息）。</p>
+<p>除了允许您的实现隐藏在更改之后外，使用公共访问方法而非直接公开字段将允许您在基本实现的基础上进行构建，方法为覆盖访问方法的实现以执行略微不同于父方法的行为。它还允许您构建一个抽象实现，从而使实际实现委托给覆盖基本实现的类。</p>
+<h3 id="坏习惯：公开公共字段"><a href="#坏习惯：公开公共字段" class="headerlink" title="坏习惯：公开公共字段"></a>坏习惯：公开公共字段</h3><p>在清单 1 的坏代码示例中，<code>Person</code> 对象的字段被直接公开为公共字段而非使用访问方法。虽然此行为十分诱人，尤其对于轻量级数据对象来说更是如此，但是它将对您提出限制。</p>
+<h4 id="清单-1-公开公共字段的坏习惯"><a href="#清单-1-公开公共字段的坏习惯" class="headerlink" title="清单 1. 公开公共字段的坏习惯"></a>清单 1. 公开公共字段的坏习惯</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> $prefix;</div><div class="line">    <span class="keyword">public</span> $givenName;</div><div class="line">    <span class="keyword">public</span> $familyName;</div><div class="line">    <span class="keyword">public</span> $suffix;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$person = <span class="keyword">new</span> Person();</div><div class="line">$person-&gt;prefix = <span class="string">"Mr."</span>;</div><div class="line">$person-&gt;givenName = <span class="string">"John"</span>;</div><div class="line"></div><div class="line"><span class="keyword">echo</span>($person-&gt;prefix);</div><div class="line"><span class="keyword">echo</span>($person-&gt;givenName);</div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>如果对象有任何更改，则使用该对象的所有代码也都需要更改。例如，如果某人的教名、姓氏和其他名字被封装到 <code>PersonName</code> 对象中，则需要修改所有代码以适应更改。</p>
+<h3 id="好习惯：使用公共访问方法"><a href="#好习惯：使用公共访问方法" class="headerlink" title="好习惯：使用公共访问方法"></a>好习惯：使用公共访问方法</h3><p>通过使用优秀的OO习惯（参见清单 2），同一个对象现在拥有私有字段而非公共字段，并且通过称为<em>访问方法</em> 的 <code>get</code> 和 <code>set</code> 公共方法谨慎地向外界公开私有字段。这些访问方法现在提供了一种从 PHP 类中获取信息的公共方法，这样在实现发生更改时，更改使用类的所有代码的需求很可能变小。</p>
+<h4 id="清单-2-使用公共访问方法的好习惯"><a href="#清单-2-使用公共访问方法的好习惯" class="headerlink" title="清单 2. 使用公共访问方法的好习惯"></a>清单 2. 使用公共访问方法的好习惯</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> $prefix;</div><div class="line">    <span class="keyword">private</span> $givenName;</div><div class="line">    <span class="keyword">private</span> $familyName;</div><div class="line">    <span class="keyword">private</span> $suffix;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setPrefix</span><span class="params">($prefix)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;prefix = $prefix;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getPrefix</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;prefix;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setGivenName</span><span class="params">($gn)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;givenName = $gn;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getGivenName</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;givenName;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setFamilyName</span><span class="params">($fn)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;familyName = $fn;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getFamilyName</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;familyName;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setSuffix</span><span class="params">($suffix)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;suffix = $suffix;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getSuffix</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> $suffix;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">$person = <span class="keyword">new</span> Person();</div><div class="line">$person-&gt;setPrefix(<span class="string">"Mr."</span>);</div><div class="line">$person-&gt;setGivenName(<span class="string">"John"</span>);</div><div class="line"></div><div class="line"><span class="keyword">echo</span>($person-&gt;getPrefix());</div><div class="line"><span class="keyword">echo</span>($person-&gt;getGivenName());</div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>乍看之下，这段代码可能会完成大量工作，并且实际上可能更多是在前端的工作。但是，通常，使用优秀的OO习惯从长远来看十分划算，因为将极大地巩固未来更改。</p>
+<p>在清单 3 中所示的代码版本中，我已经更改了内部实现以使用名称部件的关联数组。比较理想的情况是，我希望拥有错误处理并且更仔细地检查元素是否存在，但是本例的目的在于展示使用我的类的代码无需更改的程度 — 代码并没有察觉到类发生更改。记住采用OO习惯的原因是要谨慎封装更改，这样代码将更具有可扩展性并且更容易维护。</p>
+<h4 id="清单-3-使用不同内部实现的另一个示例"><a href="#清单-3-使用不同内部实现的另一个示例" class="headerlink" title="清单 3. 使用不同内部实现的另一个示例"></a>清单 3. 使用不同内部实现的另一个示例</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> $personName = <span class="keyword">array</span>();</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setPrefix</span><span class="params">($prefix)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;personName[<span class="string">'prefix'</span>] = $prefix;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getPrefix</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;personName[<span class="string">'prefix'</span>];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setGivenName</span><span class="params">($gn)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;personName[<span class="string">'givenName'</span>] = $gn;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getGivenName</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;personName[<span class="string">'givenName'</span>];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/* etc... */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> * Even though the internal implementation changed, the code here stays exactly</div><div class="line"> * the same. The change has been encapsulated only to the Person class.</div><div class="line"> */</div><div class="line">$person = <span class="keyword">new</span> Person();</div><div class="line">$person-&gt;setPrefix(<span class="string">"Mr."</span>);</div><div class="line">$person-&gt;setGivenName(<span class="string">"John"</span>);</div><div class="line"></div><div class="line"><span class="keyword">echo</span>($person-&gt;getPrefix());</div><div class="line"><span class="keyword">echo</span>($person-&gt;getGivenName());</div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="做个好邻居"><a href="#做个好邻居" class="headerlink" title="做个好邻居"></a>做个好邻居</h2><p>在构建类时，它应当正确地处理自己的错误。如果该类不知道如何处理错误，则应当以其调用者理解的格式封装这些错误。此外，避免返回空对象或者状态无效的对象。许多时候，只需通过检验参数并抛出特定异常说明提供参数无效的原因就可以实现这一点。在您养成这个习惯时，它可以帮您 — 和维护代码或使用对象的人员 — 节省很多时间。</p>
+<h3 id="坏习惯：不处理错误"><a href="#坏习惯：不处理错误" class="headerlink" title="坏习惯：不处理错误"></a>坏习惯：不处理错误</h3><p>考虑清单 4 中所示的示例，该示例将接受一些参数并返回填充了一些值的 <code>Person</code> 对象。但是，在 <code>parsePersonName()</code> 方法中，没有验证提供的 <code>$val</code> 变量是否为空、是否是零长度字符串或者字符串是否使用无法解析的格式。<code>parsePersonName()</code> 方法不返回 <code>Person</code> 对象，但是返回 null。使用这种方法的管理员或程序员可能会觉得很麻烦 — 至少他们现在需要开始设置断点并调试 PHP 脚本。</p>
+<h4 id="清单-4-不抛出或处理错误的坏习惯"><a href="#清单-4-不抛出或处理错误的坏习惯" class="headerlink" title="清单 4. 不抛出或处理错误的坏习惯"></a>清单 4. 不抛出或处理错误的坏习惯</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonUtils</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">parsePersonName</span><span class="params">($format, $val)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (strpos(<span class="string">","</span>, $val) &gt; <span class="number">0</span>) &#123;</div><div class="line">            $person = <span class="keyword">new</span> Person();</div><div class="line">            $parts = split(<span class="string">","</span>, $val); <span class="comment">// Assume the value is last, first</span></div><div class="line">            $person-&gt;setGivenName($parts[<span class="number">1</span>]);</div><div class="line">            $person-&gt;setFamilyName($parts[<span class="number">0</span>]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> $person;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>清单 4 中的 <code>parsePersonName()</code> 方法可以修改为在 <code>if</code> 条件外部初始化 <code>Person</code> 对象，确保总是获得有效的 <code>Person</code> 对象。但是，您得到的是没有 set 属性的 <code>Person</code>，这仍然没有很好地改善您的困境。</p>
+<h3 id="好习惯：每个模块都处理自己的错误"><a href="#好习惯：每个模块都处理自己的错误" class="headerlink" title="好习惯：每个模块都处理自己的错误"></a>好习惯：每个模块都处理自己的错误</h3><p>不要让调用方凭空猜测，而是对参数进行预先验证。如果未设置的变量无法生成有效的结果，请检查变量并抛出 <code>InvalidArgumentException</code>。如果字符串不能为空或者必须为特定格式，请检查格式并抛出异常。清单 5 解释了如何在演示一些基本验证的 <code>parsePerson()</code> 方法中创建异常以及一些新条件。</p>
+<h4 id="清单-5-抛出错误的好习惯"><a href="#清单-5-抛出错误的好习惯" class="headerlink" title="清单 5. 抛出错误的好习惯"></a>清单 5. 抛出错误的好习惯</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InvalidPersonNameFormatException</span> <span class="keyword">extends</span> <span class="title">LogicException</span> </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonUtils</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">parsePersonName</span><span class="params">($format, $val)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (! $format) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidPersonNameFormatException(<span class="string">"Invalid PersonName format."</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> ((! <span class="keyword">isset</span>($val)) || strlen($val) == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidArgumentException(<span class="string">"Must supply a non-null value to parse."</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>最终目的是希望人们能够使用您的类，而不必了解其中的工作原理。如果他们使用的方法不正确或者不是按照期望的方法使用，也不需要猜测不能工作的原因。作为一个好邻居，您需要知道对您的类进行重用的人并没有特异功能，因此您需要解决猜测的问题。</p>
+<h2 id="避免看到美杜莎"><a href="#避免看到美杜莎" class="headerlink" title="避免看到美杜莎"></a>避免看到美杜莎</h2><p>在我最初了解OO概念时，我十分怀疑接口是否真正有帮助。我的同事给我打了个比方，说不使用接口就好像看到美杜莎的头。在希腊神话中，美杜莎是长着蛇发的女怪。凡是看了她一眼的人都会变成石头。杀死美杜莎的珀尔休斯通过在盾上观察她的影子，避免了变成石头而得以与她对抗。</p>
+<p>接口就是对付美杜莎的镜子。当您使用一个特定的具体实现时，代码也必须随着实现代码的更改而更改。直接使用实现将限制您的选择，因为您已经在本质上把类变成了 “石头”。</p>
+<h3 id="坏习惯：不使用接口"><a href="#坏习惯：不使用接口" class="headerlink" title="坏习惯：不使用接口"></a>坏习惯：不使用接口</h3><p>清单 6 显示了从数据库中装入 <code>Person</code> 对象的示例。它将获取人员的姓名并返回数据库中匹配的 <code>Person</code> 对象。</p>
+<h4 id="清单-6-不使用接口的坏习惯"><a href="#清单-6-不使用接口的坏习惯" class="headerlink" title="清单 6. 不使用接口的坏习惯"></a>清单 6. 不使用接口的坏习惯</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DBPersonProvider</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getPerson</span><span class="params">($givenName, $familyName)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">/* go to the database, get the person... */</span></div><div class="line">        $person = <span class="keyword">new</span> Person();</div><div class="line">        $person-&gt;setPrefix(<span class="string">"Mr."</span>);</div><div class="line">        $person-&gt;setGivenName(<span class="string">"John"</span>);</div><div class="line">        <span class="keyword">return</span> $person;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* I need to get person data... */</span></div><div class="line">$provider = <span class="keyword">new</span> DBPersonProvider();</div><div class="line">$person = $provider-&gt;getPerson(<span class="string">"John"</span>, <span class="string">"Doe"</span>);</div><div class="line"></div><div class="line"><span class="keyword">echo</span>($person-&gt;getPrefix());</div><div class="line"><span class="keyword">echo</span>($person-&gt;getGivenName());</div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>在环境发生更改之前，从数据库中装入 <code>Person</code> 的代码都可以正常运行。例如，从数据库装入 <code>Person</code> 可能适用于第一个版本的应用程序，但是对于第二个版本，可能需要添加从 Web 服务装入人员的功能。其实，该类已经变成 “石头”，因为它在直接使用实现类并且现在能做的更改十分有限。</p>
+<h3 id="好习惯：使用接口"><a href="#好习惯：使用接口" class="headerlink" title="好习惯：使用接口"></a>好习惯：使用接口</h3><p>清单 7 显示了一个代码示例，在实现了加载用户的新方法后并没有进行更改。该示例显示了一个名为 <code>PersonProvider</code> 的接口，该接口将声明单个方法。如果任何代码使用 <code>PersonProvider</code>，代码都禁止直接使用实现类。相反，它就像是一个实际对象一样使用 <code>PersonProvider</code>。</p>
+<h4 id="清单-7-使用接口的好习惯"><a href="#清单-7-使用接口的好习惯" class="headerlink" title="清单 7. 使用接口的好习惯"></a>清单 7. 使用接口的好习惯</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">PersonProvider</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getPerson</span><span class="params">($givenName, $familyName)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DBPersonProvider</span> <span class="keyword">implements</span> <span class="title">PersonProvider</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getPerson</span><span class="params">($givenName, $familyName)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">/* pretend to go to the database, get the person... */</span></div><div class="line">        $person = <span class="keyword">new</span> Person();</div><div class="line">        $person-&gt;setPrefix(<span class="string">"Mr."</span>);</div><div class="line">        $person-&gt;setGivenName(<span class="string">"John"</span>);</div><div class="line">        <span class="keyword">return</span> $person;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonProviderFactory</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">createProvider</span><span class="params">($type)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> ($type == <span class="string">'database'</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> DBPersonProvider();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> NullProvider();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$config = <span class="string">'database'</span>;</div><div class="line"><span class="comment">/* I need to get person data... */</span></div><div class="line">$provider = PersonProviderFactory::createProvider($config);</div><div class="line">$person = $provider-&gt;getPerson(<span class="string">"John"</span>, <span class="string">"Doe"</span>);</div><div class="line"></div><div class="line"><span class="keyword">echo</span>($person-&gt;getPrefix());</div><div class="line"><span class="keyword">echo</span>($person-&gt;getGivenName());</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>在使用接口时，尝试避免直接引用实现类。相反，使用对象外部的内容可以提供正确的实现。如果您的类将装入基于某些逻辑的实现，它仍然需要获取所有实现类的定义，并且那样做也无法取得任何效果。</p>
+<p>您可以使用 Factory 模式来创建实现接口的实现类的实例。根据约定，<code>factory</code> 方法将以 <code>create</code> 为开头并返回接口。它可以为您的 <code>factory</code> 获取必要的参数以计算出应当返回哪个实现类。</p>
+<p>在清单 7 中，<code>createProvider()</code> 方法只是获取 <code>$type</code>。如果 <code>$type</code> 被设为 <code>database</code>，工厂将返回 <code>DBPersonProvider</code> 的实例。从数据库中装入人员的任何新实现都不要求在使用工厂和接口的类中进行任何更改。<code>DBPersonProvider</code> 将实现 <code>PersonProvider</code> 接口并且拥有 <code>getPerson()</code> 方法的实际实现。</p>
+<h2 id="利用最弱的链接"><a href="#利用最弱的链接" class="headerlink" title="利用最弱的链接"></a>利用最弱的链接</h2><p>将模块<em>松散耦合</em> 在一起是件好事情；它是允许您封装更改的属性之一。另外两个习惯 — “保持谨慎” 和 “避免看到美杜莎” — 可帮助您构建松散耦合的模块。要实现松散耦合的类，可通过养成降低类依赖关系的习惯实现。</p>
+<h3 id="坏习惯：紧密耦合"><a href="#坏习惯：紧密耦合" class="headerlink" title="坏习惯：紧密耦合"></a>坏习惯：紧密耦合</h3><p>在清单 8 中，降低依赖关系并不是必须降低使用对象的客户机的依赖关系。相反，该示例将演示如何降低与正确类的依赖关系并最小化这种依赖关系。</p>
+<h4 id="清单-8-Address-中紧密耦合的坏习惯"><a href="#清单-8-Address-中紧密耦合的坏习惯" class="headerlink" title="清单 8. Address 中紧密耦合的坏习惯"></a>清单 8. <code>Address</code> 中紧密耦合的坏习惯</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">require_once</span> <span class="string">"./AddressFormatters.php"</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Address</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> $addressLine1;</div><div class="line">    <span class="keyword">private</span> $addressLine2;</div><div class="line">    <span class="keyword">private</span> $city;</div><div class="line">    <span class="keyword">private</span> $state; <span class="comment">// or province...</span></div><div class="line">    <span class="keyword">private</span> $postalCode;</div><div class="line">    <span class="keyword">private</span> $country;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setAddressLine1</span><span class="params">($line1)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;addressLine1 = $line1;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">		<span class="comment">/* accessors, etc... */</span></div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getCountry</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;country;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">format</span><span class="params">($type)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> ($type == <span class="string">"inline"</span>) &#123;</div><div class="line">            $formatter = <span class="keyword">new</span> InlineAddressFormatter();</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ($type == <span class="string">"multiline"</span>) &#123;</div><div class="line">            $formatter = <span class="keyword">new</span> MultilineAddressFormatter();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            $formatter = <span class="keyword">new</span> NullAddressFormatter();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> $formatter-&gt;format(<span class="keyword">$this</span>-&gt;getAddressLine1(),</div><div class="line">            <span class="keyword">$this</span>-&gt;getAddressLine2(),</div><div class="line">            <span class="keyword">$this</span>-&gt;getCity(), <span class="keyword">$this</span>-&gt;getState(), <span class="keyword">$this</span>-&gt;getPostalCode(),</div><div class="line">            <span class="keyword">$this</span>-&gt;getCountry());</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$addr = <span class="keyword">new</span> Address();</div><div class="line">$addr-&gt;setAddressLine1(<span class="string">"123 Any St."</span>);</div><div class="line">$addr-&gt;setAddressLine2(<span class="string">"Ste 200"</span>);</div><div class="line">$addr-&gt;setCity(<span class="string">"Anytown"</span>);</div><div class="line">$addr-&gt;setState(<span class="string">"AY"</span>);</div><div class="line">$addr-&gt;setPostalCode(<span class="string">"55555-0000"</span>);</div><div class="line">$addr-&gt;setCountry(<span class="string">"US"</span>);</div><div class="line"></div><div class="line"><span class="keyword">echo</span>($addr-&gt;format(<span class="string">"multiline"</span>));</div><div class="line"><span class="keyword">echo</span>(<span class="string">"\n"</span>);</div><div class="line"></div><div class="line"><span class="keyword">echo</span>($addr-&gt;format(<span class="string">"inline"</span>));</div><div class="line"><span class="keyword">echo</span>(<span class="string">"\n"</span>);</div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>在 <code>Address</code> 对象上调用 <code>format()</code> 方法的代码可能看上去很棒 — 这段代码所做的是使用 <code>Address</code> 类，调用 <code>format()</code> 并完成。相反，<code>Address</code> 类就没那么幸运。它需要了解用于正确格式化的各种格式化方法，这可能使 <code>Address</code> 对象无法被其他人很好地重用，尤其是在其他人没有兴趣在 <code>format()</code> 方法中使用格式化方法类的情况下。虽然使用 <code>Address</code> 的代码没有许多依赖关系，但是 <code>Address</code> 类却有大量代码，而它可能只是一个简单的数据对象。</p>
+<p><code>Address</code> 类与知道如何格式化 <code>Address</code> 对象的实现类紧密耦合。</p>
+<h3 id="好习惯：在对象之间松散耦合"><a href="#好习惯：在对象之间松散耦合" class="headerlink" title="好习惯：在对象之间松散耦合"></a>好习惯：在对象之间松散耦合</h3><p>在构建优秀的OO设计时，必须考虑称为<em>关注点分离</em>（Separation of Concerns，SoC）的概念。SoC 指尝试通过真正关注的内容分离对象，从而降低耦合度。在最初的 <code>Address</code> 类中，它必须关注如何进行格式化。这可能不是优秀的设计。然而，<code>Address</code> 类应当考虑 <code>Address</code> 的各部分，而某种格式化方法应当关注如何正确格式化地址。</p>
+<p>在清单 9 中，格式化地址的代码被移到接口、实现类和工厂中 — 养成 “使用接口” 的习惯。现在，<code>AddressFormatUtils</code> 类负责创建格式化方法并格式化 <code>Address</code>。任何其他对象现在都可以使用 <code>Address</code> 而不必担心要求获得格式化方法的定义。</p>
+<h4 id="清单-9-在对象之间松散耦合的好习惯"><a href="#清单-9-在对象之间松散耦合的好习惯" class="headerlink" title="清单 9. 在对象之间松散耦合的好习惯"></a>清单 9. 在对象之间松散耦合的好习惯</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">AddressFormatter</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">format</span><span class="params">($addressLine1, $addressLine2, $city, $state,</span></span></div><div class="line">        $postalCode, $country);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MultiLineAddressFormatter</span> <span class="keyword">implements</span> <span class="title">AddressFormatter</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">format</span><span class="params">($addressLine1, $addressLine2, $city, $state,</span></span></div><div class="line">        $postalCode, $country)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> sprintf(<span class="string">"%s\n%s\n%s, %s %s\n%s"</span>,</div><div class="line">            $addressLine1, $addressLine2, $city, $state, $postalCode, $country);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InlineAddressFormatter</span> <span class="keyword">implements</span> <span class="title">AddressFormatter</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">format</span><span class="params">($addressLine1, $addressLine2, $city, $state,</span></span></div><div class="line">        $postalCode, $country)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> sprintf(<span class="string">"%s %s, %s, %s %s %s"</span>,</div><div class="line">            $addressLine1, $addressLine2, $city, $state, $postalCode, $country);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AddressFormatUtils</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">formatAddress</span><span class="params">($type, $address)</span></span></div><div class="line">    &#123;</div><div class="line">        $formatter = AddressFormatUtils::createAddressFormatter($type);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> $formatter-&gt;format($address-&gt;getAddressLine1(),</div><div class="line">            $address-&gt;getAddressLine2(),</div><div class="line">            $address-&gt;getCity(), $address-&gt;getState(),</div><div class="line">            $address-&gt;getPostalCode(),</div><div class="line">            $address-&gt;getCountry());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">createAddressFormatter</span><span class="params">($type)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> ($type == <span class="string">"inline"</span>) &#123;</div><div class="line">            $formatter = <span class="keyword">new</span> InlineAddressFormatter();</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ($type == <span class="string">"multiline"</span>) &#123;</div><div class="line">            $formatter = <span class="keyword">new</span> MultilineAddressFormatter();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            $formatter = <span class="keyword">new</span> NullAddressFormatter();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> $formatter;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$addr = <span class="keyword">new</span> Address();</div><div class="line">$addr-&gt;setAddressLine1(<span class="string">"123 Any St."</span>);</div><div class="line">$addr-&gt;setAddressLine2(<span class="string">"Ste 200"</span>);</div><div class="line">$addr-&gt;setCity(<span class="string">"Anytown"</span>);</div><div class="line">$addr-&gt;setState(<span class="string">"AY"</span>);</div><div class="line">$addr-&gt;setPostalCode(<span class="string">"55555-0000"</span>);</div><div class="line">$addr-&gt;setCountry(<span class="string">"US"</span>);</div><div class="line"></div><div class="line"><span class="keyword">echo</span>(AddressFormatUtils::formatAddress(<span class="string">"multiline"</span>, $addr));</div><div class="line"><span class="keyword">echo</span>(<span class="string">"\n"</span>);</div><div class="line"></div><div class="line"><span class="keyword">echo</span>(AddressFormatUtils::formatAddress(<span class="string">"inline"</span>, $addr));</div><div class="line"><span class="keyword">echo</span>(<span class="string">"\n"</span>);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>当然，缺点是只要使用模式，通常就意味着工件（类、文件）的数量会增加。但是，通过减少每个类中的维护可以弥补这个缺点，甚至在获得正确的可重用性时反而可以减少工件量。</p>
+<h2 id="您是橡皮；我是胶水"><a href="#您是橡皮；我是胶水" class="headerlink" title="您是橡皮；我是胶水"></a>您是橡皮；我是胶水</h2><p>具有高度内聚力的OO设计被集中并组织到相关模块中。了解 “关注点” 对于决定如何紧密地联系函数和类十分重要。</p>
+<h3 id="坏习惯：降低内聚力"><a href="#坏习惯：降低内聚力" class="headerlink" title="坏习惯：降低内聚力"></a>坏习惯：降低内聚力</h3><p>当设计的<em>内聚力较低</em> 时，它就不能良好地组织类和方法。<em>意大利面条式代码（spaghetti code）</em>一词通常用于描述捆绑在一起并且具有低内聚力的类和方法。清单 10 提供了意大利面条式代码的示例。相对通用的 <code>Utils</code> 类将使用许多不同对象并且有许多依赖关系。它执行很多操作，因而很难实现重用。</p>
+<h4 id="清单-10-降低内聚力的坏习惯"><a href="#清单-10-降低内聚力的坏习惯" class="headerlink" title="清单 10. 降低内聚力的坏习惯"></a>清单 10. 降低内聚力的坏习惯</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Utils</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">formatAddress</span><span class="params">($formatType, $address1,</span></span></div><div class="line">        $address2, $city, $state)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"some address string"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">formatPersonName</span><span class="params">($formatType, $givenName,</span></span></div><div class="line">        $familyName)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"some person name"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">parseAddress</span><span class="params">($formatType, $val)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// real implementation would set values, etc...</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Address();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">parseTelephoneNumber</span><span class="params">($formatType, $val)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// real implementation would set values, etc...</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TelephoneNumber();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="好习惯：利用高内聚力"><a href="#好习惯：利用高内聚力" class="headerlink" title="好习惯：利用高内聚力"></a>好习惯：利用高内聚力</h3><p><em>高内聚力</em> 指将相互关联的类和方法分组在一起。如果方法和类都具有高度的内聚力，则可以轻松地分解整个组而不影响设计。具有高内聚力的设计将提供降低耦合的机会。清单 11 显示了被较好组织到类中的两个方法。<code>AddressUtils</code> 类将包含用于处理 <code>Address</code> 类的方法，显示了与地址相关的方法之间的高度内聚力。同样地，<code>PersonUtils</code> 将包含专门处理 <code>Person</code> 对象的方法。这两个拥有高度内聚力方法的新类的耦合性都很低，因为可以完全独立地使用。</p>
+<h4 id="清单-11-高内聚力的好习惯"><a href="#清单-11-高内聚力的好习惯" class="headerlink" title="清单 11. 高内聚力的好习惯"></a>清单 11. 高内聚力的好习惯</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AddressUtils</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">formatAddress</span><span class="params">($formatType, $address1,</span></span></div><div class="line">        $address2, $city, $state)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"some address string"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">parseAddress</span><span class="params">($formatType, $val)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// real implementation would set values, etc...</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Address();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonUtils</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">formatPersonName</span><span class="params">($formatType, $givenName,</span></span></div><div class="line">        $familyName)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"some person name"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">parsePersonName</span><span class="params">($formatType, $val)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// real implementation would set values, etc...</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PersonName();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="限制传播"><a href="#限制传播" class="headerlink" title="限制传播"></a>限制传播</h2><p>我经常对我所在的软件团队（我在其中担任技术主管或架构师）的成员提起，OO 语言最大的敌人是复制和粘贴操作。当在缺少预先OO设计的情况下使用时，没有任何操作会像在类之间复制代码那样具有破坏性。无论何时，如果想将代码从一个类复制到下一个类中，请停下来并考虑如何使用类层次结构利用类似功能或相同功能。在大多数情况下，使用优秀设计后，您将会发现完全没有必要复制代码。</p>
+<h3 id="坏习惯：不使用类层次结构"><a href="#坏习惯：不使用类层次结构" class="headerlink" title="坏习惯：不使用类层次结构"></a>坏习惯：不使用类层次结构</h3><p>清单 12 显示了部分类的简单示例。它们从重复的字段和方法开始 — 从长远来看，不利于应用程序作出更改。如果 <code>Person</code> 类中有缺陷，则 <code>Employee</code> 类中也很可能有一个缺陷，因为看上去似乎实现是在两个类之间复制的。</p>
+<h4 id="清单-12-不使用层次结构的坏习惯"><a href="#清单-12-不使用层次结构的坏习惯" class="headerlink" title="清单 12. 不使用层次结构的坏习惯"></a>清单 12. 不使用层次结构的坏习惯</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> $givenName;</div><div class="line">    <span class="keyword">private</span> $familyName;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> $givenName;</div><div class="line">    <span class="keyword">private</span> $familyName;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p><em>继承</em> 是一个很难入手的习惯，因为构建正确继承模型的分析通常需要花费大量时间。反过来，使用 <strong>Ctrl+C</strong> 组合键和 <strong>Ctrl+V</strong> 组合键构建新实现只需几秒钟。但是省下的这部分时间通常会在维护阶段迅速抵销掉，因为应用程序实际上将花费大量进行维护。</p>
+<h3 id="好习惯：利用继承"><a href="#好习惯：利用继承" class="headerlink" title="好习惯：利用继承"></a>好习惯：利用继承</h3><p>在清单 13 中，新 <code>Employee</code> 类将扩展 <code>Person</code> 类。它现在将继承所有通用方法并且不重新实现这些方法。此外，清单 13 显示了抽象方法的用法，演示如何将基本功能放入基类中以及如何阻止实现类使用特定函数。</p>
+<h4 id="清单-13-利用继承的好习惯"><a href="#清单-13-利用继承的好习惯" class="headerlink" title="清单 13. 利用继承的好习惯"></a>清单 13. 利用继承的好习惯</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> $givenName;</div><div class="line">    <span class="keyword">private</span> $familyName;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setGivenName</span><span class="params">($gn)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;givenName = $gn;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getGivenName</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;givenName;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setFamilyName</span><span class="params">($fn)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;familyName = $fn;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getFamilyName</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;familyName;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">echo</span>(<span class="string">"Hello, I am "</span>);</div><div class="line">        <span class="keyword">$this</span>-&gt;introduceSelf();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">introduceSelf</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span> <span class="keyword">extends</span> <span class="title">Person</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> $role;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setRole</span><span class="params">($r)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;role = $r;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getRole</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;role;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">introduceSelf</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">echo</span>(<span class="keyword">$this</span>-&gt;getRole() . <span class="string">" "</span> . <span class="keyword">$this</span>-&gt;getGivenName() . <span class="string">" "</span> .</div><div class="line">            <span class="keyword">$this</span>-&gt;getFamilyName());</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="考虑使用模式"><a href="#考虑使用模式" class="headerlink" title="考虑使用模式"></a>考虑使用模式</h2><p>设计模式指对象和方法的常见交互，并且时间证明它可以解决某些问题。当您考虑使用设计模式时，您就需要了解类之间如何进行交互。它是构建类及其交互操作的简单方法，无需重蹈他人的覆辙，并从经过证明的设计中获益。</p>
+<h3 id="坏习惯：一次考虑一个对象"><a href="#坏习惯：一次考虑一个对象" class="headerlink" title="坏习惯：一次考虑一个对象"></a>坏习惯：一次考虑一个对象</h3><p>实际上没有适当的代码示例可以演示如何考虑使用模式（尽管有丰富的优秀示例可以显示模式实现）。但是，一般而言，您知道在满足以下条件时一次只能考虑一个对象：</p>
+<ul>
+<li>不会提前设计对象模型。</li>
+<li>开始编写单一方法的实现，而无需去掉大部分模型。</li>
+<li>在交谈中不使用设计模式名而宁愿谈论实现。</li>
+</ul>
+<h3 id="好习惯：同时添加模式中形成的对象"><a href="#好习惯：同时添加模式中形成的对象" class="headerlink" title="好习惯：同时添加模式中形成的对象"></a>好习惯：同时添加模式中形成的对象</h3><p>一般而言，当您在执行以下操作时就是在考虑使用模式：</p>
+<ul>
+<li>提前构建类及其交互操作。</li>
+<li>根据模式套用类。</li>
+<li>使用模式名，如 <em>Factory、Singleton</em> 和 <em>Facade</em>。</li>
+<li>去掉大部分模型，然后开始添加实现。</li>
+</ul>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>在 PHP 中养成良好的OO习惯将帮助您构建更稳定、更易于维护和更易于扩展的应用程序。记住：</p>
+<ul>
+<li>保持谨慎。</li>
+<li>做个好邻居。</li>
+<li>避免看到美杜莎。</li>
+<li>利用最弱的链接。</li>
+<li>您是橡皮，我是胶水。</li>
+<li>限制传播。</li>
+<li>考虑使用模式。</li>
+</ul>
+<p>当您养成并应用这些习惯后，您很可能会惊讶地发现应用程序在质量上的飞跃。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><h3 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h3><ul>
+<li>您可以参阅本文在 developerWorks 全球站点上的 <a href="http://www.ibm.com/developerworks/opensource/library/os-php-7oohabits/?S_TACT=105AGX52&amp;S_CMP=cn-a-os" target="_blank" rel="external">英文原文</a>。</li>
+<li>阅读 <a href="http://en.wikipedia.org/wiki/Module_(programming" target="_blank" rel="external">模块编程</a>) 的维基百科条目。</li>
+<li>阅读 Bertrand Meyer 所著的 <em><a href="http://archive.eiffel.com/doc/oosc/" target="_blank" rel="external">Object-Oriented Software Construction</a></em> 一书了解面向对象设计的更多信息。</li>
+<li>访问官方 PHP Web 站点中关于 <a href="http://us3.php.net/manual/en/language.oop5.php" target="_blank" rel="external">类和对象</a> 的 PHP 手册内容。</li>
+<li>阅读 “<a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designptrns/" target="_blank" rel="external">五种常见的 PHP 设计模式</a>” 和 “<a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/" target="_blank" rel="external">另外五个 PHP 设计模式</a>” 了解 PHP 中的设计模式。</li>
+<li><a href="http://www.php.net" target="_blank" rel="external">PHP.net</a> 是 PHP 开发者的重要资源。</li>
+<li>查阅 “<a href="http://www.ibm.com/developerworks/cn/opensource/os-php-read" target="_blank" rel="external">PHP 推荐读物列表</a>”。</li>
+<li>浏览 developerWorks 上的全部 <a href="http://www.ibm.com/developerworks/cn/views/opensource/libraryview.jsp?search_by=php" target="_blank" rel="external">PHP 内容</a>。</li>
+<li>查看 IBM developerWorks 的 <a href="http://www.ibm.com/developerworks/cn/opensource/top-projects/php.html" target="_blank" rel="external">PHP 项目资源</a> 扩展 PHP 技巧。</li>
+<li>收听针对软件开发人员的有趣访谈和讨论，一定要访问 <a href="http://www.ibm.com/developerworks/podcast/" target="_blank" rel="external">developerWorks podcast</a>。</li>
+<li>要将数据库与 PHP 结合使用？查看 <a href="http://www-306.ibm.com/software/data/info/zendcore/" target="_blank" rel="external">Zend Core for IBM</a>，它是一个无缝的、可以立即使用、易于安装、支持 IBM DB2 V9 的 PHP 开发和生产环境。</li>
+<li>随时关注 developerWorks 的 <a href="http://www.ibm.com/developerworks/offers/techbriefings/" target="_blank" rel="external">技术活动和网络广播</a>。</li>
+<li>查阅最近将在全球举办的面向 IBM 开放源码开发人员的研讨会、交易展览、网络广播和其他 <a href="http://www.ibm.com/developerworks/views/opensource/events.jsp" target="_blank" rel="external">活动</a>。</li>
+<li>访问 developerWorks <a href="http://www.ibm.com/developerworks/cn/opensource" target="_blank" rel="external">开放源码专区</a>，获得丰富的 how-to 信息、工具和项目更新，帮助您用开放源码技术进行开发，并与 IBM 产品结合使用。</li>
+<li>查看免费的 <a href="http://www.ibm.com/developerworks/offers/lp/demos/" target="_blank" rel="external">developerWorks On demand demo</a> 观看并了解 IBM 及开源技术和产品功能。</li>
+</ul>
+<h3 id="获得产品和技术"><a href="#获得产品和技术" class="headerlink" title="获得产品和技术"></a>获得产品和技术</h3><ul>
+<li>使用 <a href="http://www.ibm.com/developerworks/downloads/" target="_blank" rel="external">IBM 试用软件</a>，改进您的下一个开发项目，这些软件可以通过下载或从 DVD 中获得。</li>
+<li>下载 <a href="http://www.ibm.com/developerworks/downloads/" target="_blank" rel="external">IBM 产品评估版</a> 并开始使用来自 DB2®、Lotus®、Rational®、Tivoli® 和 WebSphere® 的应用程序开发工具和中间件产品。</li>
+</ul>
+<h3 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h3><ul>
+<li>参与 <a href="http://www.ibm.com/developerworks/blogs" target="_blank" rel="external">developerWorks blog</a> 并加入 developerWorks 社区。</li>
+<li>加入 developerWorks <a href="http://www.ibm.com/developerworks/forums/dw_forum.jsp?forum=992&amp;cat=51" target="_blank" rel="external">PHP Forum: Developing PHP applications with IBM Information Management products (DB2, IDS)</a>。</li>
+</ul>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol>
+<li>摘自<a href="https://www.ibm.com/developerworks/cn/opensource/os-php-7oohabits/#ibm-pcon" target="_blank" rel="external">IBM developerWorks</a>,原文创作日期：2008 年 11 月 17 日，博主转载日期是 2017-02-28 10:07:41。</li>
+<li>以上链接皆为原文中的链接，时效性未测，若信息陈旧，勿信！</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/转载/" rel="tag"># 转载</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/03/乐天“萨德”事件原委/" rel="next" title="乐天“萨德”事件原委">
+                <i class="fa fa-chevron-left"></i> 乐天“萨德”事件原委
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/27/Git详解以及使用遇到问题解决/" rel="prev" title="git详解以及使用遇到问题解决">
+                git详解以及使用遇到问题解决 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Mine-MuYan" />
+          <p class="site-author-name" itemprop="name">Mine-MuYan</p>
+           
+              <p class="site-description motion-element" itemprop="description">My Blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Mine-MuYan" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3076081223" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://music.163.com/#/user/home?id=73379717" target="_blank" title="Music">
+                  
+                    <i class="fa fa-fw fa-music"></i>
+                  
+                  Music
+                </a>
+              </span>
+            
+          
+        </div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=601795690&auto=0&height=430"></iframe>
+        
+        
+
+        
+        
+        
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保持谦虚"><span class="nav-number">2.</span> <span class="nav-text">保持谦虚</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#坏习惯：公开公共字段"><span class="nav-number">2.1.</span> <span class="nav-text">坏习惯：公开公共字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-1-公开公共字段的坏习惯"><span class="nav-number">2.1.1.</span> <span class="nav-text">清单 1. 公开公共字段的坏习惯</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好习惯：使用公共访问方法"><span class="nav-number">2.2.</span> <span class="nav-text">好习惯：使用公共访问方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-2-使用公共访问方法的好习惯"><span class="nav-number">2.2.1.</span> <span class="nav-text">清单 2. 使用公共访问方法的好习惯</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-3-使用不同内部实现的另一个示例"><span class="nav-number">2.2.2.</span> <span class="nav-text">清单 3. 使用不同内部实现的另一个示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#做个好邻居"><span class="nav-number">3.</span> <span class="nav-text">做个好邻居</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#坏习惯：不处理错误"><span class="nav-number">3.1.</span> <span class="nav-text">坏习惯：不处理错误</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-4-不抛出或处理错误的坏习惯"><span class="nav-number">3.1.1.</span> <span class="nav-text">清单 4. 不抛出或处理错误的坏习惯</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好习惯：每个模块都处理自己的错误"><span class="nav-number">3.2.</span> <span class="nav-text">好习惯：每个模块都处理自己的错误</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-5-抛出错误的好习惯"><span class="nav-number">3.2.1.</span> <span class="nav-text">清单 5. 抛出错误的好习惯</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#避免看到美杜莎"><span class="nav-number">4.</span> <span class="nav-text">避免看到美杜莎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#坏习惯：不使用接口"><span class="nav-number">4.1.</span> <span class="nav-text">坏习惯：不使用接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-6-不使用接口的坏习惯"><span class="nav-number">4.1.1.</span> <span class="nav-text">清单 6. 不使用接口的坏习惯</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好习惯：使用接口"><span class="nav-number">4.2.</span> <span class="nav-text">好习惯：使用接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-7-使用接口的好习惯"><span class="nav-number">4.2.1.</span> <span class="nav-text">清单 7. 使用接口的好习惯</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用最弱的链接"><span class="nav-number">5.</span> <span class="nav-text">利用最弱的链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#坏习惯：紧密耦合"><span class="nav-number">5.1.</span> <span class="nav-text">坏习惯：紧密耦合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-8-Address-中紧密耦合的坏习惯"><span class="nav-number">5.1.1.</span> <span class="nav-text">清单 8. Address 中紧密耦合的坏习惯</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好习惯：在对象之间松散耦合"><span class="nav-number">5.2.</span> <span class="nav-text">好习惯：在对象之间松散耦合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-9-在对象之间松散耦合的好习惯"><span class="nav-number">5.2.1.</span> <span class="nav-text">清单 9. 在对象之间松散耦合的好习惯</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#您是橡皮；我是胶水"><span class="nav-number">6.</span> <span class="nav-text">您是橡皮；我是胶水</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#坏习惯：降低内聚力"><span class="nav-number">6.1.</span> <span class="nav-text">坏习惯：降低内聚力</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-10-降低内聚力的坏习惯"><span class="nav-number">6.1.1.</span> <span class="nav-text">清单 10. 降低内聚力的坏习惯</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好习惯：利用高内聚力"><span class="nav-number">6.2.</span> <span class="nav-text">好习惯：利用高内聚力</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-11-高内聚力的好习惯"><span class="nav-number">6.2.1.</span> <span class="nav-text">清单 11. 高内聚力的好习惯</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#限制传播"><span class="nav-number">7.</span> <span class="nav-text">限制传播</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#坏习惯：不使用类层次结构"><span class="nav-number">7.1.</span> <span class="nav-text">坏习惯：不使用类层次结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-12-不使用层次结构的坏习惯"><span class="nav-number">7.1.1.</span> <span class="nav-text">清单 12. 不使用层次结构的坏习惯</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好习惯：利用继承"><span class="nav-number">7.2.</span> <span class="nav-text">好习惯：利用继承</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清单-13-利用继承的好习惯"><span class="nav-number">7.2.1.</span> <span class="nav-text">清单 13. 利用继承的好习惯</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#考虑使用模式"><span class="nav-number">8.</span> <span class="nav-text">考虑使用模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#坏习惯：一次考虑一个对象"><span class="nav-number">8.1.</span> <span class="nav-text">坏习惯：一次考虑一个对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好习惯：同时添加模式中形成的对象"><span class="nav-number">8.2.</span> <span class="nav-text">好习惯：同时添加模式中形成的对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束语"><span class="nav-number">9.</span> <span class="nav-text">结束语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">10.</span> <span class="nav-text">参考资料</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#学习"><span class="nav-number">10.1.</span> <span class="nav-text">学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获得产品和技术"><span class="nav-number">10.2.</span> <span class="nav-text">获得产品和技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讨论"><span class="nav-number">10.3.</span> <span class="nav-text">讨论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">10.4.</span> <span class="nav-text">注意</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mine-MuYan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://Mine-MuYan.github.com/2017/02/28/7个面向对象的好习惯/';
+          this.page.identifier = '2017/02/28/7个面向对象的好习惯/';
+          this.page.title = '7个面向对象的好习惯';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
