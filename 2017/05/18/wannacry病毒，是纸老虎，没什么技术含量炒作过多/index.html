@@ -1,0 +1,1080 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="baidu-site-verification" content="J3Evv1VrXr" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="互联网安全," />
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="最近wannacry病毒席卷全球，也让其成为了媒体焦点，而国内的各个杀毒软件公司也趁机出动，帮助用户拦截病毒，确实做了很多好事。 虽然是好事，但我依然认为最近一轮的PR做的有点多，甚至拉动了整个杀毒概念股，这多少有点误导，所以这篇文章从产业和技术的角度再来谈谈wannacry病毒这件事。">
+<meta name="keywords" content="互联网安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wannacry病毒是纸老虎，没什么技术含量炒作过多">
+<meta property="og:url" content="http://Mine-MuYan.github.com/2017/05/18/wannacry病毒，是纸老虎，没什么技术含量炒作过多/index.html">
+<meta property="og:site_name" content="Mine-MuYan">
+<meta property="og:description" content="最近wannacry病毒席卷全球，也让其成为了媒体焦点，而国内的各个杀毒软件公司也趁机出动，帮助用户拦截病毒，确实做了很多好事。 虽然是好事，但我依然认为最近一轮的PR做的有点多，甚至拉动了整个杀毒概念股，这多少有点误导，所以这篇文章从产业和技术的角度再来谈谈wannacry病毒这件事。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4950628-e9936ba4eb3ed3d8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-09-21T06:48:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="wannacry病毒是纸老虎，没什么技术含量炒作过多">
+<meta name="twitter:description" content="最近wannacry病毒席卷全球，也让其成为了媒体焦点，而国内的各个杀毒软件公司也趁机出动，帮助用户拦截病毒，确实做了很多好事。 虽然是好事，但我依然认为最近一轮的PR做的有点多，甚至拉动了整个杀毒概念股，这多少有点误导，所以这篇文章从产业和技术的角度再来谈谈wannacry病毒这件事。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4950628-e9936ba4eb3ed3d8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Mine-MuYan.github.com/2017/05/18/wannacry病毒，是纸老虎，没什么技术含量炒作过多/"/>
+
+
+
+
+
+  <title> wannacry病毒是纸老虎，没什么技术含量炒作过多 | Mine-MuYan </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d45555c2bbe2487c8fed1222d18c45e6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mine-MuYan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Welcome to my blog.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+      
+        <li class="menu-item">
+            <a title="high 一下" href='javascript:(
+                function go() {
+
+                var songs = [
+                            "music/circles.mp3",
+                            "music/Beethoven Virus.mp3",
+                            "music/beautiful dump.mp3",
+                            "music/dangerous show.mp3",
+                            "music/Frontier.mp3",
+                            "music/jilejingtu.mp3",
+                            "music/Ringtone.mp3"
+                ];
+
+                function c() {
+                    var e = document.createElement("link");
+                    e.setAttribute("type", "text/css");
+                    e.setAttribute("rel", "stylesheet");
+                    e.setAttribute("href", f);
+                    e.setAttribute("class", l);
+                    document.body.appendChild(e)
+                }
+
+                function h() {
+                    var e = document.getElementsByClassName(l);
+                    for (var t = 0; t < e.length; t++) {
+                        document.body.removeChild(e[t])
+                    }
+                }
+
+                function p() {
+                    var e = document.createElement("div");
+                    e.setAttribute("class", a);
+                    document.body.appendChild(e);
+                    setTimeout(function() {
+                        document.body.removeChild(e)
+                    }, 100)
+                }
+
+                function d(e) {
+                    return {
+                        height : e.offsetHeight,
+                        width : e.offsetWidth
+                    }
+                }
+
+                function v(i) {
+                    var s = d(i);
+                    return s.height > e &amp;&amp; s.height < n &amp;&amp; s.width > t &amp;&amp; s.width < r
+                }
+
+                function m(e) {
+                    var t = e;
+                    var n = 0;
+                    while (!!t) {
+                        n += t.offsetTop;
+                        t = t.offsetParent
+                    }
+                    return n
+                }
+
+                function g() {
+                    var e = document.documentElement;
+                    if (!!window.innerWidth) {
+                        return window.innerHeight
+                    } else if (e &amp;&amp; !isNaN(e.clientHeight)) {
+                        return e.clientHeight
+                    }
+                    return 0
+                }
+
+                function y() {
+                    if (window.pageYOffset) {
+                        return window.pageYOffset
+                    }
+                    return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+                }
+
+                function E(e) {
+                    var t = m(e);
+                    return t >= w &amp;&amp; t <= b + w
+                }
+
+                function S() {
+                    var e = document.getElementById("audio_element_id");
+                    if(e != null){
+                        var index = parseInt(e.getAttribute("curSongIndex"));
+                        if(index > songs.length - 2) {
+                            index = 0;
+                        } else {
+                            index++;
+                        }
+                        e.setAttribute("curSongIndex", index);
+                        N();
+                    }
+
+                    e.src = i;
+                    e.play()
+                }
+
+                function x(e) {
+                    e.className += " " + s + " " + o
+                }
+
+                function T(e) {
+                    e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+                }
+
+                function N() {
+                    var e = document.getElementsByClassName(s);
+                    var t = new RegExp("\\b" + s + "\\b");
+                    for (var n = 0; n < e.length; ) {
+                        e[n].className = e[n].className.replace(t, "")
+                    }
+                }
+
+                function initAudioEle() {
+                    var e = document.getElementById("audio_element_id");
+                    if(e === null){
+                        e = document.createElement("audio");
+                        e.setAttribute("class", l);
+                        e.setAttribute("curSongIndex", 0);
+                        e.id = "audio_element_id";
+                        e.loop = false;
+                        e.bgcolor = 0;
+                        e.addEventListener("canplay", function() {
+                        setTimeout(function() {
+                            x(k)
+                        }, 500);
+                        setTimeout(function() {
+                            N();
+                            p();
+                            for (var e = 0; e < O.length; e++) {
+                                T(O[e])
+                            }
+                        }, 15500)
+                    }, true);
+                    e.addEventListener("ended", function() {
+                        N();
+                        h();
+                        go();
+                    }, true);
+                    e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+                    document.body.appendChild(e);
+                    }
+                }
+
+                initAudioEle();
+                var e = 30;
+                var t = 30;
+                var n = 350;
+                var r = 350;
+
+                var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+                var i = songs[curSongIndex];
+
+                var s = "mw-harlem_shake_me";
+                var o = "im_first";
+                var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+                var a = "mw-strobe_light";
+
+                /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
+                var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+
+                var l = "mw_added_css";
+                var b = g();
+                var w = y();
+                var C = document.getElementsByTagName("*");
+                var k = null;
+                for (var L = 0; L < C.length; L++) {
+                    var A = C[L];
+                    if (v(A)) {
+                        if (E(A)) {
+                            k = A;
+                            break
+                        }
+                    }
+                }
+                if (A === null) {
+                    console.warn("Could not find a node of the right size. Please try a different page.");
+                    return
+                }
+                c();
+                S();
+                var O = [];
+                for (var L = 0; L < C.length; L++) {
+                    var A = C[L];
+                    if (v(A)) {
+                        O.push(A)
+                    }
+                }
+                })()'>High一下</a>
+        </li>
+    </ul>
+  
+
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://Mine-MuYan.github.com/2017/05/18/wannacry病毒，是纸老虎，没什么技术含量炒作过多/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mine-MuYan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mine-MuYan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                wannacry病毒是纸老虎，没什么技术含量炒作过多
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-18T10:30:06+08:00">
+                2017-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/转载/" itemprop="url" rel="index">
+                    <span itemprop="name">转载</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/18/wannacry病毒，是纸老虎，没什么技术含量炒作过多/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/18/wannacry病毒，是纸老虎，没什么技术含量炒作过多/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近wannacry病毒席卷全球，也让其成为了媒体焦点，而国内的各个杀毒软件公司也趁机出动，帮助用户拦截病毒，确实做了很多好事。</p>
+<p>虽然是好事，但我依然认为最近一轮的PR做的有点多，甚至拉动了整个杀毒概念股，这多少有点误导，所以这篇文章从产业和技术的角度再来谈谈wannacry病毒这件事。</p>
+<a id="more"></a>
+<hr>
+<h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p>根据最新消息，比特币检测机构的数据显示wannacry的制作者们目前获得了7万美元的赎金。</p>
+<p> 而造成如此全球大规模的破坏，最终只获得了7万美元的赎金，黑客们还要像淘宝客服一样一个个发货，清点仓库，不断研究新病毒，想想也真不容易。</p>
+<p>简单的说，造成如此大规模破坏，与其最后的收益多少是不成正比的 ，就这点赎金，真的还不如卖上几个G的大公司数据库赚钱。</p>
+<p>这种规模不经济背后，反应的是PC到移动的产业链变革，以及技术的变迁。</p>
+<h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p>先聊聊过去的黑客产业，确实非常发达。</p>
+<p> <img src="//upload-images.jianshu.io/upload_images/4950628-e9936ba4eb3ed3d8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>以前的黑客都喜欢建立长期价值，更多都是在制作木马病毒，并实现对用户电脑的控制，业内简称“抓肉鸡”，这样就可以通过各种黑产来变现，我这里举3个关键产业。</p>
+<p>CPA赚钱：即给各路软件，金山毒霸、360、9158等等进行每台机器的安装，每安装一台就会分成0.5-3元。</p>
+<p>CPC赚钱：一般都是在利用肉鸡制造虚假的广告流量点击，或者用于服务器攻击，搜索引擎关键词欺骗，恶意点击对手关键词等等，总之都是在做违法流量。</p>
+<p>盗号赚钱：比如说，淘宝上最早的半价QQ会员、黄钻、红钻、蓝钻、QB这些，都是黑客通过入侵宽带账号，对其进行的宽带费盗刷的结果。</p>
+<p>当然，最赚钱的还是游戏账号，通过安装各类游戏密码，截获各游戏账号，当年比较火热的传奇、梦幻西游、仙剑、DNF等等。黑客一般都是先改密码再转移装备，在游戏中与其他玩家交易成金币后，然后放到淘宝上卖金币，最后还会再观察这个账号是否还会被找回，如果不被找回，那么就会也拿出来卖。</p>
+<p>可以说，以前的PC时代，有着非常多的黑产变现手法，通过控制一台电脑，就能获得相当多的收益。</p>
+<p>蠕虫病毒都是一波流，媒体一曝光全都见光死，漏洞补上就没机会了，高手黑客都是做木马病毒，控制电脑建立长期价值。</p>
+<p>现在的黑客开始对PC电脑进行一波流的收割，是因为PC的商业时代过去了，都集中在移动手机了。</p>
+<h2 id="3"><a href="#3" class="headerlink" title="3"></a>3</h2><p>既然智能手机的产业那么大，那黑客为什么不入侵安卓，IOS？</p>
+<p> 这里我再从技术角度谈谈为什么智能手机大规模入侵为什么那么少。</p>
+<p>因为权限问题。</p>
+<p>PC电脑需要应对用户无数需求，编程需求、图像处理需求、显卡更换需求、内存更换需求…….</p>
+<p>这些无数种乱七八糟的需求，导致了微软不得不做成极度开放的系统，让用户可以自由操控底层权限，自由拔插各种软硬件，这也导致了黑客更容易找到漏洞。</p>
+<p>找到不是问题，问题是，一次入侵后就可以实现全面的掌控，比如你在国内安装一个软件，往往安装的都是全家桶，你随便点击一个“确定”，一堆软件就到桌面上了，任何软件都有能力操控底层代码，这是由于过分开放导致的必然结果。</p>
+<p>智能手机的权限就比较严格。</p>
+<p>安卓和苹果本质上都差不多，给软件的权限都非常严格，比如你要读取个通讯录是需要用户允许的，你要连接个wifi是需要用户允许的，你要后台跑流量还是需要用户允许的…….</p>
+<p>这样就导致了杀毒软件只能在既定的范围内行事，能做的事情比较少，之前360由于越界还被苹果下架过，UBER也做出过出格行为被苹果约谈，可以看出苹果的监控有多严格。</p>
+<p>这就保证了真正的底层权限都甚至不会被用户掌握，也自然不会下放给其他软件，你安装一个软件，也不会出现安装全家桶的现象。</p>
+<p>对于智能手机而言，用户没事不会去换主板、换CPU、换各种设备，也不会用手机编程，需要底层环境变量配置，需要取得各种底层权限，因此智能手机的权限可以对用户实行全面封闭，即使root权限，也依然受到严格限制。</p>
+<p>而这种权限设计，也导致了没有那么多的漏洞需要补，黑客入侵也非常困难。</p>
+<h2 id="4"><a href="#4" class="headerlink" title="4"></a>4</h2><p>当然，没有不能攻破的系统，智能手机的权限再严格，只要有利益在，还是挡不住黑客的。</p>
+<p> 智能手机稍有入侵，还有个原因在于，黑产也受到了智能手机的冲击，很多黑产给断了。</p>
+<p>比如CPC、CPA这种广告联盟变现逻辑，就很难通过强行静默安装的方式实现，因为没有权限。</p>
+<p>而盗号产业，现在大家都是用手机注册各种账号，黑客必须实现短信拦截，这就导致了需要建伪基站，或者入侵用户的线上短信接收平台，等等，成本极高，机会也少。</p>
+<p>当然，这么做最终依然无法实现盗号，因为账号都与手机绑定，一个验证码就能找回，根本不能永久拿下。</p>
+<p>所以智能手机的黑产集中在了盗刷层面，之前网易邮箱账号泄露，就有大批的Appstore的账号被盗刷，被用于购买了各种游戏装备，但是只要用户通过合理的申诉，还是能够通过苹果找回，黑客弄了半天，其实很容易竹篮打水一场空。</p>
+<p>另外，苹果手机此前也出现过勒索局面，黑客通过获得苹果账号，设置icloud丢失锁定手机，来要求用户赎回苹果账号。当然这和入侵无关，是低级的暴库行为，主要是下游产业链完成，没技术含量的。</p>
+<p>所以，智能手机除了封锁权限，还把黑产财路也截断了很大一部分。</p>
+<h2 id="5"><a href="#5" class="headerlink" title="5"></a>5</h2><p>PC和智能手机两边都在截断黑产收入，在这两边的收入锐减情况下，此次CY病毒选择了一波收割。</p>
+<p> 但我依然认为CY只是纸老虎，一波收割的蠕虫病毒，不是建立对电脑的暗中长期控制，没什么吓人的。</p>
+<p>公司或者机构电脑上可能会有值钱的资料，但是普通个人用户有多少值钱的资料？我认为绝大多数的人资料基本不会超 过300美元，## 如果绝大多数人的电脑资料超过300美元，那么此次黑客们都要赚翻了。## </p>
+<p>举个 例子，比如说论文这种东西吧，300美元这么贵，在国内完全都可以找人代写了代发了，重写就行了，绝大多数人不会交这个赎金。</p>
+<p>另外，现在都是云端时代，很多人都已经把资料放到云端，是云端实时备份的，电脑中毒对于这些已经备份云端的人群来说，一点都不重要。</p>
+<p>再说学校机、加油站、出入境管理处的电脑中毒，我认为也不是什么大事，所有资料都在服务器里面，黑客入侵的不是后端服务器，一个前端电脑坏了重装就行了，用户的信息没丢就根本不是什么大事。</p>
+<p>大惊小怪的往往是外行。</p>
+<h2 id="6"><a href="#6" class="headerlink" title="6"></a>6</h2><p>说了这么多，既然手机的病毒木马都没啥怕的，都是纸老虎，那么真老虎是啥？</p>
+<p> 真老虎是服务器入侵。</p>
+<p>TOC越来越难以收割，因此这波黑产已经全面进入到TOB阶段，靠入侵各个公司，盗取数据库资料，这是远比非标准化的个人PC和智能收机入侵更赚钱的事情。</p>
+<p>比如之前icloud的明星艳照，就非常值钱，刚开始能卖好多钱。再比如之前泄露的网易邮箱数据库、雅虎数据库、优酷数据库，58简历数据库等等，都是非常值钱的。</p>
+<p>尤其是邮箱数据库，很多黑客可以通过邮箱数据库去盗刷各个游戏账号，锁定用户的icloud勒索，自己用完后最后再倒卖几波，虽然产业链下游的人辛苦点，但整个产业还是能赚很多。</p>
+<p>不过以上依然不算是太严重的破坏。</p>
+<p>各位想想，这次入侵只不过是在逼你删掉一些本来就没用的文件，但是如果这次攻击的不是PC电脑，而是服务器，黑客把各个国家公民的数据锁了（甚至连同各地备份服务器数据一起锁住），把你的房产信息锁了，那该有多可怕？</p>
+<p>不过幸运的是，这次依然是低级入侵，其只不过是在利用微软3月份就已经打过补丁的漏洞在做事，高级的入侵是直接入侵服务器，大面积的入侵全球服务器的漏洞，这才是能够令人恐慌的。</p>
+<h2 id="7"><a href="#7" class="headerlink" title="7"></a>7</h2><p>所以我认为，未来值得警惕的是服务器安全。</p>
+<p> 但是这和360这些杀毒公司半毛钱都没有，因为现在都是云服务器，是AWS和阿里云的天下，要做好安全把控的是这些云服务商。</p>
+<p>但对于这些云服务商来说，他们做的其实非常不错，一旦发现漏洞，就会立即全网打补丁，这种中心化的控制，不会错过一台电脑。相比于混乱的个人电脑，这种中心化的管理，更能够防御黑客的漏洞入侵。</p>
+<p>所以云服务器的安全才是未来整个安全行业的焦点，这次如果要是aws和阿里云如果被入侵了，事情的严重程度就比较高了。</p>
+<p>这次杀毒概念股疯长，我认为需要冷静，未来的安全攻防战一定是服务器端的，而不是用户端，杀毒软件依然是用户端产品。</p>
+<h2 id="8"><a href="#8" class="headerlink" title="8"></a>8</h2><p>黑客 可以制造出这么严重的全球性破坏，却只收获了几万美元，还要充当客服角色，反映的是当前的黑产的整体萧条状况。</p>
+<p>不过无论怎么样，杀毒软件们做的事情是对的，但是这种短期PR有些过头，个人安全并不是未来的发展方向，服务器安全才是，而杀毒软件要想获得全新的增长，则必须找到自己全新的增量。</p>
+<p>而作为个人，将自己的资料同步到云端，其实比安装一个杀毒软件更重要。</p>
+<p>作者微信公众号：“首席发言者”</p>
+<p><em><div class="text-right"><a href="http://chengzhe.baijia.baidu.com/article/850921" target="_blank" rel="noopener">原文链接</a></div> </em></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/互联网安全/" rel="tag"># 互联网安全</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/05/Git常用命令图解/" rel="next" title="Git常用命令图解">
+                <i class="fa fa-chevron-left"></i> Git常用命令图解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/10/ThinkPHP用PHPExcle导出Excel文件/" rel="prev" title="ThinkPHP用PHPExcle导出Excel文件">
+                ThinkPHP用PHPExcle导出Excel文件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Mine-MuYan" />
+          <p class="site-author-name" itemprop="name">Mine-MuYan</p>
+           
+              <p class="site-description motion-element" itemprop="description">MuYan博客小栈</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Mine-MuYan" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3076081223" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://music.163.com/#/user/home?id=73379717" target="_blank" title="Music">
+                  
+                    <i class="fa fa-fw fa-music"></i>
+                  
+                  Music
+                </a>
+              </span>
+            
+          
+        </div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=601795690&auto=0&height=430"></iframe>
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://weebay.cn" title="Weebay" target="_blank">Weebay</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://jeffjade.com/" title="晚晴幽草轩" target="_blank">晚晴幽草轩</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.hscbook.com/" title="HscBook" target="_blank">HscBook</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://laod.cn" title="老D" target="_blank">老D</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+        
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3"><span class="nav-number">3.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4"><span class="nav-number">4.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5"><span class="nav-number">5.</span> <span class="nav-text">5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6"><span class="nav-number">6.</span> <span class="nav-text">6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7"><span class="nav-number">7.</span> <span class="nav-text">7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8"><span class="nav-number">8.</span> <span class="nav-text">8</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  1892 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mine-MuYan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://Mine-MuYan.github.com/2017/05/18/wannacry病毒，是纸老虎，没什么技术含量炒作过多/';
+          this.page.identifier = '2017/05/18/wannacry病毒，是纸老虎，没什么技术含量炒作过多/';
+          this.page.title = 'wannacry病毒是纸老虎，没什么技术含量炒作过多';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
