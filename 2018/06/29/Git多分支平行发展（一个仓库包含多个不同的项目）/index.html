@@ -1,0 +1,1047 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="baidu-site-verification" content="J3Evv1VrXr" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="原创," />
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="背景最近在用laravel开发微信小程序的接口，因为服务器PHP版本的问题，分别用了laravel 5.6(php 7.1，开发环境)  和 laravel 5.4 (php 5.6，服务器环境)，开发完成后，两个项目绝大部分的代码都差不多，不想再建一个仓库放php 5.6版的代码，便试着在原有仓库新建分支来存储php 5.6的项目，捣鼓的一上午终于搞出来了，现在记录下。 主要步骤：  在远程和本">
+<meta name="keywords" content="原创">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git多分支平行发展（一个仓库包含多个不同的项目）">
+<meta property="og:url" content="http://Mine-MuYan.github.com/2018/06/29/Git多分支平行发展（一个仓库包含多个不同的项目）/index.html">
+<meta property="og:site_name" content="Mine-MuYan">
+<meta property="og:description" content="背景最近在用laravel开发微信小程序的接口，因为服务器PHP版本的问题，分别用了laravel 5.6(php 7.1，开发环境)  和 laravel 5.4 (php 5.6，服务器环境)，开发完成后，两个项目绝大部分的代码都差不多，不想再建一个仓库放php 5.6版的代码，便试着在原有仓库新建分支来存储php 5.6的项目，捣鼓的一上午终于搞出来了，现在记录下。 主要步骤：  在远程和本">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-29T08:21:13.782Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git多分支平行发展（一个仓库包含多个不同的项目）">
+<meta name="twitter:description" content="背景最近在用laravel开发微信小程序的接口，因为服务器PHP版本的问题，分别用了laravel 5.6(php 7.1，开发环境)  和 laravel 5.4 (php 5.6，服务器环境)，开发完成后，两个项目绝大部分的代码都差不多，不想再建一个仓库放php 5.6版的代码，便试着在原有仓库新建分支来存储php 5.6的项目，捣鼓的一上午终于搞出来了，现在记录下。 主要步骤：  在远程和本">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Mine-MuYan.github.com/2018/06/29/Git多分支平行发展（一个仓库包含多个不同的项目）/"/>
+
+
+
+
+
+  <title> Git多分支平行发展（一个仓库包含多个不同的项目） | Mine-MuYan </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d45555c2bbe2487c8fed1222d18c45e6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mine-MuYan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Welcome to my blog.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+      
+        <li class="menu-item">
+            <a title="high 一下" href='javascript:(
+                function go() {
+
+                var songs = [
+                            "music/circles.mp3",
+                            "music/Beethoven Virus.mp3",
+                            "music/beautiful dump.mp3",
+                            "music/dangerous show.mp3",
+                            "music/Frontier.mp3",
+                            "music/jilejingtu.mp3",
+                            "music/Ringtone.mp3"
+                ];
+
+                function c() {
+                    var e = document.createElement("link");
+                    e.setAttribute("type", "text/css");
+                    e.setAttribute("rel", "stylesheet");
+                    e.setAttribute("href", f);
+                    e.setAttribute("class", l);
+                    document.body.appendChild(e)
+                }
+
+                function h() {
+                    var e = document.getElementsByClassName(l);
+                    for (var t = 0; t < e.length; t++) {
+                        document.body.removeChild(e[t])
+                    }
+                }
+
+                function p() {
+                    var e = document.createElement("div");
+                    e.setAttribute("class", a);
+                    document.body.appendChild(e);
+                    setTimeout(function() {
+                        document.body.removeChild(e)
+                    }, 100)
+                }
+
+                function d(e) {
+                    return {
+                        height : e.offsetHeight,
+                        width : e.offsetWidth
+                    }
+                }
+
+                function v(i) {
+                    var s = d(i);
+                    return s.height > e &amp;&amp; s.height < n &amp;&amp; s.width > t &amp;&amp; s.width < r
+                }
+
+                function m(e) {
+                    var t = e;
+                    var n = 0;
+                    while (!!t) {
+                        n += t.offsetTop;
+                        t = t.offsetParent
+                    }
+                    return n
+                }
+
+                function g() {
+                    var e = document.documentElement;
+                    if (!!window.innerWidth) {
+                        return window.innerHeight
+                    } else if (e &amp;&amp; !isNaN(e.clientHeight)) {
+                        return e.clientHeight
+                    }
+                    return 0
+                }
+
+                function y() {
+                    if (window.pageYOffset) {
+                        return window.pageYOffset
+                    }
+                    return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+                }
+
+                function E(e) {
+                    var t = m(e);
+                    return t >= w &amp;&amp; t <= b + w
+                }
+
+                function S() {
+                    var e = document.getElementById("audio_element_id");
+                    if(e != null){
+                        var index = parseInt(e.getAttribute("curSongIndex"));
+                        if(index > songs.length - 2) {
+                            index = 0;
+                        } else {
+                            index++;
+                        }
+                        e.setAttribute("curSongIndex", index);
+                        N();
+                    }
+
+                    e.src = i;
+                    e.play()
+                }
+
+                function x(e) {
+                    e.className += " " + s + " " + o
+                }
+
+                function T(e) {
+                    e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+                }
+
+                function N() {
+                    var e = document.getElementsByClassName(s);
+                    var t = new RegExp("\\b" + s + "\\b");
+                    for (var n = 0; n < e.length; ) {
+                        e[n].className = e[n].className.replace(t, "")
+                    }
+                }
+
+                function initAudioEle() {
+                    var e = document.getElementById("audio_element_id");
+                    if(e === null){
+                        e = document.createElement("audio");
+                        e.setAttribute("class", l);
+                        e.setAttribute("curSongIndex", 0);
+                        e.id = "audio_element_id";
+                        e.loop = false;
+                        e.bgcolor = 0;
+                        e.addEventListener("canplay", function() {
+                        setTimeout(function() {
+                            x(k)
+                        }, 500);
+                        setTimeout(function() {
+                            N();
+                            p();
+                            for (var e = 0; e < O.length; e++) {
+                                T(O[e])
+                            }
+                        }, 15500)
+                    }, true);
+                    e.addEventListener("ended", function() {
+                        N();
+                        h();
+                        go();
+                    }, true);
+                    e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+                    document.body.appendChild(e);
+                    }
+                }
+
+                initAudioEle();
+                var e = 30;
+                var t = 30;
+                var n = 350;
+                var r = 350;
+
+                var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+                var i = songs[curSongIndex];
+
+                var s = "mw-harlem_shake_me";
+                var o = "im_first";
+                var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+                var a = "mw-strobe_light";
+
+                /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
+                var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+
+                var l = "mw_added_css";
+                var b = g();
+                var w = y();
+                var C = document.getElementsByTagName("*");
+                var k = null;
+                for (var L = 0; L < C.length; L++) {
+                    var A = C[L];
+                    if (v(A)) {
+                        if (E(A)) {
+                            k = A;
+                            break
+                        }
+                    }
+                }
+                if (A === null) {
+                    console.warn("Could not find a node of the right size. Please try a different page.");
+                    return
+                }
+                c();
+                S();
+                var O = [];
+                for (var L = 0; L < C.length; L++) {
+                    var A = C[L];
+                    if (v(A)) {
+                        O.push(A)
+                    }
+                }
+                })()'>High一下</a>
+        </li>
+    </ul>
+  
+
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://Mine-MuYan.github.com/2018/06/29/Git多分支平行发展（一个仓库包含多个不同的项目）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mine-MuYan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mine-MuYan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git多分支平行发展（一个仓库包含多个不同的项目）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-29T16:11:49+08:00">
+                2018-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/29/Git多分支平行发展（一个仓库包含多个不同的项目）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/29/Git多分支平行发展（一个仓库包含多个不同的项目）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近在用laravel开发微信小程序的接口，因为服务器PHP版本的问题，分别用了<code>laravel 5.6(php 7.1，开发环境)</code>  和 <code>laravel 5.4 (php 5.6，服务器环境)</code>，开发完成后，两个项目绝大部分的代码都差不多，不想再建一个仓库放<code>php 5.6</code>版的代码，便试着在原有仓库新建分支来存储<code>php 5.6</code>的项目，捣鼓的一上午终于搞出来了，现在记录下。</p>
+<p>主要步骤：</p>
+<ol>
+<li>在远程和本地仓库中新建一个分支（我建的是<code>laravel54</code>）；</li>
+<li>删除远程<code>laravel54</code>分支上的所有文件；</li>
+<li>将新项目的文件推送到<code>laravel54</code>上。</li>
+</ol>
+<a id="more"></a>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><h4 id="新建一个文件夹-我的是laravel5-4"><a href="#新建一个文件夹-我的是laravel5-4" class="headerlink" title="新建一个文件夹(我的是laravel5.4)"></a>新建一个文件夹(我的是laravel5.4)</h4><h4 id="创建git本地仓库并关联远程仓库"><a href="#创建git本地仓库并关联远程仓库" class="headerlink" title="创建git本地仓库并关联远程仓库"></a>创建git本地仓库并关联远程仓库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4</span><br><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository in D:/PHP/xampp/htdocs/apple/laravel5.4/.git/</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git remote add origin git@xxxxxxxxxxxxxxxxxxxxx.git</span><br></pre></td></tr></table></figure>
+<h4 id="建立远程仓库分支-laravel54"><a href="#建立远程仓库分支-laravel54" class="headerlink" title="建立远程仓库分支 laravel54"></a>建立远程仓库分支 laravel54</h4><p>注意，建立远程分支后，暂时还不能在本地建立其他分支，因为刚创建的git仓库默认的master分支要在第一次commit之后才会真正建立，这时创建其他分支会报错，解决办法在后面说明。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git branch laravel54</span><br><span class="line">fatal: Not a valid object name: &apos;master&apos;.</span><br></pre></td></tr></table></figure>
+<h4 id="随便新建一个文件，里面可以不用写任何东西，然后commit"><a href="#随便新建一个文件，里面可以不用写任何东西，然后commit" class="headerlink" title="随便新建一个文件，里面可以不用写任何东西，然后commit"></a>随便新建一个文件，里面可以不用写任何东西，然后commit</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ touch clearTheBranch</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git add clearTheBranch</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git commit -m&apos;clean this branch&apos;</span><br><span class="line">[master (root-commit) c7c5349] clean this branch</span><br><span class="line">1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line">create mode 100644 clearTheBranch</span><br></pre></td></tr></table></figure>
+<h4 id="推送之前先更新（下面的代码是最核心的代码）"><a href="#推送之前先更新（下面的代码是最核心的代码）" class="headerlink" title="推送之前先更新（下面的代码是最核心的代码）"></a>推送之前先更新（下面的代码是最核心的代码）</h4><p>新建的分支默认与master分支一样，所以要在推送之前先把分支上的内容拉下来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git pull origin laravel54</span><br><span class="line">warning: no common commits</span><br><span class="line">remote: Enumerating objects: 2453, done.</span><br><span class="line">remote: Counting objects: 100% (2453/2453), done.</span><br><span class="line">remote: Compressing objects: 100% (2320/2320), done.</span><br><span class="line">Receiviremote: Total 2453 (delta 1547), reused 229 (delta 89)</span><br><span class="line">Receiving objects: 100% (2453/2453), 1.40 MiB | 1.38 MiB/s, done.</span><br><span class="line">Resolving deltas: 100% (1547/1547), done.</span><br><span class="line">From xxxxxxxxxxxxxxxxxxxxx</span><br><span class="line"> * branch            laravel54 -&gt; FETCH_HEAD</span><br><span class="line"> * [new branch]      laravel54 -&gt; origin/laravel54</span><br><span class="line">fatal: refusing to merge unrelated histories</span><br></pre></td></tr></table></figure>
+<p>这个时候会报错，是正常现象，，原因是本地仓库和远程仓库不一样，有类似两者有完全不相同的commit历史，只需要在在pull的同时加上一行代码即可，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$  git pull origin laravel54 --allow-unrelated-histories</span><br><span class="line">From xxxxxxxxxxxxxxxxxxxxx</span><br><span class="line"> * branch            laravel54 -&gt; FETCH_HEAD</span><br><span class="line">Merge made by the &apos;recursive&apos; strategy.</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p>这步操作的时候，会有merge的commit说明，简单写下，这个只是merge的说明，并不会真正和mater合并。<br>经过这一步操作，就已经把远程仓库laravel54分支里面的文件都拉下来了，接下来建立与远程仓库对应的本地分支。</p>
+<h4 id="建立并切换到本地分支-laravel54"><a href="#建立并切换到本地分支-laravel54" class="headerlink" title="建立并切换到本地分支 laravel54"></a>建立并切换到本地分支 laravel54</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git branch laravel54</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git checkout laravel54</span><br><span class="line">Switched to branch &apos;laravel54&apos;</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$</span><br><span class="line"></span><br><span class="line">// 也可以直接用 git checkout -b laravel54</span><br></pre></td></tr></table></figure>
+<h4 id="删除本地仓库里的所有文件（除了-git的文件夹），然后推送"><a href="#删除本地仓库里的所有文件（除了-git的文件夹），然后推送" class="headerlink" title="删除本地仓库里的所有文件（除了.git的文件夹），然后推送"></a>删除本地仓库里的所有文件（除了.git的文件夹），然后推送</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$ git add .</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$ git commit -m&apos;delete all files&apos;</span><br><span class="line">[laravel54 d8bf12d] delete all files</span><br><span class="line">215 files changed, 32019 deletions(-)</span><br><span class="line">......</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$ git push origin laravel54</span><br><span class="line">Enumerating objects: 7, done.</span><br><span class="line">Counting objects: 100% (7/7), done.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">Compressing objects: 100% (4/4), done.</span><br><span class="line">Writing objects: 100% (6/6), 683 bytes | 341.00 KiB/s, done.</span><br><span class="line">Total 6 (delta 1), reused 1 (delta 0)</span><br><span class="line">remote: Powered by Gitee.com</span><br><span class="line">To xxxxxxxxxxxxxxxxxxxxx.git</span><br><span class="line">   c810298..d8bf12d  laravel54 -&gt; laravel54</span><br></pre></td></tr></table></figure>
+<p>这个时候，远程仓库的<code>laravel54</code>分支便和本地仓库的<code>laravel54</code>分支一样都是空白的，这样就可以随心所欲的推送了。</p>
+<h4 id="新项目推送"><a href="#新项目推送" class="headerlink" title="新项目推送"></a>新项目推送</h4><p>这时就可以把之前的项目拷进这个文件夹里面，然后按照正常的推送流程进行推送。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$ git add .</span><br><span class="line">warning: LF will be replaced by CRLF in .env.example.</span><br><span class="line">The file will have its original line endings in your working directory.</span><br><span class="line">.......</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$ git commit -m&apos;laravel54 push&apos;</span><br><span class="line">[laravel54 eba0954] laravel54 push</span><br><span class="line"> 113 files changed, 11583 insertions(+)</span><br><span class="line"> create mode 100644 .env.example</span><br><span class="line"> create mode 100644 .gitattributes</span><br><span class="line"> .......</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$ git push origin laravel54</span><br><span class="line">Enumerating objects: 152, done.</span><br><span class="line">Counting objects: 100% (152/152), done.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">Compressing objects: 100% (126/126), done.</span><br><span class="line">Writing objects: 100% (151/151), 211.43 KiB | 2.94 MiB/s, done.</span><br><span class="line">Total 151 (delta 14), reused 42 (delta 4)</span><br><span class="line">remote: Resolving deltas: 100% (14/14), done.</span><br><span class="line">remote: Powered by Gitee.com</span><br><span class="line">To xxxxxxxxxxxxxxxxxxxxx.git</span><br><span class="line">   d8bf12d..eba0954  laravel54 -&gt; laravel54</span><br></pre></td></tr></table></figure>
+<h3 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h3><h4 id="不用担心推送错分支导致分支合并"><a href="#不用担心推送错分支导致分支合并" class="headerlink" title="不用担心推送错分支导致分支合并"></a>不用担心推送错分支导致分支合并</h4><p>经过如上操作，就可以实现master分支和laravel54是两个完全不同的项目，可以保持两个项目平行发展，因为两个分支的提交历史不一样，所以即便是误操作，提交错了分支，git会给出相应的报错，不会把两个分支直接合并，下面是代码演示：</p>
+<ol>
+<li><p>本地laravel54向远程master分支推送  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$ touch a.txt</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$ git add a.txt</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$ git commit -m&apos;test file a.txt&apos;</span><br><span class="line">[laravel54 e246705] test file a.txt</span><br><span class="line"> 1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 a.txt</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$ git push origin master</span><br><span class="line">To xxxxxxxxxxxxxxxxxxxxx.git</span><br><span class="line"> ! [rejected]        master -&gt; master (fetch first)</span><br><span class="line">error: failed to push some refs to &apos;git@xxxxxxxxxxxxxxxxxxxxx.git&apos;</span><br><span class="line">hint: Updates were rejected because the remote contains work that you do</span><br><span class="line">hint: not have locally. This is usually caused by another repository pushing</span><br><span class="line">hint: to the same ref. You may want to first integrate the remote changes</span><br><span class="line">hint: (e.g., &apos;git pull ...&apos;) before pushing again.</span><br><span class="line">hint: See the &apos;Note about fast-forwards&apos; in &apos;git push --help&apos; for details.</span><br><span class="line"></span><br><span class="line">//本地版本回退</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$ git log</span><br><span class="line">commit e246705e9894a658d3fb2ea8f51b1ee0dd8ff834 (HEAD -&gt; laravel54)</span><br><span class="line">Author: muyan &lt;xiao7shuang@qq.com&gt;</span><br><span class="line">Date:   Fri Jun 29 14:50:35 2018 +0800</span><br><span class="line"></span><br><span class="line">    test file a.txt</span><br><span class="line"></span><br><span class="line">commit eba09541b60e496127f6280c3db9611f72504744 (origin/laravel54)</span><br><span class="line">Author: muyan &lt;xiao7shuang@qq.com&gt;</span><br><span class="line">Date:   Fri Jun 29 14:36:48 2018 +0800</span><br><span class="line"></span><br><span class="line">    laravel54 push</span><br><span class="line"></span><br><span class="line">commit d8bf12d9df1337f9f7e0de723608796a490f66dc</span><br><span class="line">Author: muyan &lt;xiao7shuang@qq.com&gt;</span><br><span class="line">Date:   Fri Jun 29 14:24:02 2018 +0800</span><br><span class="line"></span><br><span class="line">    delete all files</span><br><span class="line"></span><br><span class="line">commit dcfb2b00f4f8ad0f1f672cde9b9e9ddc79d85239 (master)</span><br><span class="line">Merge: c7c5349 c810298</span><br><span class="line">Author: muyan &lt;xiao7shuang@qq.com&gt;</span><br><span class="line">Date:   Fri Jun 29 13:56:24 2018 +0800</span><br><span class="line"></span><br><span class="line">    Merge branch &apos;laravel54&apos; of xxxxxxxxxxxxxxxxxxxxx</span><br><span class="line"></span><br><span class="line">    for claering the branch</span><br><span class="line"></span><br><span class="line">commit c7c5349779f868fbc1cf18d742d634c9d3267c32</span><br><span class="line">Author: muyan &lt;xiao7shuang@qq.com&gt;</span><br><span class="line">Date:   Fri Jun 29 13:55:01 2018 +0800</span><br><span class="line"></span><br><span class="line">    clean this branch</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$ git reset eba09541b60e496127f6280c3db9611f72504744    //回退到上一次提交之前的版本</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)</span><br><span class="line">$ git status</span><br><span class="line">On branch laravel54</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">        a.txt</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本地master分支向远程master分支推送</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git add a.txt</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git commit -m &apos;test file a&apos;</span><br><span class="line">[master d3e8bba] test file a</span><br><span class="line"> 1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 a.txt</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git push origin master</span><br><span class="line">To xxxxxxxxxxxxxxxxxxxxx.git</span><br><span class="line"> ! [rejected]        master -&gt; master (fetch first)</span><br><span class="line">error: failed to push some refs to &apos;git@xxxxxxxxxxxxxxxxxxxxx.git&apos;</span><br><span class="line">hint: Updates were rejected because the remote contains work that you do</span><br><span class="line">hint: not have locally. This is usually caused by another repository pushing</span><br><span class="line">hint: to the same ref. You may want to first integrate the remote changes</span><br><span class="line">hint: (e.g., &apos;git pull ...&apos;) before pushing again.</span><br><span class="line">hint: See the &apos;Note about fast-forwards&apos; in &apos;git push --help&apos; for details.</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>本地master分支向远程master分支推送</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git push origin laravel54</span><br><span class="line">Everything up-to-date</span><br><span class="line"></span><br><span class="line">//因为刚才创建的a.txt在laravel54分支上，所以master分支啥也没有。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="理论上可以实现无限平行分支"><a href="#理论上可以实现无限平行分支" class="headerlink" title="理论上可以实现无限平行分支"></a>理论上可以实现无限平行分支</h4>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/原创/" rel="tag"># 原创</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/28/有趣的小算法（PHP版）/" rel="next" title="有趣的小算法（PHP版）">
+                <i class="fa fa-chevron-left"></i> 有趣的小算法（PHP版）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Mine-MuYan" />
+          <p class="site-author-name" itemprop="name">Mine-MuYan</p>
+           
+              <p class="site-description motion-element" itemprop="description">MuYan博客小栈</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Mine-MuYan" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3076081223" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://music.163.com/#/user/home?id=73379717" target="_blank" title="Music">
+                  
+                    <i class="fa fa-fw fa-music"></i>
+                  
+                  Music
+                </a>
+              </span>
+            
+          
+        </div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=601795690&auto=0&height=430"></iframe>
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://weebay.cn" title="Weebay" target="_blank">Weebay</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://jeffjade.com/" title="晚晴幽草轩" target="_blank">晚晴幽草轩</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.hscbook.com/" title="HscBook" target="_blank">HscBook</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://laod.cn" title="老D" target="_blank">老D</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+        
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新建一个文件夹-我的是laravel5-4"><span class="nav-number">2.1.</span> <span class="nav-text">新建一个文件夹(我的是laravel5.4)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建git本地仓库并关联远程仓库"><span class="nav-number">2.2.</span> <span class="nav-text">创建git本地仓库并关联远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建立远程仓库分支-laravel54"><span class="nav-number">2.3.</span> <span class="nav-text">建立远程仓库分支 laravel54</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#随便新建一个文件，里面可以不用写任何东西，然后commit"><span class="nav-number">2.4.</span> <span class="nav-text">随便新建一个文件，里面可以不用写任何东西，然后commit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#推送之前先更新（下面的代码是最核心的代码）"><span class="nav-number">2.5.</span> <span class="nav-text">推送之前先更新（下面的代码是最核心的代码）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建立并切换到本地分支-laravel54"><span class="nav-number">2.6.</span> <span class="nav-text">建立并切换到本地分支 laravel54</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除本地仓库里的所有文件（除了-git的文件夹），然后推送"><span class="nav-number">2.7.</span> <span class="nav-text">删除本地仓库里的所有文件（除了.git的文件夹），然后推送</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新项目推送"><span class="nav-number">2.8.</span> <span class="nav-text">新项目推送</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小总结"><span class="nav-number">3.</span> <span class="nav-text">小总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不用担心推送错分支导致分支合并"><span class="nav-number">3.1.</span> <span class="nav-text">不用担心推送错分支导致分支合并</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#理论上可以实现无限平行分支"><span class="nav-number">3.2.</span> <span class="nav-text">理论上可以实现无限平行分支</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  1892 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mine-MuYan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://Mine-MuYan.github.com/2018/06/29/Git多分支平行发展（一个仓库包含多个不同的项目）/';
+          this.page.identifier = '2018/06/29/Git多分支平行发展（一个仓库包含多个不同的项目）/';
+          this.page.title = 'Git多分支平行发展（一个仓库包含多个不同的项目）';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
