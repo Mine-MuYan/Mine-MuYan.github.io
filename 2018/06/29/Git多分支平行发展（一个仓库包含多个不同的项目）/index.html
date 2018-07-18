@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="Mine-MuYan">
 <meta property="og:description" content="背景最近在用laravel开发微信小程序的接口，因为服务器PHP版本的问题，分别用了laravel 5.6(php 7.1，开发环境)  和 laravel 5.4 (php 5.6，服务器环境)，开发完成后，两个项目绝大部分的代码都差不多，不想再建一个仓库放php 5.6版的代码，便试着在原有仓库新建分支来存储php 5.6的项目，捣鼓的一上午终于搞出来了，现在记录下。 主要步骤：  在远程和本">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-29T08:21:13.782Z">
+<meta property="og:updated_time" content="2018-06-29T09:37:58.527Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git多分支平行发展（一个仓库包含多个不同的项目）">
 <meta name="twitter:description" content="背景最近在用laravel开发微信小程序的接口，因为服务器PHP版本的问题，分别用了laravel 5.6(php 7.1，开发环境)  和 laravel 5.4 (php 5.6，服务器环境)，开发完成后，两个项目绝大部分的代码都差不多，不想再建一个仓库放php 5.6版的代码，便试着在原有仓库新建分支来存储php 5.6的项目，捣鼓的一上午终于搞出来了，现在记录下。 主要步骤：  在远程和本">
@@ -583,6 +583,7 @@
 <li>删除远程<code>laravel54</code>分支上的所有文件；</li>
 <li>将新项目的文件推送到<code>laravel54</code>上。</li>
 </ol>
+<p>文章中的代码没有高亮化，看着可能不太舒服，其他平台地址：<a href="https://segmentfault.com/a/1190000015430066" target="_blank" rel="noopener">segmentfault</a> <a href="https://www.jianshu.com/p/922590337264" target="_blank" rel="noopener">简书</a></p>
 <a id="more"></a>
 <h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><h4 id="新建一个文件夹-我的是laravel5-4"><a href="#新建一个文件夹-我的是laravel5-4" class="headerlink" title="新建一个文件夹(我的是laravel5.4)"></a>新建一个文件夹(我的是laravel5.4)</h4><h4 id="创建git本地仓库并关联远程仓库"><a href="#创建git本地仓库并关联远程仓库" class="headerlink" title="创建git本地仓库并关联远程仓库"></a>创建git本地仓库并关联远程仓库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4</span><br><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository in D:/PHP/xampp/htdocs/apple/laravel5.4/.git/</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git remote add origin git@xxxxxxxxxxxxxxxxxxxxx.git</span><br></pre></td></tr></table></figure>
 <h4 id="建立远程仓库分支-laravel54"><a href="#建立远程仓库分支-laravel54" class="headerlink" title="建立远程仓库分支 laravel54"></a>建立远程仓库分支 laravel54</h4><p>注意，建立远程分支后，暂时还不能在本地建立其他分支，因为刚创建的git仓库默认的master分支要在第一次commit之后才会真正建立，这时创建其他分支会报错，解决办法在后面说明。</p>
@@ -605,11 +606,6 @@
 </li>
 <li><p>本地master分支向远程master分支推送</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git add a.txt</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git commit -m &apos;test file a&apos;</span><br><span class="line">[master d3e8bba] test file a</span><br><span class="line"> 1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 a.txt</span><br><span class="line"></span><br><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git push origin master</span><br><span class="line">To xxxxxxxxxxxxxxxxxxxxx.git</span><br><span class="line"> ! [rejected]        master -&gt; master (fetch first)</span><br><span class="line">error: failed to push some refs to &apos;git@xxxxxxxxxxxxxxxxxxxxx.git&apos;</span><br><span class="line">hint: Updates were rejected because the remote contains work that you do</span><br><span class="line">hint: not have locally. This is usually caused by another repository pushing</span><br><span class="line">hint: to the same ref. You may want to first integrate the remote changes</span><br><span class="line">hint: (e.g., &apos;git pull ...&apos;) before pushing again.</span><br><span class="line">hint: See the &apos;Note about fast-forwards&apos; in &apos;git push --help&apos; for details.</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>本地master分支向远程master分支推送</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)</span><br><span class="line">$ git push origin laravel54</span><br><span class="line">Everything up-to-date</span><br><span class="line"></span><br><span class="line">//因为刚才创建的a.txt在laravel54分支上，所以master分支啥也没有。</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h4 id="理论上可以实现无限平行分支"><a href="#理论上可以实现无限平行分支" class="headerlink" title="理论上可以实现无限平行分支"></a>理论上可以实现无限平行分支</h4>
@@ -741,7 +737,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

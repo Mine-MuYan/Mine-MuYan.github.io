@@ -95,17 +95,18 @@
 <meta property="og:site_name" content="Mine-MuYan">
 <meta property="og:description" content="配置分为两部分，一是Xdebug的下载和安装，二是PHPStorm上的对Xdebug的配置。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4950628-3b08f334e4825d79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4950628-579afdd2e9205fe5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4950628-dfc628d2f22bcc87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4950628-3547f474af145503.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4950628-70e87373ddcb3757.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4950628-45e1f5d664947d3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-09-21T06:39:20.000Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-7b05d8470198581c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-3b08f334e4825d79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-579afdd2e9205fe5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-dfc628d2f22bcc87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-3547f474af145503.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-70e87373ddcb3757.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-45e1f5d664947d3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-18T03:56:56.245Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHPStorm配置Xdebug">
 <meta name="twitter:description" content="配置分为两部分，一是Xdebug的下载和安装，二是PHPStorm上的对Xdebug的配置。">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4950628-3b08f334e4825d79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4950628-7b05d8470198581c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
 
 
 
@@ -585,17 +586,24 @@
       
         <p>配置分为两部分，一是<code>Xdebug</code>的下载和安装，二是<code>PHPStorm</code>上的对<code>Xdebug</code>的配置。</p>
 <a id="more"></a>
-<h2 id="Xdebug下载"><a href="#Xdebug下载" class="headerlink" title="Xdebug下载"></a>Xdebug下载</h2><h3 id="下载Xdebug"><a href="#下载Xdebug" class="headerlink" title="下载Xdebug"></a>下载Xdebug</h3><p>根据PHP版本<a href="https://xdebug.org/download.php" target="_blank" rel="noopener">下载</a>合适版本的<code>Xdebug</code></p>
-<p><img src="//upload-images.jianshu.io/upload_images/4950628-3b08f334e4825d79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"></p>
+<h2 id="Xdebug下载"><a href="#Xdebug下载" class="headerlink" title="Xdebug下载"></a>Xdebug下载</h2><h3 id="下载Xdebug"><a href="#下载Xdebug" class="headerlink" title="下载Xdebug"></a>下载Xdebug</h3><p>查看<code>phpinfo</code>，搞清楚php版本等信息：<br><img src="https://upload-images.jianshu.io/upload_images/4950628-7b05d8470198581c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="Markdown"></p>
+<p>根据PHP版本<a href="https://xdebug.org/download.php" target="_blank" rel="noopener">下载</a>合适版本的<code>Xdebug</code></p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/4950628-3b08f334e4825d79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"></p>
 <h3 id="配置php-ini"><a href="#配置php-ini" class="headerlink" title="配置php.ini"></a>配置php.ini</h3><p>在<code>php.ini</code>的最后加入下面这些代码。</p>
 <p><code>zend_extension</code>的路径是<code>Xdebug</code>文件的目录。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Xdebug]</span><br><span class="line"></span><br><span class="line">zend_extension = C:\xampp\php\ext\php_xdebug<span class="number">-2.5</span><span class="number">.4</span><span class="number">-5.6</span>-vc11.dll</span><br><span class="line"></span><br><span class="line">xdebug.remote_enable = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">xdebug.remote_host = localhost</span><br><span class="line"></span><br><span class="line">xdebug.remote_port = <span class="number">9000</span></span><br><span class="line"></span><br><span class="line">xdebug.idekey = PHPSTORM</span><br></pre></td></tr></table></figure>
-<h3 id="重启apache"><a href="#重启apache" class="headerlink" title="重启apache"></a>重启apache</h3><h3 id="查看是否配置成功"><a href="#查看是否配置成功" class="headerlink" title="查看是否配置成功"></a>查看是否配置成功</h3><h4 id="phpinfo"><a href="#phpinfo" class="headerlink" title="phpinfo()"></a>phpinfo()</h4><p><img src="//upload-images.jianshu.io/upload_images/4950628-579afdd2e9205fe5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"></p>
-<h4 id="PHPstorm上"><a href="#PHPstorm上" class="headerlink" title="PHPstorm上"></a>PHPstorm上</h4><p><img src="//upload-images.jianshu.io/upload_images/4950628-dfc628d2f22bcc87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"></p>
-<p><img src="//upload-images.jianshu.io/upload_images/4950628-3547f474af145503.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[Xdebug]</span><br><span class="line"></span><br><span class="line">zend_extension = C:\xampp\php\ext\php_xdebug<span class="number">-2.5</span><span class="number">.4</span><span class="number">-5.6</span>-vc11.dll</span><br><span class="line">xdebug.remote_enable = <span class="number">1</span></span><br><span class="line">xdebug.remote_host = localhost</span><br><span class="line">xdebug.remote_port = <span class="number">9000</span></span><br><span class="line">xdebug.remote_handler = dbgp</span><br><span class="line">xdebug.remote_autostart = <span class="number">1</span></span><br><span class="line">xdebug.idekey = PHPSTORM</span><br></pre></td></tr></table></figure>
+<h3 id="重启apache"><a href="#重启apache" class="headerlink" title="重启apache"></a>重启apache</h3><h3 id="查看是否配置成功"><a href="#查看是否配置成功" class="headerlink" title="查看是否配置成功"></a>查看是否配置成功</h3><h4 id="phpinfo"><a href="#phpinfo" class="headerlink" title="phpinfo()"></a>phpinfo()</h4><p><img src="https://upload-images.jianshu.io/upload_images/4950628-579afdd2e9205fe5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"></p>
+<h4 id="PHPstorm上"><a href="#PHPstorm上" class="headerlink" title="PHPstorm上"></a>PHPstorm上</h4><p><img src="https://upload-images.jianshu.io/upload_images/4950628-dfc628d2f22bcc87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4950628-3547f474af145503.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"></p>
 <h3 id="PHPstorm配置"><a href="#PHPstorm配置" class="headerlink" title="PHPstorm配置"></a>PHPstorm配置</h3><p><strong>已下配置信息是根据我本地的配置，而做的配置，请勿直接复制。</strong></p>
-<p><img src="//upload-images.jianshu.io/upload_images/4950628-70e87373ddcb3757.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"></p>
-<p><img src="//upload-images.jianshu.io/upload_images/4950628-45e1f5d664947d3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4950628-70e87373ddcb3757.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"></p>
+<p><strong>如上图：这里配置端口（9000）的需要和在php.ini中的配置要一致，不一定非要用9000端口，只要是一个未被占用的端口都行。</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4950628-45e1f5d664947d3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"></p>
+<p>如上图：</p>
+<ol>
+<li>phpstorm中的IDE key需要和在php.ini中的配置要一致，只要两者配置一样都可以，不需要非要写成PHPSTORM；</li>
+<li>Host和Port是要调试的本地虚拟域名配置项。</li>
+</ol>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><h3 id="PHPstorm官方文档"><a href="#PHPstorm官方文档" class="headerlink" title="PHPstorm官方文档"></a>PHPstorm官方文档</h3><ol>
 <li><p><a href="https://confluence.jetbrains.com/display/PhpStorm/Xdebug+Installation+Guide" target="_blank" rel="noopener">Xdebug安装指南</a></p>
 </li>
@@ -745,7 +753,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
