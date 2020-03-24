@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function(){
+        if(''){
+            if (prompt('offer the password!') !== ''){
+                alert('incorrect password!');
+                history.back();
+            }
+        }
+    })();
+</script>
+  <meta name="description" content="关于弱类型题目123456789&amp;lt;?php    $str1 = &apos;yabadabadoo&apos;;    $str2 = &apos;yaba&apos;;    if(strpos($str1, $str2))&amp;#123;        echo $str1 . &apos;contains &apos; . $str2;    &amp;#125;else&amp;#123;        echo $str1 . &apos;does not conta">
+<meta name="keywords" content="原创">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP基础知识易错点">
+<meta property="og:url" content="http://Mine-MuYan.github.com/2019/01/22/PHP基础知识易错点/index.html">
+<meta property="og:site_name" content="Mine-MuYan">
+<meta property="og:description" content="关于弱类型题目123456789&amp;lt;?php    $str1 = &apos;yabadabadoo&apos;;    $str2 = &apos;yaba&apos;;    if(strpos($str1, $str2))&amp;#123;        echo $str1 . &apos;contains &apos; . $str2;    &amp;#125;else&amp;#123;        echo $str1 . &apos;does not conta">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-24T06:37:55.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP基础知识易错点">
+<meta name="twitter:description" content="关于弱类型题目123456789&amp;lt;?php    $str1 = &apos;yabadabadoo&apos;;    $str2 = &apos;yaba&apos;;    if(strpos($str1, $str2))&amp;#123;        echo $str1 . &apos;contains &apos; . $str2;    &amp;#125;else&amp;#123;        echo $str1 . &apos;does not conta">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Mine-MuYan" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://Mine-MuYan.github.com/2019/01/22/PHP基础知识易错点/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>PHP基础知识易错点 | Mine-MuYan</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script type="text/javascript" src="/js/src/clicklove.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mine-MuYan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Welcome.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Mine-MuYan.github.com/2019/01/22/PHP基础知识易错点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mine-MuYan">
+      <meta itemprop="description" content="MuYan博客小栈">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mine-MuYan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PHP基础知识易错点
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-22 16:34:00" itemprop="dateCreated datePublished" datetime="2019-01-22T16:34:00+08:00">2019-01-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-24 14:37:55" itemprop="dateModified" datetime="2019-01-24T14:37:55+08:00">2019-01-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="关于弱类型"><a href="#关于弱类型" class="headerlink" title="关于弱类型"></a>关于弱类型</h3><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">    $str1 = <span class="string">'yabadabadoo'</span>;</span><br><span class="line">    $str2 = <span class="string">'yaba'</span>;</span><br><span class="line">    <span class="keyword">if</span>(strpos($str1, $str2))&#123;</span><br><span class="line">        <span class="keyword">echo</span> $str1 . <span class="string">'contains '</span> . $str2;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> $str1 . <span class="string">'does not contain '</span> . $str2;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><p>正确运行的输出结果:  <code>&quot;yabadabadoo&quot; does not contain &quot;yaba&quot;</code></p>
+<p>strpos 是返回字符串 str2 在 str1 的位置，没有找到则返回 false ，然而实际上这次返回了 0 而在if语句中0也被当作false,所以我们需要对false做类型判断，正确的代码如下:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $str1 = <span class="string">'yabadabadoo'</span>;</span><br><span class="line">    $str2 = <span class="string">'yaba'</span>;</span><br><span class="line">    <span class="keyword">if</span>(strpos($str1, $str2) !== <span class="keyword">false</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> $str1 . <span class="string">'contains'</span> . $str2;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> $str1 . <span class="string">'does not contain'</span> . $str2;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是我们使用了 !== ，在php 和 JS中 !=相对== 更为严格需要要求数据类型一致.</p>
+<h3 id="下面的输出结果会是怎样？"><a href="#下面的输出结果会是怎样？" class="headerlink" title="下面的输出结果会是怎样？"></a>下面的输出结果会是怎样？</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $x = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">echo</span> $x;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'&lt;br /&gt;'</span>;</span><br><span class="line">    <span class="keyword">echo</span> $x++ + $x++;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'&lt;br /&gt;'</span>;</span><br><span class="line">    <span class="keyword">echo</span> $x;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'&lt;br /&gt;'</span>;</span><br><span class="line">    <span class="keyword">echo</span> $x-- - $x--;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'&lt;br /&gt;'</span>;</span><br><span class="line">    <span class="keyword">echo</span> $x;</span><br></pre></td></tr></table></figure>
+<h4 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h4><p>关于 $x++ 和 $x– 这个问题其实非常容易遇见，我们只需记住 $x++ 使用最近的值，然后才自增。运算符的优先级， ++ 是明显高于 + ，因此先执行++ 再执行 + 。关于运算符的优先级，有的时候我们真的可以通过括号来让我们的程序更让人直观的了解，毕竟代码不光是用于执行的，有的时候或许团队的可读性也是提高效率的一种。</p>
+<h3 id="关于变量的引用"><a href="#关于变量的引用" class="headerlink" title="关于变量的引用"></a>关于变量的引用</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">     $a = <span class="string">'1'</span>;</span><br><span class="line">     $b = &amp;$a;</span><br><span class="line">     $b = <span class="string">"2$b"</span>;</span><br></pre></td></tr></table></figure>
+<p>请问 $a 和 ​$b 的值各位多少？</p>
+<h4 id="解析-2"><a href="#解析-2" class="headerlink" title="解析"></a>解析</h4><p>部分第一时间会想到 $a=’1’ $b=’21’ ,仔细一看 $b=&amp;$a ,这里 $b 是变量 $a 的引用，而不是直接赋值。</p>
+<p>这里输出 <code>a=21;b=21</code></p>
+<h3 id="下面是true还是false"><a href="#下面是true还是false" class="headerlink" title="下面是true还是false"></a>下面是true还是false</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    var_dump(<span class="number">0123</span> == <span class="number">123</span>);  </span><br><span class="line">	var_dump(<span class="string">'0123'</span> == <span class="number">123</span>);  </span><br><span class="line">	var_dump(<span class="string">'0123'</span> === <span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="解析-3"><a href="#解析-3" class="headerlink" title="解析"></a>解析</h4><p><code>var_dump(0123 == 123);// false</code>,PHP会默认把0123当作8进制来处理，实际转化为10进制就是83，显然这不是相等的。<br><code>var_dump(&#39;0123&#39; == 123);// true</code> 这里php会非常有趣的将’0123’转换成一个数字而且默认去掉了前面的0也就是 123==123<br><code>var_dump(&#39;0123&#39; === 123);// false</code> 很显然上面的问题已经说过了数字和字符串类型不一致。</p>
+<h3 id="下面的代码有什么问题吗？输出会是什么，怎样修复它"><a href="#下面的代码有什么问题吗？输出会是什么，怎样修复它" class="headerlink" title="下面的代码有什么问题吗？输出会是什么，怎样修复它"></a>下面的代码有什么问题吗？输出会是什么，怎样修复它</h3><h4 id="题目-4"><a href="#题目-4" class="headerlink" title="题目"></a>题目</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $referenceTable         = <span class="keyword">array</span>();</span><br><span class="line">    $referenceTable[<span class="string">'val1'</span>] = <span class="keyword">array</span>(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    $referenceTable[<span class="string">'val2'</span>] = <span class="number">3</span>;</span><br><span class="line">    $referenceTable[<span class="string">'val3'</span>] = <span class="keyword">array</span>(<span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">    $testArray = <span class="keyword">array</span>();</span><br><span class="line"></span><br><span class="line">    $testArray = array_merge($testArray, $referenceTable[<span class="string">'val1'</span>]);</span><br><span class="line">    var_dump($testArray);</span><br><span class="line">    $testArray = array_merge($testArray, $referenceTable[<span class="string">'val2'</span>]);</span><br><span class="line">    var_dump($testArray);</span><br><span class="line">    $testArray = array_merge($testArray, $referenceTable[<span class="string">'val3'</span>]);</span><br><span class="line">    var_dump($testArray);</span><br></pre></td></tr></table></figure>
+<h4 id="解析-4"><a href="#解析-4" class="headerlink" title="解析"></a>解析</h4><p>  实际输出如下：</p>
+<p>array(2) { [0]=&gt; int(1) [1]=&gt; int(2) }<br>NULL<br>NULL  </p>
+<p>运行的时候你或许还能看到下面的警告</p>
+<p>Warning: array_merge(): Argument #2 is not an array<br>Warning: array_merge(): Argument #1 is not an array  </p>
+<p>array_merge 需要传入的参数都是数组，如果不是，则会返回null。 你可以这样修改</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $testArray = array_merge($testArray, (<span class="keyword">array</span>)$referenceTable[<span class="string">'val1'</span>]);</span><br><span class="line">    var_dump($testArray);  </span><br><span class="line">    $testArray = array_merge($testArray, (<span class="keyword">array</span>)$referenceTable[<span class="string">'val2'</span>]);</span><br><span class="line">    var_dump($testArray);  </span><br><span class="line">    $testArray = array_merge($testArray, (<span class="keyword">array</span>)$referenceTable[<span class="string">'val3'</span>]);</span><br><span class="line">    var_dump($testArray);</span><br></pre></td></tr></table></figure>
+<h3 id="x应该是输出什么？"><a href="#x应该是输出什么？" class="headerlink" title="$x应该是输出什么？"></a>$x应该是输出什么？</h3><h4 id="题目-5"><a href="#题目-5" class="headerlink" title="题目"></a>题目</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $x = <span class="keyword">true</span> <span class="keyword">and</span> <span class="keyword">false</span>;</span><br><span class="line">    var_dump($x);</span><br></pre></td></tr></table></figure>
+<h4 id="解析-5"><a href="#解析-5" class="headerlink" title="解析"></a>解析</h4><p>  这里依旧是强调运算符的优先级，＝ 会比 and级别高点，因此等同下面的代码</p>
+<p>   $x = true;<br>   true and false  </p>
+<p>答案显而易见。  </p>
+<h3 id="经过下面的运算-x的值应该是多少？"><a href="#经过下面的运算-x的值应该是多少？" class="headerlink" title="经过下面的运算 $x的值应该是多少？"></a>经过下面的运算 $x的值应该是多少？</h3><h4 id="题目-6"><a href="#题目-6" class="headerlink" title="题目"></a>题目</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $x = <span class="number">3</span> + <span class="string">"15%"</span> + <span class="string">"$25"</span></span><br></pre></td></tr></table></figure>
+<h4 id="解析-6"><a href="#解析-6" class="headerlink" title="解析"></a>解析</h4><p>答案是 18 ，PHP是会根据上下文实现 类型的自动转换上面的代码我们可以这样理解：</p>
+<p>如果我们在与字符串进行数学运算，实际php会尽可能将字符串中的数组进行转换，如果是数字开头的话则转换成改数字比如”15%”会变成15,如果不是数字开头则会变成0; 上面的运算类似下面 ：<code>$x = 3 + 15 + 0</code></p>
+<h3 id="x应该是输出什么？-1"><a href="#x应该是输出什么？-1" class="headerlink" title="$x应该是输出什么？"></a>$x应该是输出什么？</h3><h4 id="题目-7"><a href="#题目-7" class="headerlink" title="题目"></a>题目</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $x = <span class="keyword">true</span> <span class="keyword">and</span> <span class="keyword">false</span>;</span><br><span class="line">    var_dump($x);</span><br></pre></td></tr></table></figure>
+<h4 id="解析-7"><a href="#解析-7" class="headerlink" title="解析"></a>解析</h4><p>  这里依旧是强调运算符的优先级，＝ 会比 and级别高点，因此等同下面的代码</p>
+<p>   $x = true;<br>   true and false  </p>
+<p>答案显而易见。  </p>
+<h3 id="运行下面的代码，-text-的值是多少？-strlen-text-又会返回什么结果？"><a href="#运行下面的代码，-text-的值是多少？-strlen-text-又会返回什么结果？" class="headerlink" title="运行下面的代码， $text 的值是多少？ strlen($text) 又会返回什么结果？"></a>运行下面的代码， $text 的值是多少？ strlen($text) 又会返回什么结果？</h3><h4 id="题目-8"><a href="#题目-8" class="headerlink" title="题目"></a>题目</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $text     = <span class="string">'John '</span>;</span><br><span class="line">    $text[<span class="number">10</span>] = <span class="string">'Doe'</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="解析-8"><a href="#解析-8" class="headerlink" title="解析"></a>解析</h4><p>上面代码执行完毕后 <code>$text = &quot;John      D&quot; (John后面会有连续的5个空格) strlen($text) 会返回11</code></p>
+<h3 id="下面的输出结果会是什么"><a href="#下面的输出结果会是什么" class="headerlink" title="下面的输出结果会是什么"></a>下面的输出结果会是什么</h3><h4 id="题目-9"><a href="#题目-9" class="headerlink" title="题目"></a>题目</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">   	$v = <span class="number">1</span>;</span><br><span class="line">    $m = <span class="number">2</span>;</span><br><span class="line">    $l = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">if</span>($l &gt; $m &gt; $v)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"yes"</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"no"</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="解析-9"><a href="#解析-9" class="headerlink" title="解析"></a>解析</h4><p><code>&quot;no&quot;</code>,只要仔细分析就不难得出<code>$l&gt;$m</code> 会转换成1 ，则这个时候再和$m比较。</p>
+<h3 id="执行下面代码-x-会变成什么值呢？"><a href="#执行下面代码-x-会变成什么值呢？" class="headerlink" title="执行下面代码 $x 会变成什么值呢？"></a>执行下面代码 $x 会变成什么值呢？</h3><h4 id="题目-10"><a href="#题目-10" class="headerlink" title="题目"></a>题目</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $x = <span class="keyword">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">'0xFF'</span> == <span class="number">255</span>)&#123;</span><br><span class="line">        $x = (int)<span class="string">'0xFF'</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="解析-10"><a href="#解析-10" class="headerlink" title="解析"></a>解析</h4><p><code>$x=0</code> 而不是255.首先<code>&#39;oxFF&#39; == 255</code> 我们好判断，会进行转换将16进制数字转换成10进制数字，<code>0xff -&gt; 255</code>.PHP使用 is_numeric_string 判断字符串是否包含十六进制数字然后进行转换。但是 <code>$x = (int)&#39;0xFF&#39;</code>; 是否也会变成255呢？显然不是，将一个字符串进行强制类型转换实际上用的是 convert_to_long ,它实际上是将字符串从左向右进行转换，遇到非数字字符则停止。因此 0xFF 到x就停止了。所以 $x=0</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/原创/" rel="tag"># 原创</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/16/MVC、SPA 与 SSR/" rel="next" title="MVC、SPA 与 SSR">
+                <i class="fa fa-chevron-left"></i> MVC、SPA 与 SSR
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/23/xshell-xftp登陆Win10 Linux子系统/" rel="prev" title="xshell/xftp登陆Win10 Linux子系统">
+                xshell/xftp登陆Win10 Linux子系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Mine-MuYan">
+            
+              <p class="site-author-name" itemprop="name">Mine-MuYan</p>
+              <p class="site-description motion-element" itemprop="description">MuYan博客小栈</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Mine-MuYan" title="GitHub &rarr; https://github.com/Mine-MuYan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/u/3076081223" title="Weibo &rarr; http://weibo.com/u/3076081223" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://music.163.com/#/user/home?id=73379717" title="Music &rarr; http://music.163.com/#/user/home?id=73379717" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>Music</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jeffjade.com/" title="http://jeffjade.com/" rel="noopener" target="_blank">晚晴幽草轩</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.hscbook.com/" title="https://www.hscbook.com/" rel="noopener" target="_blank">HscBook</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://laod.cn" title="https://laod.cn" rel="noopener" target="_blank">老D</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于弱类型"><span class="nav-number">1.</span> <span class="nav-text">关于弱类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析"><span class="nav-number">1.2.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面的输出结果会是怎样？"><span class="nav-number">2.</span> <span class="nav-text">下面的输出结果会是怎样？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析-1"><span class="nav-number">2.2.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于变量的引用"><span class="nav-number">3.</span> <span class="nav-text">关于变量的引用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析-2"><span class="nav-number">3.2.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面是true还是false"><span class="nav-number">4.</span> <span class="nav-text">下面是true还是false</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-3"><span class="nav-number">4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析-3"><span class="nav-number">4.2.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面的代码有什么问题吗？输出会是什么，怎样修复它"><span class="nav-number">5.</span> <span class="nav-text">下面的代码有什么问题吗？输出会是什么，怎样修复它</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-4"><span class="nav-number">5.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析-4"><span class="nav-number">5.2.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x应该是输出什么？"><span class="nav-number">6.</span> <span class="nav-text">$x应该是输出什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-5"><span class="nav-number">6.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析-5"><span class="nav-number">6.2.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#经过下面的运算-x的值应该是多少？"><span class="nav-number">7.</span> <span class="nav-text">经过下面的运算 $x的值应该是多少？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-6"><span class="nav-number">7.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析-6"><span class="nav-number">7.2.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x应该是输出什么？-1"><span class="nav-number">8.</span> <span class="nav-text">$x应该是输出什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-7"><span class="nav-number">8.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析-7"><span class="nav-number">8.2.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行下面的代码，-text-的值是多少？-strlen-text-又会返回什么结果？"><span class="nav-number">9.</span> <span class="nav-text">运行下面的代码， $text 的值是多少？ strlen($text) 又会返回什么结果？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-8"><span class="nav-number">9.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析-8"><span class="nav-number">9.2.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面的输出结果会是什么"><span class="nav-number">10.</span> <span class="nav-text">下面的输出结果会是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-9"><span class="nav-number">10.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析-9"><span class="nav-number">10.2.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行下面代码-x-会变成什么值呢？"><span class="nav-number">11.</span> <span class="nav-text">执行下面代码 $x 会变成什么值呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-10"><span class="nav-number">11.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析-10"><span class="nav-number">11.2.</span> <span class="nav-text">解析</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mine-MuYan</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@2/dist/jquery.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

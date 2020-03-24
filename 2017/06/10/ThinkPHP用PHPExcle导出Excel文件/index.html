@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function(){
+        if(''){
+            if (prompt('offer the password!') !== ''){
+                alert('incorrect password!');
+                history.back();
+            }
+        }
+    })();
+</script>
+  <meta name="description" content="本篇博客主要讲述，如何在thinkPHP中使用PHPExcel中导出Excel文件，是博主在实践了好多篇别人的帖子之后，总结归纳出来的文章，亲测可用。">
+<meta name="keywords" content="ThinkPHP,PHP,PHPExcel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ThinkPHP用PHPExcle导出Excel文件">
+<meta property="og:url" content="http://Mine-MuYan.github.com/2017/06/10/ThinkPHP用PHPExcle导出Excel文件/index.html">
+<meta property="og:site_name" content="Mine-MuYan">
+<meta property="og:description" content="本篇博客主要讲述，如何在thinkPHP中使用PHPExcel中导出Excel文件，是博主在实践了好多篇别人的帖子之后，总结归纳出来的文章，亲测可用。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://i4.piimg.com/585619/349788884a91c6b5.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4950628-bb944595406f3826.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2020-03-24T06:30:29.219Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ThinkPHP用PHPExcle导出Excel文件">
+<meta name="twitter:description" content="本篇博客主要讲述，如何在thinkPHP中使用PHPExcel中导出Excel文件，是博主在实践了好多篇别人的帖子之后，总结归纳出来的文章，亲测可用。">
+<meta name="twitter:image" content="http://i4.piimg.com/585619/349788884a91c6b5.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Mine-MuYan" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://Mine-MuYan.github.com/2017/06/10/ThinkPHP用PHPExcle导出Excel文件/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ThinkPHP用PHPExcle导出Excel文件 | Mine-MuYan</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script type="text/javascript" src="/js/src/clicklove.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mine-MuYan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Welcome.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Mine-MuYan.github.com/2017/06/10/ThinkPHP用PHPExcle导出Excel文件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mine-MuYan">
+      <meta itemprop="description" content="MuYan博客小栈">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mine-MuYan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ThinkPHP用PHPExcle导出Excel文件
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-06-10 09:49:18" itemprop="dateCreated datePublished" datetime="2017-06-10T09:49:18+08:00">2017-06-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-03-24 14:30:29" itemprop="dateModified" datetime="2020-03-24T14:30:29+08:00">2020-03-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/原创/" itemprop="url" rel="index"><span itemprop="name">原创</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong> 本篇博客主要讲述，如何在thinkPHP中使用PHPExcel中导出Excel文件，是博主在实践了好多篇别人的帖子之后，总结归纳出来的文章，亲测可用。</strong></p>
+<a id="more"></a>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="下载、配置PHPExcel扩展插件"><a href="#下载、配置PHPExcel扩展插件" class="headerlink" title="下载、配置PHPExcel扩展插件"></a>下载、配置PHPExcel扩展插件</h3><ol>
+<li><p>去<a href="http://phpexcel.codeplex.com/" target="_blank" rel="noopener">PHPExcel的官网</a>或者<a href="https://github.com/PHPOffice/PHPExcel" target="_blank" rel="noopener">github</a>去下载最新PHPExcel放到<code>ThinkPHP/Library/Vendor</code>目录下，<code>Vendor</code>目录是放置PHP扩展包的默认文件夹，在<code>Vendor</code>目录下建立<code>PHPExcel</code>文件夹，将下载的文件，解压到此处。</p>
+</li>
+<li><p>将<code>PHPExcel.php</code>文件，重命名成<code>PHPExcel.class.php</code>。</p>
+<p>至此，插件安装已经做好，目录结构如下图，接下来做功能部分。</p>
+<p><img src="http://i4.piimg.com/585619/349788884a91c6b5.png" alt="Markdown"></p>
+</li>
+</ol>
+<h2 id="创建Excel方法"><a href="#创建Excel方法" class="headerlink" title="创建Excel方法"></a>创建Excel方法</h2><h3 id="生成Excel文件方法"><a href="#生成Excel文件方法" class="headerlink" title="生成Excel文件方法"></a>生成Excel文件方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 数据导出为.xls格式</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $fileName 导出的文件名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> $expCellName     array -&gt; 数据库字段以及字段的注释</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> $expTableData    Model -&gt; 连接的数据库</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">exportExcel</span><span class="params">($fileName=<span class="string">'table'</span>,$expCellName,$expTableData)</span></span>&#123;</span><br><span class="line">        $xlsTitle = iconv(<span class="string">'utf-8'</span>, <span class="string">'gb2312'</span>, $fileName);<span class="comment">//文件名称</span></span><br><span class="line">        $xlsName = $fileName.date(<span class="string">"_Y.m.d_H.i.s"</span>); <span class="comment">//or $xlsTitle 文件名称可根据自己情况设定</span></span><br><span class="line">        $cellNum = count($expCellName);</span><br><span class="line">        $dataNum = count($expTableData);</span><br><span class="line"></span><br><span class="line">        import(<span class="string">"Vendor.PHPExcel.PHPExcel"</span>);</span><br><span class="line">        import(<span class="string">"Vendor.PHPExcel.Writer.Excel5"</span>);</span><br><span class="line">        import(<span class="string">"Vendor.PHPExcel.IOFactory.php"</span>);</span><br><span class="line"></span><br><span class="line">        $objPHPExcel = <span class="keyword">new</span> \PHPExcel();</span><br><span class="line">        $cellName = <span class="keyword">array</span>(<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>,<span class="string">'E'</span>,<span class="string">'F'</span>,<span class="string">'G'</span>,<span class="string">'H'</span>,<span class="string">'I'</span>,<span class="string">'J'</span>,<span class="string">'K'</span>,<span class="string">'L'</span>,<span class="string">'M'</span>,<span class="string">'N'</span>,<span class="string">'O'</span>,<span class="string">'P'</span>,<span class="string">'Q'</span>,<span class="string">'R'</span>,<span class="string">'S'</span>,<span class="string">'T'</span>,<span class="string">'U'</span>,<span class="string">'V'</span>,<span class="string">'W'</span>,<span class="string">'X'</span>,<span class="string">'Y'</span>,<span class="string">'Z'</span>,<span class="string">'AA'</span>,<span class="string">'AB'</span>,<span class="string">'AC'</span>,<span class="string">'AD'</span>,<span class="string">'AE'</span>,<span class="string">'AF'</span>,<span class="string">'AG'</span>,<span class="string">'AH'</span>,<span class="string">'AI'</span>,<span class="string">'AJ'</span>,<span class="string">'AK'</span>,<span class="string">'AL'</span>,<span class="string">'AM'</span>,<span class="string">'AN'</span>,<span class="string">'AO'</span>,<span class="string">'AP'</span>,<span class="string">'AQ'</span>,<span class="string">'AR'</span>,<span class="string">'AS'</span>,<span class="string">'AT'</span>,<span class="string">'AU'</span>,<span class="string">'AV'</span>,<span class="string">'AW'</span>,<span class="string">'AX'</span>,<span class="string">'AY'</span>,<span class="string">'AZ'</span>);</span><br><span class="line"></span><br><span class="line">        $objPHPExcel-&gt;getActiveSheet(<span class="number">0</span>)-&gt;mergeCells(<span class="string">'A1:'</span>.$cellName[$cellNum<span class="number">-1</span>].<span class="string">'1'</span>);<span class="comment">//合并单元格</span></span><br><span class="line">        $objPHPExcel-&gt;setActiveSheetIndex(<span class="number">0</span>)-&gt;setCellValue(<span class="string">'A1'</span>, $fileName.<span class="string">'  Export time:'</span>.date(<span class="string">'Y-m-d H:i:s'</span>));</span><br><span class="line">        <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;$cellNum;$i++)&#123;</span><br><span class="line">            $objPHPExcel-&gt;setActiveSheetIndex(<span class="number">0</span>)-&gt;setCellValue($cellName[$i].<span class="string">'2'</span>, $expCellName[$i][<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Miscellaneous glyphs, UTF-8</span></span><br><span class="line">        <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;$dataNum;$i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>($j=<span class="number">0</span>;$j&lt;$cellNum;$j++)&#123;</span><br><span class="line">                $objPHPExcel-&gt;getActiveSheet(<span class="number">0</span>)-&gt;setCellValue($cellName[$j].($i+<span class="number">3</span>), $expTableData[$i][$expCellName[$j][<span class="number">0</span>]]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        header(<span class="string">'pragma:public'</span>);</span><br><span class="line">        header(<span class="string">'Content-type:application/vnd.ms-excel;charset=utf-8;name="'</span>.$xlsTitle.<span class="string">'.xls"'</span>);</span><br><span class="line">        header(<span class="string">"Content-Disposition:attachment;filename=$xlsName.xls"</span>);<span class="comment">//attachment新窗口打印inline本窗口打印</span></span><br><span class="line">        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, <span class="string">'Excel5'</span>);</span><br><span class="line">        $objWriter-&gt;save(<span class="string">'php://output'</span>);</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法生成说明"><a href="#方法生成说明" class="headerlink" title="方法生成说明"></a>方法生成说明</h3><ol>
+<li><p>第9行的</p>
+<p><code>$xlsName = $fileName.date(&quot;_Y.m.d_H.i.s&quot;); //or $xlsTitle 文件名称可根据自己情况设定</code></p>
+<p>是设置文件名，上面所写是<code>文件名_Y.m.d_H.i.s</code>，<code>_Y.m.d_H.i.s</code>即是导出的时间，因为windows下，文件名中不能含有<code>:</code>，所以即便写成<code>_Y.m.d_H:i:s</code>，导出的文件也是<code>_Y.m.d_H.i.s</code>这种样式。</p>
+</li>
+<li><p>第13行~15行的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import(<span class="string">"Vendor.PHPExcel.PHPExcel"</span>);</span><br><span class="line">import(<span class="string">"Vendor.PHPExcel.Writer.Excel5"</span>);</span><br><span class="line">import(<span class="string">"Vendor.PHPExcel.IOFactory.php"</span>);</span><br></pre></td></tr></table></figure>
+<p>这三行即是引入PHPExcel，因为当时的文件目录结构是<code>ThinkPHP/Library/Vendor/PHPExcel</code>，所以<code>import(&quot;Vendor.PHPExcel.PHPExcel&quot;);，注意目录结构，只要引入的位置和放置PHPExcel的目录相同即可；</code></p>
+</li>
+<li><p>第20、21行的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$objPHPExcel-&gt;getActiveSheet(<span class="number">0</span>)-&gt;mergeCells(<span class="string">'A1:'</span>.$cellName[$cellNum<span class="number">-1</span>].<span class="string">'1'</span>);<span class="comment">//合并单元格</span></span><br><span class="line">$objPHPExcel-&gt;setActiveSheetIndex(<span class="number">0</span>)-&gt;setCellValue(<span class="string">'A1'</span>, $fileName.<span class="string">'  Export time:'</span>.date(<span class="string">'Y-m-d H:i:s'</span>));</span><br></pre></td></tr></table></figure>
+<p>此作用是，在Excel文件的第一行合并一行单元格，用作表格的标题或简介。如下图所示：</p>
+<p><img src="//upload-images.jianshu.io/upload_images/4950628-bb944595406f3826.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"></p>
+<p><code>setCellValue(&#39;A1&#39;, $fileName.&#39;  Export time:&#39;.date(&#39;Y-m-d H:i:s&#39;));</code>值可以根据自己需求修改;</p>
+</li>
+<li><p>第34行的<br><code>header(&quot;Content-Disposition:attachment;filename=$xlsName.xls&quot;);//attachment新窗口打印inline本窗口打印</code></p>
+<p>可以设置输出的文件格式，此处写的是<code>.xls</code>，可修改成<code>.xlsx</code>。</p>
+</li>
+<li><p>此方法调用时需要传入三个参数（在方法开头的注释中已经说了），这里再具体说明一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$fileName     导出的文件的文件名</span><br><span class="line">$expCellName  数据库字段以及字段的注释（数组） </span><br><span class="line">$expTableData 连接的数据库</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h2><h3 id="调用方法"><a href="#调用方法" class="headerlink" title="调用方法"></a>调用方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**导出**/</span></span><br><span class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">msgOut</span><span class="params">()</span></span>&#123;</span><br><span class="line">       $excel = A(<span class="string">'Excel'</span>);</span><br><span class="line">       $xlsCell = <span class="keyword">array</span>(</span><br><span class="line">           <span class="keyword">array</span>(<span class="string">'id'</span>, <span class="string">'ID'</span>),</span><br><span class="line">           <span class="keyword">array</span>(<span class="string">'staff_name'</span>, <span class="string">'昵称'</span>),</span><br><span class="line">           <span class="keyword">array</span>(<span class="string">'staff_real'</span>, <span class="string">'真实姓名'</span>),</span><br><span class="line">           <span class="keyword">array</span>(<span class="string">'mobile'</span>, <span class="string">'手机号'</span>),</span><br><span class="line">           <span class="keyword">array</span>(<span class="string">'card_id'</span>, <span class="string">'身份证号'</span>),</span><br><span class="line">           <span class="keyword">array</span>(<span class="string">'referee'</span>, <span class="string">'推荐人'</span>),</span><br><span class="line">           <span class="keyword">array</span>(<span class="string">'game_id'</span>, <span class="string">'游戏ID'</span>),</span><br><span class="line">           <span class="keyword">array</span>(<span class="string">'money'</span>, <span class="string">'余额'</span>),</span><br><span class="line">           <span class="keyword">array</span>(<span class="string">'consume_coin'</span>, <span class="string">'消费币'</span>),</span><br><span class="line">           <span class="keyword">array</span>(<span class="string">'create_time'</span>, <span class="string">'注册时间'</span>),</span><br><span class="line">           <span class="keyword">array</span>(<span class="string">'status'</span>, <span class="string">'状态'</span>),</span><br><span class="line">       );</span><br><span class="line">       $xlsName = <span class="string">'Staff表搜索结果导出'</span>;</span><br><span class="line">       $field = <span class="keyword">null</span>;</span><br><span class="line">       <span class="keyword">foreach</span> ($xlsCell <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">           <span class="keyword">if</span>($key == <span class="number">0</span>)&#123;</span><br><span class="line">               $field = $value[<span class="number">0</span>];</span><br><span class="line">           &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">               $field .= <span class="string">","</span> . $value[<span class="number">0</span>];</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       $xlsModel = M(<span class="string">'Staff'</span>);</span><br><span class="line">       <span class="keyword">if</span> (IS_POST) &#123;</span><br><span class="line">           $map = <span class="keyword">$this</span> -&gt; _queryTime();</span><br><span class="line">           $staff_name = I(<span class="string">'staff_name'</span>);</span><br><span class="line">           <span class="keyword">if</span>($staff_name) &#123;</span><br><span class="line">               <span class="keyword">if</span> (is_numeric($staff_name)) &#123;</span><br><span class="line">                   $map[<span class="string">"id|staff_name"</span>] = <span class="keyword">array</span>(intval($staff_name), <span class="keyword">array</span>(<span class="string">'like'</span>, <span class="string">'%'</span> . $staff_name . <span class="string">'%'</span>), <span class="string">'_multi'</span> =&gt; <span class="keyword">true</span>);</span><br><span class="line">               &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                   $map[<span class="string">'staff_name'</span>] = <span class="keyword">array</span>(<span class="string">'like'</span>, <span class="string">'%'</span> . (string)$staff_name . <span class="string">'%'</span>);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           $xlsData = $xlsModel-&gt;Field($field)-&gt;where($map)-&gt;order(<span class="string">'id DESC'</span>)-&gt;select();</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">foreach</span> ($xlsData <span class="keyword">as</span> $k =&gt; $v) &#123;</span><br><span class="line">           $xlsData[$k][<span class="string">'create_time'</span>] = $v[<span class="string">'create_time'</span>] == <span class="keyword">null</span> ? <span class="string">'-'</span> : date(<span class="string">"Y-m-d H:i"</span>,$v[<span class="string">'create_time'</span>]);</span><br><span class="line">           $xlsData[$k][<span class="string">'status'</span>] = $v[<span class="string">'status'</span>] == <span class="number">1</span> ? <span class="string">'正常'</span> : <span class="string">'禁用'</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       $excel-&gt;exportExcel($xlsName,$xlsCell,$xlsData);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="调用说明"><a href="#调用说明" class="headerlink" title="调用说明"></a>调用说明</h3><ol>
+<li><p>第3行<br><code>$excel = A(&#39;Excel&#39;);</code><br>这个方法我写在了<code>Application/Admin/Controller/ExcelController.class.php</code>中，当前用的控制器是<code>MainController.class.php</code>，调用其他控制器中的方法，用TP中自带的<code>A()</code>，所以第51行，用的是<code>$excel-&gt;exportExcel($xlsName,$xlsCell,$xlsData);</code>，如果你的<code>exportExcel()</code>方法和当前调用的方法在同一个控制器内，那么第三行可以不写，第51行改成<code>$this-&gt;exportExcel($xlsName,$xlsCell,$xlsData);</code>。</p>
+</li>
+<li><p>第4行<br><code>$xlsCell</code>是导出这张表中所有的字段，以及字段的注释，导出后，不能把字段作为表格的列名，不知道数据库字段是什么意思的用户，看了这张表也不知所以然。</p>
+</li>
+<li><p>第17~24行<br>是根据<code>$xlsCell</code>数组中，提取出来字段名，作为一个字符串，在查询时使用。当然也可以把这个字段名的字符串手写出来，我这里用的是foreach处理。</p>
+</li>
+<li><p>第27~38行<br>是查询条件和查询结果，如果没有查询条件，想把整张表导出的话，直接用<code>$xlsData = $xlsModel-&gt;Field($field)-&gt;order(&#39;id DESC&#39;)-&gt;select();</code>即可。</p>
+</li>
+<li><p>第47~50行<br>是对<code>$xlsData</code>结果进行处理，我写的两个意思是：<br>1、当<code>create_time</code>字段为空的时候，值为 <code>-</code> ，有值的时候，就用<code>date()</code>函数把时间戳处理成日期；<br>2、当<code>status</code>字段的值为1的时候，显示为<code>正常</code>,当值为0的时候<code>禁用</code>。</p>
+</li>
+</ol>
+<p><em>有点罗嗦了，见谅。</em></p>
+<h2 id="模板文件"><a href="#模板文件" class="headerlink" title="模板文件"></a>模板文件</h2><p>模板文件很简单，就一个提交。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"&#123;:U('Main/msgOut')&#125;"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">class</span>=<span class="string">"form-horizontal"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"search-form fr cf"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sleft"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"search-input"</span> <span class="attr">onClick</span>=<span class="string">"WdatePicker()"</span> <span class="attr">name</span>=<span class="string">"start_time"</span> <span class="attr">style</span>=<span class="string">"cursor: pointer;"</span> <span class="attr">value</span>=<span class="string">"&#123;:I('start_time')&#125;"</span> <span class="attr">id</span>=<span class="string">"start"</span> <span class="attr">placeholder</span>=<span class="string">"开始日期"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"search-input"</span> <span class="attr">onClick</span>=<span class="string">"WdatePicker()"</span> <span class="attr">name</span>=<span class="string">"end_time"</span> <span class="attr">style</span>=<span class="string">"cursor: pointer;"</span> <span class="attr">value</span>=<span class="string">"&#123;:I('end_time')&#125;"</span> <span class="attr">id</span>=<span class="string">"end"</span> <span class="attr">placeholder</span>=<span class="string">"结束日期"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"staff_name"</span> <span class="attr">class</span>=<span class="string">"search-input"</span> <span class="attr">value</span>=<span class="string">"&#123;:I('staff_name')&#125;"</span> <span class="attr">id</span>=<span class="string">"name"</span> <span class="attr">placeholder</span>=<span class="string">"输入推广专员的昵称或者ID"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"btn"</span> <span class="attr">id</span>=<span class="string">"out"</span>&gt;</span>导出<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>form</code>表单中三个<code>input</code>，是搜索条件，如果没有的话，直接写<code>button</code>即可。</p>
+<h2 id="文章结束，欢迎转载。"><a href="#文章结束，欢迎转载。" class="headerlink" title="文章结束，欢迎转载。"></a>文章结束，欢迎转载。</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ThinkPHP/" rel="tag"># ThinkPHP</a>
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/PHPExcel/" rel="tag"># PHPExcel</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/18/wannacry病毒，是纸老虎，没什么技术含量炒作过多/" rel="next" title="wannacry病毒是纸老虎，没什么技术含量炒作过多">
+                <i class="fa fa-chevron-left"></i> wannacry病毒是纸老虎，没什么技术含量炒作过多
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/16/MySQL数据类型-char与varchar类型的区别/" rel="prev" title="MySQL数据类型:char与varchar类型的区别">
+                MySQL数据类型:char与varchar类型的区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Mine-MuYan">
+            
+              <p class="site-author-name" itemprop="name">Mine-MuYan</p>
+              <p class="site-description motion-element" itemprop="description">MuYan博客小栈</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Mine-MuYan" title="GitHub &rarr; https://github.com/Mine-MuYan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/u/3076081223" title="Weibo &rarr; http://weibo.com/u/3076081223" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://music.163.com/#/user/home?id=73379717" title="Music &rarr; http://music.163.com/#/user/home?id=73379717" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>Music</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jeffjade.com/" title="http://jeffjade.com/" rel="noopener" target="_blank">晚晴幽草轩</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.hscbook.com/" title="https://www.hscbook.com/" rel="noopener" target="_blank">HscBook</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://laod.cn" title="https://laod.cn" rel="noopener" target="_blank">老D</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载、配置PHPExcel扩展插件"><span class="nav-number">1.1.</span> <span class="nav-text">下载、配置PHPExcel扩展插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Excel方法"><span class="nav-number">2.</span> <span class="nav-text">创建Excel方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成Excel文件方法"><span class="nav-number">2.1.</span> <span class="nav-text">生成Excel文件方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法生成说明"><span class="nav-number">2.2.</span> <span class="nav-text">方法生成说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法调用"><span class="nav-number">3.</span> <span class="nav-text">方法调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用方法"><span class="nav-number">3.1.</span> <span class="nav-text">调用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用说明"><span class="nav-number">3.2.</span> <span class="nav-text">调用说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板文件"><span class="nav-number">4.</span> <span class="nav-text">模板文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章结束，欢迎转载。"><span class="nav-number">5.</span> <span class="nav-text">文章结束，欢迎转载。</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mine-MuYan</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@2/dist/jquery.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

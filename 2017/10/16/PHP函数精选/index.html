@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function(){
+        if(''){
+            if (prompt('offer the password!') !== ''){
+                alert('incorrect password!');
+                history.back();
+            }
+        }
+    })();
+</script>
+  <meta name="description" content="这些都是工作中用到的比较常用或者有意思的PHP方法，持续更新中…">
+<meta name="keywords" content="原创">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP方法精选">
+<meta property="og:url" content="http://Mine-MuYan.github.com/2017/10/16/PHP函数精选/index.html">
+<meta property="og:site_name" content="Mine-MuYan">
+<meta property="og:description" content="这些都是工作中用到的比较常用或者有意思的PHP方法，持续更新中…">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-24T06:31:37.411Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP方法精选">
+<meta name="twitter:description" content="这些都是工作中用到的比较常用或者有意思的PHP方法，持续更新中…">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Mine-MuYan" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://Mine-MuYan.github.com/2017/10/16/PHP函数精选/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>PHP方法精选 | Mine-MuYan</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script type="text/javascript" src="/js/src/clicklove.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mine-MuYan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Welcome.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Mine-MuYan.github.com/2017/10/16/PHP函数精选/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mine-MuYan">
+      <meta itemprop="description" content="MuYan博客小栈">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mine-MuYan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PHP方法精选
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-10-16 15:48:00" itemprop="dateCreated datePublished" datetime="2017-10-16T15:48:00+08:00">2017-10-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-03-24 14:31:37" itemprop="dateModified" datetime="2020-03-24T14:31:37+08:00">2020-03-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>这些都是工作中用到的比较常用或者有意思的PHP方法，持续更新中…</strong><br><a id="more"></a></p>
+<h3 id="显示彩虹字符串"><a href="#显示彩虹字符串" class="headerlink" title="显示彩虹字符串"></a>显示彩虹字符串</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">color_txt</span><span class="params">($str)</span></span>&#123;</span><br><span class="line">    $len        = mb_strlen($str);</span><br><span class="line">    $colorTxt   = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>; $i&lt;$len; $i++) &#123;</span><br><span class="line">        $colorTxt .=  <span class="string">'&lt;span style="color:'</span>.rand_color().<span class="string">'"&gt;'</span>.mb_substr($str,$i,<span class="number">1</span>,<span class="string">'utf-8'</span>).<span class="string">'&lt;/span&gt;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $colorTxt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">rand_color</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'#'</span>.sprintf(<span class="string">"%02X"</span>,mt_rand(<span class="number">0</span>,<span class="number">255</span>)).sprintf(<span class="string">"%02X"</span>,mt_rand(<span class="number">0</span>,<span class="number">255</span>)).sprintf(<span class="string">"%02X"</span>,mt_rand(<span class="number">0</span>,<span class="number">255</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> color_txt(<span class="string">'asdfwerwtertsadfsadfwtwer'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="对查询结果集进行排序"><a href="#对查询结果集进行排序" class="headerlink" title="对查询结果集进行排序"></a>对查询结果集进行排序</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> +----------------------------------------------------------</span></span><br><span class="line"><span class="comment"> * 对查询结果集进行排序</span></span><br><span class="line"><span class="comment"> +----------------------------------------------------------</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> array $list 查询结果</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $field 排序的字段名</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $sortby 排序类型</span></span><br><span class="line"><span class="comment"> * asc正向排序 desc逆向排序 nat自然排序</span></span><br><span class="line"><span class="comment"> +----------------------------------------------------------</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment"> +----------------------------------------------------------</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">list_sort_by</span><span class="params">($list,$field, $sortby=<span class="string">'asc'</span>)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(is_array($list))&#123;</span><br><span class="line">       $refer = $resultSet = <span class="keyword">array</span>();</span><br><span class="line">       <span class="keyword">foreach</span> ($list <span class="keyword">as</span> $i =&gt; $data)</span><br><span class="line">           $refer[$i] = &amp;$data[$field];</span><br><span class="line">       <span class="keyword">switch</span> ($sortby) &#123;</span><br><span class="line">           <span class="keyword">case</span> <span class="string">'asc'</span>: <span class="comment">// 正向排序</span></span><br><span class="line">                asort($refer);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">           <span class="keyword">case</span> <span class="string">'desc'</span>:<span class="comment">// 逆向排序</span></span><br><span class="line">                arsort($refer);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">           <span class="keyword">case</span> <span class="string">'nat'</span>: <span class="comment">// 自然排序</span></span><br><span class="line">                natcasesort($refer);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">foreach</span> ( $refer <span class="keyword">as</span> $key=&gt; $val)</span><br><span class="line">           $resultSet[] = &amp;$list[$key];</span><br><span class="line">       <span class="keyword">return</span> $resultSet;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二维数组按指定的键值排序"><a href="#二维数组按指定的键值排序" class="headerlink" title="二维数组按指定的键值排序"></a>二维数组按指定的键值排序</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">* 二维数组按指定的键值排序 </span></span><br><span class="line"><span class="comment">* $array 数组</span></span><br><span class="line"><span class="comment">* $key排序键值</span></span><br><span class="line"><span class="comment">* $type排序方式</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">array_sort</span><span class="params">($arr, $keys, $type = <span class="string">'desc'</span>)</span> </span>&#123;</span><br><span class="line">    $keysvalue = $new_array = <span class="keyword">array</span>();</span><br><span class="line">    <span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $k =&gt; $v) &#123;</span><br><span class="line">        $keysvalue[$k] = $v[$keys];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ($type == <span class="string">'asc'</span>) &#123;</span><br><span class="line">        asort($keysvalue);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        arsort($keysvalue);</span><br><span class="line">    &#125;</span><br><span class="line">    reset($keysvalue);</span><br><span class="line">    <span class="keyword">foreach</span> ($keysvalue <span class="keyword">as</span> $k =&gt; $v) &#123;</span><br><span class="line">        $new_array[$k] = $arr[$k];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $new_array;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="php判断手机移动设备访问，返回true是移动设备"><a href="#php判断手机移动设备访问，返回true是移动设备" class="headerlink" title="php判断手机移动设备访问，返回true是移动设备"></a>php判断手机移动设备访问，返回true是移动设备</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">is_mobile</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">// 如果有HTTP_X_WAP_PROFILE则一定是移动设备</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span> ($_SERVER[<span class="string">'HTTP_X_WAP_PROFILE'</span>]))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 如果via信息含有wap则一定是移动设备,部分服务商会屏蔽该信息</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span> ($_SERVER[<span class="string">'HTTP_VIA'</span>]))</span><br><span class="line">    &#123;</span><br><span class="line">	<span class="comment">// 找不到为flase,否则为true</span></span><br><span class="line">        <span class="keyword">return</span> stristr($_SERVER[<span class="string">'HTTP_VIA'</span>], <span class="string">"wap"</span>) ? <span class="keyword">true</span> : <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 脑残法，判断手机发送的客户端标志,兼容性有待提高</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span> ($_SERVER[<span class="string">'HTTP_USER_AGENT'</span>]))</span><br><span class="line">    &#123;</span><br><span class="line">        $clientkeywords = <span class="keyword">array</span> ( <span class="string">'nokia'</span>, <span class="string">'oppo'</span>, <span class="string">'xiaomi'</span>, <span class="string">'miui'</span>, <span class="string">'huawei'</span>, <span class="string">'coolpad'</span>, <span class="string">'sony'</span>, <span class="string">'ericsson'</span>, <span class="string">'mot'</span>, <span class="string">'samsung'</span>, <span class="string">'htc'</span>, <span class="string">'sgh'</span>, <span class="string">'lg'</span>, <span class="string">'sharp'</span>, <span class="string">'sie-'</span>, <span class="string">'philips'</span>, <span class="string">'panasonic'</span>, <span class="string">'alcatel'</span>, <span class="string">'lenovo'</span>, <span class="string">'iphone'</span>, <span class="string">'ipod'</span>, <span class="string">'blackberry'</span>, <span class="string">'meizu'</span>, <span class="string">'android'</span>, <span class="string">'netfront'</span>, <span class="string">'symbian'</span>, <span class="string">'ucweb'</span>, <span class="string">'windowsce'</span>, <span class="string">'palm'</span>, <span class="string">'operamini'</span>, <span class="string">'operamobi'</span>, <span class="string">'openwave'</span>, <span class="string">'nexusone'</span>, <span class="string">'cldc'</span>, <span class="string">'midp'</span>, <span class="string">'wap'</span>, <span class="string">'mobile'</span> );</span><br><span class="line">    <span class="comment">// 从HTTP_USER_AGENT中查找手机浏览器的关键字</span></span><br><span class="line">        <span class="keyword">if</span> (preg_match(<span class="string">"/("</span> . implode(<span class="string">'|'</span>, $clientkeywords) . <span class="string">")/i"</span>, strtolower($_SERVER[<span class="string">'HTTP_USER_AGENT'</span>])))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 协议法，因为有可能不准确，放到最后判断</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span> ($_SERVER[<span class="string">'HTTP_ACCEPT'</span>]))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 如果只支持wml并且不支持html那一定是移动设备</span></span><br><span class="line">        <span class="comment">// 如果支持wml和html但是wml在html之前则是移动设备</span></span><br><span class="line">        <span class="keyword">if</span> ((strpos($_SERVER[<span class="string">'HTTP_ACCEPT'</span>], <span class="string">'vnd.wap.wml'</span>) !== <span class="keyword">false</span>) &amp;&amp; (strpos($_SERVER[<span class="string">'HTTP_ACCEPT'</span>], <span class="string">'text/html'</span>) === <span class="keyword">false</span> || (strpos($_SERVER[<span class="string">'HTTP_ACCEPT'</span>], <span class="string">'vnd.wap.wml'</span>) &lt; strpos($_SERVER[<span class="string">'HTTP_ACCEPT'</span>], <span class="string">'text/html'</span>))))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="将数组形式的字符串转成数组"><a href="#将数组形式的字符串转成数组" class="headerlink" title="将数组形式的字符串转成数组"></a>将数组形式的字符串转成数组</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strToArray</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//数组形式的字符串</span></span><br><span class="line">	$arr = <span class="string">"array('name'=&gt;'张三','age'=&gt;'16')"</span>;</span><br><span class="line">    $str = [];</span><br><span class="line">    <span class="keyword">eval</span>(<span class="string">"\$str = "</span>.$arr.<span class="string">'; '</span>);</span><br><span class="line">    pp($str); <span class="comment">//$str即为数组</span></span><br><span class="line">    pp($str[<span class="string">'name'</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://blog.csdn.net/aiku_de_yu/article/details/51037178" target="_blank" rel="noopener">参考链接</a></p>
+<h3 id="取去数组中某age键值小于15的其他数组"><a href="#取去数组中某age键值小于15的其他数组" class="headerlink" title="取去数组中某age键值小于15的其他数组"></a>取去数组中某age键值小于15的其他数组</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$arr = <span class="keyword">array</span>(</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">'id'</span> =&gt; <span class="number">1</span>,<span class="string">'age'</span> =&gt; <span class="number">11</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">'id'</span> =&gt; <span class="number">2</span>,<span class="string">'age'</span> =&gt; <span class="number">18</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">'id'</span> =&gt; <span class="number">3</span>,<span class="string">'age'</span> =&gt; <span class="number">16</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">'id'</span> =&gt; <span class="number">4</span>,<span class="string">'age'</span> =&gt; <span class="number">19</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">'id'</span> =&gt; <span class="number">5</span>,<span class="string">'age'</span> =&gt; <span class="number">20</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">'id'</span> =&gt; <span class="number">6</span>,<span class="string">'age'</span> =&gt; <span class="number">14</span>),</span><br><span class="line">);</span><br><span class="line">$arrs = <span class="keyword">array</span>();</span><br><span class="line"><span class="keyword">foreach</span>($arr <span class="keyword">as</span> $key =&gt; $value)&#123;</span><br><span class="line">    <span class="keyword">if</span>($value[<span class="string">'age'</span>] &lt; <span class="number">15</span>)&#123;</span><br><span class="line">        $arrs[] = $value;   <span class="comment">//$arrs即是结果</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">pp($arrs);</span><br></pre></td></tr></table></figure>
+<h3 id="二维数组排序"><a href="#二维数组排序" class="headerlink" title="二维数组排序"></a>二维数组排序</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 二维数组排序</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>   array   $dataArr    要排序的数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>   string  $type       排序规则</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>   string  $field      根据某个键进行排序</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>  array</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arraySort</span><span class="params">($dataArr,$type=<span class="string">'SORT_ASC'</span>,$field)</span></span>&#123;</span><br><span class="line">    $sort = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'direction'</span> =&gt; $type,   <span class="comment">//排序顺序标志 SORT_DESC 降序；SORT_ASC 升序</span></span><br><span class="line">        <span class="string">'field'</span>     =&gt; $field,  <span class="comment">//排序字段</span></span><br><span class="line">    );</span><br><span class="line">    $arrSort = <span class="keyword">array</span>();</span><br><span class="line">    <span class="keyword">foreach</span>($dataArr <span class="keyword">AS</span> $uniqid =&gt; $row)&#123;</span><br><span class="line">        <span class="keyword">foreach</span>($row <span class="keyword">AS</span> $key =&gt; $value)&#123;</span><br><span class="line">            $arrSort[$key][$uniqid] = $value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>($sort[<span class="string">'direction'</span>])&#123;</span><br><span class="line">        array_multisort($arrSort[$sort[<span class="string">'field'</span>]],constant($sort[<span class="string">'direction'</span>]),$dataArr);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $dataArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二维数组去重"><a href="#二维数组去重" class="headerlink" title="二维数组去重"></a>二维数组去重</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 二维数组去重</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>   array   $arr    要去重的数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">more_array_unique</span><span class="params">($arr)</span></span>&#123;</span><br><span class="line">    $arr_inner_key = $temp = $arr_after = [];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">foreach</span>($arr[<span class="number">0</span>] <span class="keyword">as</span> $k =&gt; $v)&#123;</span><br><span class="line">        $arr_inner_key[] = $k;   <span class="comment">//先把二维数组中的内层数组的键值记录在在一维数组中</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">foreach</span>($arr <span class="keyword">as</span> $k =&gt; $v)&#123;</span><br><span class="line">        $v        = implode(<span class="string">','</span>,$v);    <span class="comment">//降维 用join()也行</span></span><br><span class="line">        $temp[$k] = $v;      <span class="comment">//保留原来的键值 $temp[]即为不保留原来键值</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    $temp = array_unique($temp);    <span class="comment">//去重：去掉重复的字符串</span></span><br><span class="line">    <span class="keyword">foreach</span>($temp <span class="keyword">as</span> $k =&gt; $v)&#123;</span><br><span class="line">        $a             = explode(<span class="string">','</span>,$v);   <span class="comment">//拆分后的重组 如：Array( [0] =&gt; james [1] =&gt; 30 )</span></span><br><span class="line">        $arr_after[$k] = array_combine($arr_inner_key,$a);  <span class="comment">//将原来的键与值重新合并</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//ksort($arr_after);//排序如需要：ksort对数组进行排序(保留原键值key) ,sort为不保留key值</span></span><br><span class="line">    <span class="keyword">return</span> array_values($arr_after);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="过去某一天距今天多少年月日"><a href="#过去某一天距今天多少年月日" class="headerlink" title="过去某一天距今天多少年月日"></a>过去某一天距今天多少年月日</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 过去某一天距今天多少年月日</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>   string  $date1</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>   string  $date2</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">diffDate</span><span class="params">($date1,$date2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(strtotime($date1) &gt; strtotime($date2))&#123;</span><br><span class="line">        $tmp   = $date2;</span><br><span class="line">        $date2 = $date1;</span><br><span class="line">        $date1 = $tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">list</span>($Y1,$m1,$d1) = explode(<span class="string">'-'</span>,$date1);</span><br><span class="line">    <span class="keyword">list</span>($Y2,$m2,$d2) = explode(<span class="string">'-'</span>,$date2);</span><br><span class="line">    $Y = $Y2 - $Y1;</span><br><span class="line">    $m = $m2 - $m1;</span><br><span class="line">    $d = $d2 - $d1;</span><br><span class="line">    <span class="keyword">if</span>($d &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        $d += (int)date(<span class="string">'t'</span>,strtotime(<span class="string">"-1 month $date2"</span>));</span><br><span class="line">        $m--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>($m &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        $m += <span class="number">12</span>;</span><br><span class="line">        $Y--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'year'</span> =&gt; $Y,<span class="string">'month'</span> =&gt; $m,<span class="string">'day'</span> =&gt; $d);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="给字符串中每个元素加单引号"><a href="#给字符串中每个元素加单引号" class="headerlink" title="给字符串中每个元素加单引号"></a>给字符串中每个元素加单引号</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 给字符串中每个元素加单引号，用于数据库写入</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@example</span> $str = 'a,b,1,2,3,45,g';  处理后 $str = "'a','b','1','2','3','45','g'";</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>   string  $str        需要处理的字符串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>   string  $delimiter  分隔符</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">stringArray</span><span class="params">($str,$delimiter = <span class="string">','</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>($str !== <span class="string">''</span>)&#123;</span><br><span class="line">        $arr = explode($delimiter,$str);</span><br><span class="line">        $new = [];</span><br><span class="line">        <span class="keyword">foreach</span>($arr <span class="keyword">as</span> $item)&#123;</span><br><span class="line">            $new[] = <span class="string">"'"</span> . $item . <span class="string">"'"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> implode($new,$delimiter);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> $str;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="post请求实例"><a href="#post请求实例" class="headerlink" title="post请求实例"></a>post请求实例</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 卡斯达特指令下达</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $ip    string  IP</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $port  string  端口号</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $card  string  车牌号</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $devid string  设备ID（全小写）</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $pwd   string  密码</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $cmd   string  指令</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">carstart_send_order</span><span class="params">($ip,$port,$card,$devid,$pwd,$cmd)</span></span>&#123;</span><br><span class="line">    $url  = <span class="string">'http://www.baidu.com'</span>;</span><br><span class="line">    $data = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'ip'</span>        =&gt; $ip,</span><br><span class="line">        <span class="string">'port'</span>      =&gt; $port,</span><br><span class="line">        <span class="string">'carNumber'</span> =&gt; $card,</span><br><span class="line">        <span class="string">'devideId'</span>  =&gt; $devid,</span><br><span class="line">        <span class="string">'password'</span>  =&gt; $pwd,</span><br><span class="line">        <span class="string">'cmd'</span>       =&gt; $cmd,</span><br><span class="line">    );</span><br><span class="line">    $ch   = curl_init();</span><br><span class="line">    curl_setopt($ch,CURLOPT_URL,$url);</span><br><span class="line">    curl_setopt($ch,CURLOPT_RETURNTRANSFER,<span class="number">1</span>);</span><br><span class="line">    curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,<span class="number">10</span>);</span><br><span class="line">    curl_setopt($ch,CURLOPT_POST,<span class="number">1</span>);</span><br><span class="line">    curl_setopt($ch,CURLOPT_POSTFIELDS,$data);</span><br><span class="line">    $file_contents = curl_exec($ch);</span><br><span class="line">    curl_close($ch);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> $file_contents;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="编码类函数"><a href="#编码类函数" class="headerlink" title="编码类函数"></a>编码类函数</h3><h4 id="检测字符编码类型"><a href="#检测字符编码类型" class="headerlink" title="检测字符编码类型"></a>检测字符编码类型</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">codeType</span><span class="params">($str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mb_detect_encoding($str,<span class="keyword">array</span>(<span class="string">"ASCII"</span>,<span class="string">'UTF-8'</span>,<span class="string">"GB2312"</span>,<span class="string">"GBK"</span>,<span class="string">'BIG5'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="编码转换"><a href="#编码转换" class="headerlink" title="编码转换"></a>编码转换</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//gb2312转utf8</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gbkToUtf8</span><span class="params">($str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> iconv(<span class="string">"GB2312"</span>,<span class="string">"UTF-8"</span>,$str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//utf8转gb2312</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">utf8ToGbk</span><span class="params">($str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> iconv(<span class="string">"UTF-8"</span>,<span class="string">"GB2312"</span>,$str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//mb_convert_encoding转编码</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mbGbkToUtf8</span><span class="params">($str,$turn = <span class="number">1</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>($turn)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            $newStr = mb_convert_encoding($str,<span class="string">"UTF-8"</span>,<span class="string">"GB2312"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            $newStr = mb_convert_encoding($str,<span class="string">"GB2312"</span>,<span class="string">"UTF-8"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            $newStr = <span class="string">'参数错误'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $newStr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="判断一个数组是否全部为空"><a href="#判断一个数组是否全部为空" class="headerlink" title="判断一个数组是否全部为空"></a>判断一个数组是否全部为空</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$arr = [</span><br><span class="line">    [<span class="string">'a'</span> =&gt; <span class="number">1</span>],</span><br><span class="line">    [],</span><br><span class="line">    [],</span><br><span class="line">    [<span class="string">'b'</span> =&gt; <span class="number">2</span>],</span><br><span class="line">    [],</span><br><span class="line">];</span><br><span class="line">$felter = array_filter($arr);</span><br><span class="line"><span class="keyword">echo</span> count($felter) === <span class="number">0</span> ? <span class="string">'全部为空'</span> : <span class="string">'部分为空'</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="使用Carbon-laravel-计算两个时间相隔的年月日时分秒"><a href="#使用Carbon-laravel-计算两个时间相隔的年月日时分秒" class="headerlink" title="使用Carbon(laravel)计算两个时间相隔的年月日时分秒"></a>使用Carbon(laravel)计算两个时间相隔的年月日时分秒</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用Carbon(laravel)计算两个时间之差</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  string  $start   开始时间</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  string  $end     结束时间</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  int       $return  返回类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> array|string</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">carbon_time_diff</span><span class="params">($start, $end, $return = <span class="number">1</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $carbon  = <span class="keyword">new</span> Illuminate\Support\Carbon($start);</span><br><span class="line">    $carbon  = $carbon-&gt;diff(<span class="keyword">new</span> Illuminate\Support\Carbon($end));</span><br><span class="line">    $years   = $carbon-&gt;y;</span><br><span class="line">    $months  = $carbon-&gt;m;</span><br><span class="line">    $days    = $carbon-&gt;d;</span><br><span class="line">    $hours   = $carbon-&gt;h;</span><br><span class="line">    $mins    = $carbon-&gt;i;</span><br><span class="line">    $seconds = $carbon-&gt;s;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">switch</span> ($return) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> $years . <span class="string">'年'</span> . $months . <span class="string">'月'</span> . $days . <span class="string">'天'</span> . $hours . <span class="string">'小时'</span> . $mins . <span class="string">'分钟'</span> . $seconds . <span class="string">'秒'</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            $str = <span class="string">''</span>;</span><br><span class="line">            !<span class="keyword">empty</span>($years) &amp;&amp; $str .= $years . <span class="string">'年'</span>;</span><br><span class="line">            !<span class="keyword">empty</span>($months) &amp;&amp; $str .= $months . <span class="string">'月'</span>;</span><br><span class="line">            !<span class="keyword">empty</span>($days) &amp;&amp; $str .= $days . <span class="string">'天'</span>;</span><br><span class="line">            !<span class="keyword">empty</span>($hours) &amp;&amp; $str .= $hours . <span class="string">'小时'</span>;</span><br><span class="line">            !<span class="keyword">empty</span>($mins) &amp;&amp; $str .= $mins . <span class="string">'分钟'</span>;</span><br><span class="line">            !<span class="keyword">empty</span>($seconds) &amp;&amp; $str .= $seconds . <span class="string">'秒'</span>;</span><br><span class="line">            <span class="keyword">return</span> $str;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> [<span class="string">'years'</span> =&gt; $years, <span class="string">'months'</span> =&gt; $months, <span class="string">'days'</span> =&gt; $days, <span class="string">'hours'</span> =&gt; $hours, <span class="string">'mins'</span> =&gt; $mins, <span class="string">'seconds'</span> =&gt; $seconds];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用DateTime计算两个时间相隔的年月日时分秒"><a href="#使用DateTime计算两个时间相隔的年月日时分秒" class="headerlink" title="使用DateTime计算两个时间相隔的年月日时分秒"></a>使用DateTime计算两个时间相隔的年月日时分秒</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算两个时间之差</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  string  $start   开始时间</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  string  $end     结束时间</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  int     $return  返回类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> array|string</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">diff_date</span><span class="params">($start, $end, $return = <span class="number">1</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $datetime1 = <span class="keyword">new</span> \DateTime($start);</span><br><span class="line">    $datetime2 = <span class="keyword">new</span> \DateTime($end);</span><br><span class="line">    $interval  = $datetime1-&gt;diff($datetime2);</span><br><span class="line">    $years     = $interval-&gt;format(<span class="string">'%Y'</span>);</span><br><span class="line">    $months    = $interval-&gt;format(<span class="string">'%m'</span>);</span><br><span class="line">    $days      = $interval-&gt;format(<span class="string">'%d'</span>);</span><br><span class="line">    $hours     = $interval-&gt;format(<span class="string">'%H'</span>);</span><br><span class="line">    $mins      = $interval-&gt;format(<span class="string">'%i'</span>);</span><br><span class="line">    $seconds   = $interval-&gt;format(<span class="string">'%s'</span>);</span><br><span class="line">    <span class="keyword">switch</span> ($return) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> $years . <span class="string">'年'</span> . $months . <span class="string">'月'</span> . $days . <span class="string">'天'</span> . $hours . <span class="string">'小时'</span> . $mins . <span class="string">'分钟'</span> . $seconds . <span class="string">'秒'</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            $str = <span class="string">''</span>;</span><br><span class="line">            !<span class="keyword">empty</span>($years) &amp;&amp; $years !== <span class="string">'00'</span> &amp;&amp; $str .= $years . <span class="string">'年'</span>;</span><br><span class="line">            !<span class="keyword">empty</span>($months) &amp;&amp; $months !== <span class="string">'00'</span> &amp;&amp; $str .= $months . <span class="string">'月'</span>;</span><br><span class="line">            !<span class="keyword">empty</span>($days) &amp;&amp; $days !== <span class="string">'00'</span> &amp;&amp; $str .= $days . <span class="string">'天'</span>;</span><br><span class="line">            !<span class="keyword">empty</span>($hours) &amp;&amp; $hours !== <span class="string">'00'</span> &amp;&amp; $str .= $hours . <span class="string">'小时'</span>;</span><br><span class="line">            !<span class="keyword">empty</span>($mins) &amp;&amp; $mins !== <span class="string">'00'</span> &amp;&amp; $str .= $mins . <span class="string">'分钟'</span>;</span><br><span class="line">            !<span class="keyword">empty</span>($seconds) &amp;&amp; $seconds !== <span class="string">'00'</span> &amp;&amp; $str .= $seconds . <span class="string">'秒'</span>;</span><br><span class="line">            <span class="keyword">return</span> $str;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> [<span class="string">'years'</span> =&gt; $years, <span class="string">'months'</span> =&gt; $months, <span class="string">'days'</span> =&gt; $days, <span class="string">'hours'</span> =&gt; $hours, <span class="string">'mins'</span> =&gt; $mins, <span class="string">'seconds'</span> =&gt; $seconds];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/原创/" rel="tag"># 原创</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/29/珍藏多年的js/" rel="next" title="珍藏多年的JS">
+                <i class="fa fa-chevron-left"></i> 珍藏多年的JS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/23/Hexo重装与位置移动/" rel="prev" title="Hexo重装与位置移动">
+                Hexo重装与位置移动 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Mine-MuYan">
+            
+              <p class="site-author-name" itemprop="name">Mine-MuYan</p>
+              <p class="site-description motion-element" itemprop="description">MuYan博客小栈</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Mine-MuYan" title="GitHub &rarr; https://github.com/Mine-MuYan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/u/3076081223" title="Weibo &rarr; http://weibo.com/u/3076081223" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://music.163.com/#/user/home?id=73379717" title="Music &rarr; http://music.163.com/#/user/home?id=73379717" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>Music</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jeffjade.com/" title="http://jeffjade.com/" rel="noopener" target="_blank">晚晴幽草轩</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.hscbook.com/" title="https://www.hscbook.com/" rel="noopener" target="_blank">HscBook</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://laod.cn" title="https://laod.cn" rel="noopener" target="_blank">老D</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#显示彩虹字符串"><span class="nav-number">1.</span> <span class="nav-text">显示彩虹字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对查询结果集进行排序"><span class="nav-number">2.</span> <span class="nav-text">对查询结果集进行排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维数组按指定的键值排序"><span class="nav-number">3.</span> <span class="nav-text">二维数组按指定的键值排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php判断手机移动设备访问，返回true是移动设备"><span class="nav-number">4.</span> <span class="nav-text">php判断手机移动设备访问，返回true是移动设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将数组形式的字符串转成数组"><span class="nav-number">5.</span> <span class="nav-text">将数组形式的字符串转成数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取去数组中某age键值小于15的其他数组"><span class="nav-number">6.</span> <span class="nav-text">取去数组中某age键值小于15的其他数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维数组排序"><span class="nav-number">7.</span> <span class="nav-text">二维数组排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维数组去重"><span class="nav-number">8.</span> <span class="nav-text">二维数组去重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过去某一天距今天多少年月日"><span class="nav-number">9.</span> <span class="nav-text">过去某一天距今天多少年月日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给字符串中每个元素加单引号"><span class="nav-number">10.</span> <span class="nav-text">给字符串中每个元素加单引号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#post请求实例"><span class="nav-number">11.</span> <span class="nav-text">post请求实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编码类函数"><span class="nav-number">12.</span> <span class="nav-text">编码类函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#检测字符编码类型"><span class="nav-number">12.1.</span> <span class="nav-text">检测字符编码类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编码转换"><span class="nav-number">12.2.</span> <span class="nav-text">编码转换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断一个数组是否全部为空"><span class="nav-number">13.</span> <span class="nav-text">判断一个数组是否全部为空</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Carbon-laravel-计算两个时间相隔的年月日时分秒"><span class="nav-number">14.</span> <span class="nav-text">使用Carbon(laravel)计算两个时间相隔的年月日时分秒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用DateTime计算两个时间相隔的年月日时分秒"><span class="nav-number">15.</span> <span class="nav-text">使用DateTime计算两个时间相隔的年月日时分秒</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mine-MuYan</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@2/dist/jquery.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

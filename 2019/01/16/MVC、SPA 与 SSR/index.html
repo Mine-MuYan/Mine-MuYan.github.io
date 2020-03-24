@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function(){
+        if(''){
+            if (prompt('offer the password!') !== ''){
+                alert('incorrect password!');
+                history.back();
+            }
+        }
+    })();
+</script>
+  <meta name="description" content="这篇的灵感来自於 Front-End Developers Taiwan 裡面的一串讨论，有人 po 了一个影片是来讨论「MVC vs SPA」，这个标题一出来大家都惊呆了，想说怎麼会有这样的比较，於是下面掀起一波激烈的讨论，最后发现原 po 误用了专有名词，才导致这样的结果。 虽然说很多技术名词本来就是一个名词各自表述，但基本概念通常都不会相差太远，只有在细节上会有些许的争议以及讨论而已。 身為">
+<meta name="keywords" content="转载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVC、SPA 与 SSR">
+<meta property="og:url" content="http://Mine-MuYan.github.com/2019/01/16/MVC、SPA 与 SSR/index.html">
+<meta property="og:site_name" content="Mine-MuYan">
+<meta property="og:description" content="这篇的灵感来自於 Front-End Developers Taiwan 裡面的一串讨论，有人 po 了一个影片是来讨论「MVC vs SPA」，这个标题一出来大家都惊呆了，想说怎麼会有这样的比较，於是下面掀起一波激烈的讨论，最后发现原 po 误用了专有名词，才导致这样的结果。 虽然说很多技术名词本来就是一个名词各自表述，但基本概念通常都不会相差太远，只有在细节上会有些许的争议以及讨论而已。 身為">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-e6773d56b97cd25b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-425dc64e58cf5baa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-fcb4d5d141a92462.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/665/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-50c0e9245278ba6b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-59de0c20d1843043.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/758/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-dd6600a5eb6e54b6.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/682/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-eb1736bc63131495.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4950628-b15cfe832476bacb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800/format/webp">
+<meta property="og:updated_time" content="2019-01-24T06:58:41.337Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MVC、SPA 与 SSR">
+<meta name="twitter:description" content="这篇的灵感来自於 Front-End Developers Taiwan 裡面的一串讨论，有人 po 了一个影片是来讨论「MVC vs SPA」，这个标题一出来大家都惊呆了，想说怎麼会有这样的比较，於是下面掀起一波激烈的讨论，最后发现原 po 误用了专有名词，才导致这样的结果。 虽然说很多技术名词本来就是一个名词各自表述，但基本概念通常都不会相差太远，只有在细节上会有些许的争议以及讨论而已。 身為">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4950628-e6773d56b97cd25b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800/format/webp">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Mine-MuYan" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://Mine-MuYan.github.com/2019/01/16/MVC、SPA 与 SSR/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MVC、SPA 与 SSR | Mine-MuYan</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script type="text/javascript" src="/js/src/clicklove.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mine-MuYan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Welcome.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Mine-MuYan.github.com/2019/01/16/MVC、SPA 与 SSR/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mine-MuYan">
+      <meta itemprop="description" content="MuYan博客小栈">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mine-MuYan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MVC、SPA 与 SSR
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-16 11:51:49" itemprop="dateCreated datePublished" datetime="2019-01-16T11:51:49+08:00">2019-01-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-24 14:58:41" itemprop="dateModified" datetime="2019-01-24T14:58:41+08:00">2019-01-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这篇的灵感来自於 <a href="https://www.facebook.com/groups/f2e.tw/permalink/1642690352434990/" target="_blank" rel="noopener">Front-End Developers Taiwan</a> 裡面的一串讨论，有人 po 了一个影片是来讨论「MVC vs SPA」，这个标题一出来大家都惊呆了，想说怎麼会有这样的比较，於是下面掀起一波激烈的讨论，最后发现原 po 误用了专有名词，才导致这样的结果。</p>
+<p>虽然说很多技术名词本来就是一个名词各自表述，但基本概念通常都不会相差太远，只有在细节上会有些许的争议以及讨论而已。</p>
+<p>身為致力於要让新手更容易搞懂技术名词的人，不如就让我来尝试看看讲解这几个东西吧！</p>
+<a id="more"></a>
+<p>这篇文章的目标是：「只要你有网页前端的基础，就能够搞懂我在说什麼」，如果你搞不懂的话，别担心，不是你的错，是我没写好。麻烦在下面留言一下让我知道哪裡可以再改进。</p>
+<p>接下来我会以主角小明為中心点出发，试著从一段虚拟的故事不断带出：「為什麼 XXX 会出现」、「為什麼我们需要 XXX」这些问题。如果你只对真实歷史的名词演进有兴趣，那你可能要去维基百科才能找到比较正确的资料。本故事纯属虚构，如有雷同…应该不太可能会有雷同啦，就让我们开始吧！</p>
+<p>（先打个预防针，故事有点长，如果这些概念你都理解了应该会觉得这篇文章超级废又超级长）</p>
+<h3 id="第一幕：在很久很久以前…"><a href="#第一幕：在很久很久以前…" class="headerlink" title="第一幕：在很久很久以前…"></a>第一幕：在很久很久以前…</h3><p>小明是一个初学程式的新手，在这之前有用 Dreamweaver 写过一些简单的静态网页，对 HTML、CSS 以及 JavaScript 都有一些基础，而朋友们都推荐他去学 PHP 来补足后端的部分。</p>
+<p>经过了一个月的苦练之后，小明终於完成了他的第一个后端程式，是一个非常简单的留言板系统（怕大家伤眼睛，这边只截给大家看其中一部分）</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4950628-e6773d56b97cd25b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800/format/webp" alt></p>
+<p>别笑，这就是你年轻时会写出来的东西</p>
+<p>PHP 程式码、商业逻辑、HTML，全部东西都混在一起做撒尿牛丸，写了这样的程式码之后，小明每次考试都考一百分呢！</p>
+<p>小明一开始觉得很兴奋，自己终於能够通晓前后端，成為全端工程师，便兴冲冲的持续精进自己的后端技术，每天都加一个新的 feature 进去。过了两个礼拜之后，小明整理了一下资料夹，发现总共有 100 个 PHP 档案，每个档案有超过 300 行 code，而且全部都是 PHP 跟 HTML 混在一起写。</p>
+<p>他随便点开其中一个档案，看了 10 秒之后大喊：</p>
+<blockquote>
+<p>我到底写了三小</p>
+</blockquote>
+<p>意识到自己写的 code 很烂，是迈向一个好的工程师的第一步。</p>
+<h3 id="第二幕：痛改前非"><a href="#第二幕：痛改前非" class="headerlink" title="第二幕：痛改前非"></a>第二幕：痛改前非</h3><p>发现自己写的程式码连自己都看不懂的时候，小明觉得这样不行，阿岳也觉得不行，我也觉得不行。</p>
+<p>因此呢，小明跑去十分瀑布下面打坐了三天三夜，不断想著该怎麼样让他的程式码变得更好，能够更好维护、更好读懂。他不求一步登天，只希望三个月之后当他回顾自己写的 code 时，不要骂脏话就好。</p>
+<p>就在第三天的晚上，他突然有了灵感，大喊了一声：</p>
+<blockquote>
+<p>Eureka！</p>
+</blockquote>
+<p>就赶紧跑回家去重构自己的 code 了，而下面是他重构的结果：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4950628-425dc64e58cf5baa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800/format/webp" alt></p>
+<p>纯属范例，绝对没办法跑</p>
+<p>这个范例跟之前差在哪边呢？</p>
+<p>首先，他把任何跟资料有关的操作都放到一个叫做 Model 的地方去，所以你要改任何跟资料有关的东西，都到那边就对了。</p>
+<p>再来，他也把所有跟显示画面有关的东西都放到其他地方去，我们就叫做 View 吧，View 裡面用一个 template 来塞入资料，不做任何跟资料有关的处理。</p>
+<p>如此一来，他就把资料跟画面显示这两者切开了，并且让开头那段 PHP code 把这两者连接起来，先去 Model 拿资料，再把资料塞入 View 裡面输出。那这个「连接两者」的角色，就叫做 Controller 吧！</p>
+<p>於是，MVC 就这样出现了。為的就是要把原来乱七八糟的程式码理出一个头绪来，是你的就是你的，不是你的就给我滚远点。你要存取资料库就是去 Model 裡面，你要写 HTML 就去 View，绝对不会出现在 View 裡面下 SQL Query 这种事情。</p>
+<p>所以 MVC 是什麼？就是一种设计模式，你只要把你的 code 像这样子切开，都可以叫做 MVC，所以你不可能只看一个画面就跟你朋友说：「欸欸，这个网站是 MVC，因為他有好多个页面」，除非你可以通灵看到背后程式码的架构长什麼样子。</p>
+<p>话说后来又陆陆续续出现很多种模式，而且 MVC 其实也没有想像中的职责这麼分明，在这边我就不细讲了，我自己对那整段歷史也没有很熟，有兴趣的可以参考：</p>
+<p><a href="http://blog.turn.tw/?p=1539" title="http://blog.turn.tw/?p=1539" target="_blank" rel="noopener"><strong>MVC是一个巨大误会</strong><br>_我是web工程师，从刚开始学MVC就深感困惑： 怎麼每个地方说的MVC都不太一样？ 有些文章讲的MVC，跟我正在用的MVC，怎麼像完全不同的东西？…_blog.turn.tw</a><a href="http://blog.turn.tw/?p=1539" target="_blank" rel="noopener"></a></p>
+<p>然后我上面那段 code 是乱写的，如果你对真实世界的 MVC 框架写出来的 code 有兴趣的话，会长成这样：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4950628-fcb4d5d141a92462.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/665/format/webp" alt></p>
+<p>PHP 的框架 CodeIgniter 写出来的</p>
+<p>讲到这裡我们做一个小总结，问自己三个问题：</p>
+<ol>
+<li>為什麼要有 MVC？</li>
+<li>有 MVC 跟没有 MVC 的差别在哪？</li>
+<li>所以 MVC 是什麼？</li>
+</ol>
+<p>三个问题可以一起回答：</p>
+<blockquote>
+<p>因為小明写的 code 太脏了太难维护，所以需要重构。而后来他发现用 Model、View、Controller 这三个概念来切的话可以把 code 写得漂亮很多又好维护，就这样做了。差别在於原本的 code 混在一起，遵守 MVC 的规范之后职责变得清楚很多。所以呢，MVC 就是一种架构，后端可以遵守 MVC 的架构去开发，前端也可以，就算不是 Web 也可以用 MVC。</p>
+</blockquote>
+<h3 id="第三幕：毛很多的使用者"><a href="#第三幕：毛很多的使用者" class="headerlink" title="第三幕：毛很多的使用者"></a>第三幕：毛很多的使用者</h3><p>小明把自己的烂 code 利用 MVC 模式重构之后，看起来还挺不赖的，至少比以前好很多，三个月过去了，也能看得懂自己以前写的 code。把留言板的程式码重构得差不多之后，小明决定把这个专案公开，开放给大家註册使用，让每个人都可以有自己的留言板。</p>
+<p>一开始状况都还行，大家纷纷感激小明的无私奉献，「祝楼主一生平安」、「感谢大大无私的分享」，可是好景不常，有天小明收到了一个回馈：</p>
+<blockquote>
+<p>我每次留言之后页面都会刷新，我家网速又慢，每次都要等个十几秒，有没有可能不要重新整理页面？你看人家 Gmail，我寄完信它也没有重新整理啊！人家做得到你应该也做得到吧</p>
+</blockquote>
+<p>身為一个滥好人，小明乖乖的去研究 Gmail 到底是如何做到的，发现秘诀就在於一个神奇的东西：Ajax，全名 Asynchronous JavaScript and XML。</p>
+<p>全名听起来很吓人，但说穿了其实就是你在 JavaScript 裡面可以非同步的去呼叫 Server 的 API 并且拿资料回来，在 Ajax 出现之前，你要把资料带过去都必须透过 Form 的方式，一定要换页。可是有了 Ajax 以后，不换页也能跟 Server 沟通。</p>
+<p>Gmail 就是利用这样的原理，才能达成寄信不换页。</p>
+<p>小明研究了一个假日之后便著手改造自己的留言板，把原本利用 Form 发送留言的地方变成 Ajax，可是他碰到了一个问题：</p>
+<blockquote>
+<p>原本我新增留言之后重新整理页面就可以看到新的留言了，因為 Server 会把最新的结果传回去；可是我现在用 Ajax，我要怎麼在不刷新页面的前提下在画面上新增留言？</p>
+</blockquote>
+<p>总而言之呢，利用 Ajax 之后的确是发了一个 Request 跟 Server 说你要新增留言，也成功了，可是画面上不会平白无故就跑出一个新的留言。在经过短暂的思考后，小明得到一个很直觉的解法：「阿我就用 JavaScript 来新增就好啦！」</p>
+<p>经过一番修改之后，新增留言的程式码从原本很简单的一个 Form 表单，变成下面这个样子：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4950628-50c0e9245278ba6b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800/format/webp" alt></p>
+<p>Ajax 送出资料之后利用 jQuery prepend 上去</p>
+<p>使用者的需求被解决了，小明也有了技术上的成长，可谓是一石二鸟、一举两得，但小明天真的地方就在於他把使用者想得太简单了。</p>
+<p>过了一个礼拜之后，同一个使用者又写信给小明：</p>
+<blockquote>
+<p>很感谢你上次新增的功能，可是我有个疑问。我看 Gmail 无论做什麼操作都不会换页，你的留言板也可以改成这样吗？这样比较方便，谢谢。</p>
+</blockquote>
+<p>滥好人小明没有仔细深究「比较方便」到底是怎样的方便，纯粹站在一个希望满足使用者所有需求的角度跳下去研究 Gmail 到底还能够做到什麼。</p>
+<p>他发现了 Gmail 跟其他网站不同的地方就是：「无论做什麼操作都不会换页」，换页指的是「你会有一段时间看到整个画面全白，因為瀏览器正在等待 Server 的 Response 才能载入 HTML」。</p>
+<p>你在用 Gmail 的时候，无论你是写信、读信、整理信件或是切换到设定页，儘管你的网路跟乌龟一样，你还是看不到任何全白画面。</p>
+<p>為什麼？因為 Gmail 所有跟 Server 沟通的地方都是用 Ajax。</p>
+<p>这是改造前的范例，我们利用表单 POST 来新增一笔留言，所以你会看到一小段的白画面：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4950628-59de0c20d1843043.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/758/format/webp" alt></p>
+<p>此范例改自我学生 Kris 的作业，<a href="http://thinkr.tw/" target="_blank" rel="noopener">http://thinkr.tw/</a></p>
+<p>这是改造后的范例，因為我们用 Ajax 来新增留言的关係，所以你不会看到任何白画面的出现，使用者体验好很多：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4950628-dd6600a5eb6e54b6.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/682/format/webp" alt></p>
+<p>利用 Ajax 跟 JavaScript 在前端新增留言</p>
+<p>我们再举一个简单的小例子，假设小明今天写了一个没有用 Ajax 的 Minmail，他删除一封信的流程是这样的：</p>
+<ol>
+<li>点击删除之后，利用 Form 表单 POST 资料去 /server/delete_email</li>
+<li>/server/delete_email 处理完之后 redirect 回去信件列表</li>
+<li>瀏览器重新载入信件列表（在载入之前你都会看到全白画面）</li>
+</ol>
+<p>可是如果是像 Gmail 那样子全部改成 Ajax 的话，就会变成：</p>
+<ol>
+<li>点击删除之后，利用 Ajax POST 资料去 /server/api/delete_email</li>
+<li>/server/api/delete_email 处理完之后回传 Response</li>
+<li>利用 JavaScript 在前端把那封信的从画面上移除</li>
+</ol>
+<p>后者利用 Ajax 跟后端同步资料，并且在前端用 JavaScript 更改画面，所以你无论做什麼操作都不会换页，也可以保证前后端的资料是同步的。</p>
+<p>知道区别以及原理之后，小明把整个网站都改造成这种形式，只要是任何原本用到 Form 的地方，现在全部都用 Ajax 拿资料并搭配 JavaScript 来做画面上的处理。</p>
+<p>因此，留言列表现在变成 Ajax 拿资料回来之后由 JavaScript 把留言 append 到画面上，就像我们刚刚示范的新增留言那样。</p>
+<p>此时，小明突然有个非常惊人的发现：</p>
+<blockquote>
+<p>咦，如果我全部画面都是由前端利用 JavaScript 动态產生的话，那我原本后端的 View 要干嘛？</p>
+</blockquote>
+<p>咦，对啊，既然现在所有画面都是在前端由 JavaScript 动态產生，那我后端不就永远都输出同一个档案就好？如此一来，使用者看到的其实都是<strong>同一个页面</strong>，而我们利用 JavaScript 在这个页面上做变化。</p>
+<p>这个概念就叫做 SPA，全名是 Single Page Application，单页式应用。与之对应的概念是 MPA，Multiple Page Application。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4950628-eb1736bc63131495.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800/format/webp" alt></p>
+<p>SPA 与 MPA 的对照</p>
+<p>就如同小明领悟的一样，前端如果利用 SPA 来实作的话，会把原本应该是后端处理的一部份职责给搬到前端去，例如说状态的管理跟路由。</p>
+<p>举例来说，在以往 Server 根据不同的路径对应到不同的 Controller，进而渲染出不同的 View。可是现在 Server 无论什麼路径都会输出同一个档案，所以你在前端也要判断现在的网址是哪个，才能决定在前端应该渲染出哪个画面。</p>
+<p>再举一个例子，假设我现在写了一个电影列表的网站，首页列出许多热门电影，点进去可以看到个别电影的详细资料。而我们做了以下动作：</p>
+<ol>
+<li>点进电影 A</li>
+<li>快速按上一页</li>
+<li>快速点进电影 B</li>
+</ol>
+<p>如果是 SPA 的话，实作的逻辑应该会是：「点进单独电影时发送一个 Request，等 Response 回来之后把资料显示在画面上」，乍听之下没什麼问题，但若是你在第三步的时候，第一步所发出去的电影 A 的 Response 才传回来，你的画面就会显示出电影 A 的资讯，可是使用者点的明明就是电影 B。</p>
+<p>这就是我所说的状态管理变复杂了，有些地方需要花点心思做处理。在以往 MPA 的时候完全不会发生这种事，你可以保证 Server 会回传正确的结果，因為画面是在后端 render 再回传回来的，而且每一个页面之间的状态不会互相干扰。</p>
+<p>如果写得好，我相信 SPA 的使用者体验一定很不错，因為用起来就跟你在用 Native App 差不多嘛，但你必须付出的代价是前端变得超级复杂，有一堆非同步的问题要考虑还有一大堆事情要做。此时的前端复杂度已经跟我们最开头示范的那种简单留言板相差许多了。</p>
+<p>在这种时候，前端也可以参考我们前面所说的 MVC 架构或是其他相关架构来让程式码的职责变得更分明，让整个专案更好维护。所以你可以又有 MVC 又有 SPA，或是没有 MVC 但有 SPA，这两者是完全不同的概念。</p>
+<p>我之前写过另外一篇文章，有兴趣的话可以参考看看：</p>
+<p><a href="https://blog.techbridge.cc/2017/09/16/frontend-backend-mvc/" title="https://blog.techbridge.cc/2017/09/16/frontend-backend-mvc/" target="_blank" rel="noopener"><strong>前后端分离与 SPA</strong><br>_TechBridge Weekly 技术週刊团队是一群对用技术改变世界怀抱热情的团队。本技术共笔部落格初期专注於Web前后端、行动网路、机器人/物联网、数据分析与產品设计等技术分享。_blog.techbridge.cc</a><a href="https://blog.techbridge.cc/2017/09/16/frontend-backend-mvc/" target="_blank" rel="noopener"></a></p>
+<p>最后我举一个一定要用 SPA 的例子：音乐播放网站。</p>
+<p>如果音乐播放网站是用 MPA 的话，每去一个新的网址就会把整个页面换掉，那你的网页播放器就会中断了，这是完全没办法接受的事。所以唯一的解法就是：播放器永远都在页面上，只有其他部分的内容换掉。而这一切都是在前端用 JavaScript 来处理的。</p>
+<h3 id="第四幕：行销团队的暴怒"><a href="#第四幕：行销团队的暴怒" class="headerlink" title="第四幕：行销团队的暴怒"></a>第四幕：行销团队的暴怒</h3><p>小明花了整整一个月的时间不眠不休不吃不喝（夸饰法，开玩笑的），终於把整个网站改造成 SPA，而且还优化了不少地方，让整个使用者体验变得非常非常好。</p>
+<p>不久过后，这个留言板系统因為体验实在是太好了，有越来越多人使用，短短一个月内就有了一百万个来自世界各地的使用者註册。还有来自国外的使用者甚至写信给小明希望能够付钱来拥有更多功能：</p>
+<blockquote>
+<p>Hey, thanks for building such a cool website, I really like it. Is there any premium plan? I am glad to pay for the additional features like custom domain or custom template.</p>
+</blockquote>
+<p>听过一大堆创业讲座的小明知道时候到了，可以把这个 side project 当作创业项目了！</p>
+<p>凭著现有的成绩，小明很快地就募到了天使轮，找了几个伙伴成立了一间公司，想要把这个留言板系统做成全世界第一的留言板，期许自己能成為留言板界的 WordPress。</p>
+<p>可是好景不常，过了一两个月之后不知道為什麼，新的会员越来越少，砸下大笔的广告费也只带来短暂的成效而已，一旦广告停了就又恢復以往冷清的样子。</p>
+<p>奇怪，就算是热潮退烧也没退烧得这麼快才对，到底是发生什麼事呢？</p>
+<p>一个礼拜过后，专长是数位行销的合伙人气噗噗的跑到小明的位子前，口气很差地质问他：</p>
+<blockquote>
+<p>你做了什麼？為什麼在搜寻引擎上面搜寻我们的网站，结果只会出现一大堆看不懂的程式码？我们的网站 SEO 做的奇差无比你知道吗？</p>
+</blockquote>
+<p>小明一开始觉得很委屈，他什麼都没做，怎麼会落得如此下场。但经过左思右想之后，终於发现了癥结点：SPA。</p>
+<p>由於 SPA 是由前端的 JavaScript 动态產生内容，因此如果你对 SPA 的网站按下右键 -&gt; 检视原始码，只会看到空荡荡的一片，只看得到一个 JavaScript 档案跟一些最基本的 tag。</p>
+<p>内容在哪裡？不在这裡，因為那是由 JavaScript 动态產生的。只有你的网站经由瀏览器载入并且执行 JavaScript，等 Response 回来之后才会动态產生出内容。因此无论是哪个页面，你检视原始码都看不到动态新增后的内容。</p>
+<p>惨了，这可是天大的坏消息。</p>
+<p>但其实也没有那麼坏，因為强大的 Google 的爬虫其实支援执行 JavaScript，所以他依然会 index 你在前端渲染之后的页面。</p>
+<p>不过还是有两个问题，第一个是我们不知道 Google 如何执行，会不会前端还没完全渲染完就已经爬完了？第二个是除了 Google，还有其他很多搜寻引擎，有些可能没有像 Google 这麼强大，碰到 SPA 就只能索引空荡荡的 HTML，内容几乎空白。</p>
+<p>该怎麼办呢？</p>
+<p>苦恼的小明跟公司请了长假，再度跑到十分瀑布下面修行，希望能够重演当年想出 MVC 架构的剧本。很幸运地，过了三天之后，小明终於想到解法了，大喊了一声：</p>
+<blockquote>
+<p>干我知道了！</p>
+</blockquote>
+<p>小明的想法是这样的，既然问题出在「第一次渲染」，那我们只要在第一次渲染的时候把该输出的资料都输出就好啦，对使用者来说还是一个 SPA，差别在於使用者接收到 HTML 的时候，就已经有完整的资料了。</p>
+<p>举例来说，假设使用者拜访显示所有留言的页面，我在 Server Side 先把所有留言都準备好然后 render 出来，这样使用者一收到 Response 的时候就能够看到所有留言，搜寻引擎也能顺利地爬到。</p>
+<p>而后续的操作还是由 JavaScript 来处理，依旧能保持 SPA 的优点。或者我们能用一句话来总结：</p>
+<blockquote>
+<p>第一个页面由 Server side render，之后的操作还是由 Client side render</p>
+</blockquote>
+<p>没错，这个概念就叫做 SSR，Server Side Rendering。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4950628-b15cfe832476bacb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800/format/webp" alt></p>
+<p>CSR vs SSR</p>
+<p>有了 SSR 以后，就解决了 SEO 的问题，对网路爬虫来说你有没有用 SPA 都无所谓，他所抓到的内容都是一样的。可是对使用者来说，一样能享受到 SPA 所带来的好处（不用换页）。</p>
+<p>虽然我在这边只用几句话带过去，看起来轻鬆写意，但真的实作过的话你就会发现这不是一件容易的事，有很多细节要去考虑。总之呢，小明花了整整两个月的时间才把整个网站都改成 SSR。</p>
+<p>不久后，在每个月的员工大会（新创嘛，一个月一次很合理）中 CMO 很开心地跟大家宣布產品在搜寻引擎上面的排名越来越高，自然流量也越来越多，註册会员比起上个月增长了 200%。</p>
+<p>CMO 很开心，搜寻引擎很开心，员工很开心，小明当然也很开心。</p>
+<p>一天又平安的过去了，感谢飞天小明警的努力。</p>
+<h3 id="最终幕：前端的未来"><a href="#最终幕：前端的未来" class="headerlink" title="最终幕：前端的未来"></a>最终幕：前端的未来</h3><p>因為科技进步快速加上网路的普及，世界变动的比以前快很多。</p>
+<p>十年前手机还只是让你打电话以及斤斤计较简讯字数的工具，十年后就变成人手一台，不可或缺的小型电脑。</p>
+<p>身為经歷过这一切的人，小明在深夜裡边刷著 leetcode 边回忆起前端的发展，遥想十年前他以為 HTML 跟 CSS 才是主角，JavaScript 只是阻止使用者点右键或是做出会跟著鼠标移动的酷炫跑马灯的小玩具。</p>
+<p>可是一切发展的越来越快，jQuery 的出现一统江湖，解决了恼人的跨瀏览器问题，CSS 也因為预处理器的出现而变得更好维护，可以用更程式化的角度来撰写。再过个两三年，大家都不谈 jQuery 了，而是谈 Angular。可是又过了几年，最潮的名词变成 React，到现在 React 也没那麼潮了，要潮的话请去写 Vue。</p>
+<p>更别提 SPA 的遍地开花以及 SSR 的出现，更是将前端的复杂度提升了不只一个档次。有了 SSR 你就不再只是前端了，毕竟 SSR 的 S 可是 Server 的意思，还必须要会一点 Server side 的技术才行。</p>
+<p>在 Mobile 的流量渐渐超越 Desktop 之后，前端的目标就迈向「可以逼近 Native App」的体验。又像是个 App 可是又不用安装，那该有多好，省了安装这个步骤转换率大幅提升，使用者开心公司也开心。</p>
+<p>於是大家开始提倡 PWA，Progressive Web App。Web 不再单纯只是 Web，而是要用起来像个 App，看起来也像个 App。甚至利用 Service Worker 搭配快取，在没有网路时也能够使用部分功能，也可以用 Skeleton 先把画面的骨架显示出来。</p>
+<p>这一切的一切都為了一个目的：增进使用者体验。</p>
+<p>前端复杂归复杂，但身為真心喜爱前端的人，小明可是对未来充满了希望。一想到能够接触更多新的技术，更多新的解法，可以打造出更好的產品，小明内心涌起的情绪不是挫折而是兴奋，无比的兴奋。</p>
+<p>东方的太阳缓缓升起，散射出的光芒洒在小明的房裡，提醒著他新的一天即将开始。</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>对我来说，一个技术的出现绝对是有其理由的。而不是简单一句：「前端现在就是这麼复杂」，我认為只要能理解他出现的脉络，就能更轻易的从宏观的角度去理解这项技术。</p>
+<p>我们可以用三个问题来帮助自己理解一项事物：</p>
+<ol>
+<li>為什麼要有 XXX？</li>
+<li>没有 XXX 跟有 XXX 的区别是什麼？</li>
+<li>所以 XXX 是什麼？</li>
+</ol>
+<p>MVC 就是因為 code 变得越来越乱，所以将职责区分清楚的一种设计模式。SPA 就是因為想增进使用者体验，而出现的一种在前端利用 Ajax 达成不换页的方法。SSR 就是因為要解决 SPA 的 SEO 问题而出现的解法。</p>
+<p>一切都是有理由的，一切都是有原因的。你可以不懂它怎麼实作，但你一定要懂它是為了什麼而生。程式是工具，工具的目的是解决问题，重要的不是工具本身，而是背后要解决的那个问题。</p>
+<p>感谢大家的阅读，如果有任何错误麻烦不吝指出。另外，此篇文章只希望能给出一个大方向，对於细节如果要讨论的话其实每个细节都可以再写一篇专文，例如说 MVC 到底是在讲哪个 MVC？SPA 在 Google 上的 SEO 真的比较差吗？SSR 在首次加载页面上牺牲的时间（因為要等 API 的资料回来才能 render）与增进 SEO 之间的取捨等等。</p>
+<p>喜欢的话可以拍个手，你知道 Medium 最多可以拍 50 下吗？可以根据你的喜好程度拍不同次数的手，想要拍好拍满的话我也是乐见其成。</p>
+<p>最后，再次感谢你的阅读。</p>
+<ul>
+<li><a href="https://medium.com/tag/frontend?source=post" target="_blank" rel="noopener">Frontend</a></li>
+<li><a href="https://medium.com/tag/front-end-development?source=post" target="_blank" rel="noopener">Front End Development</a></li>
+<li><a href="https://medium.com/tag/technology?source=post" target="_blank" rel="noopener">Technology</a></li>
+<li><a href="https://medium.com/tag/javascript?source=post" target="_blank" rel="noopener">JavaScript</a></li>
+<li><a href="https://medium.com/tag/single-page-applications?source=post" target="_blank" rel="noopener">Single Page Applications</a></li>
+</ul>
+<h3 id="转载说明"><a href="#转载说明" class="headerlink" title="转载说明"></a>转载说明</h3><p>此文章是在一技术讨论群里看到的，看后觉得很有感悟，便转载了过来，但当时只是把内容复制了过来，原文的链接忘了，后来找了群里面的聊天记录和浏览器的访问历史，都没有找到，在此就不注明原文章的链接了。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/转载/" rel="tag"># 转载</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/29/Git多分支平行发展（一个仓库包含多个不同的项目）/" rel="next" title="Git多分支平行发展（一个仓库包含多个不同的项目）">
+                <i class="fa fa-chevron-left"></i> Git多分支平行发展（一个仓库包含多个不同的项目）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/22/PHP基础知识易错点/" rel="prev" title="PHP基础知识易错点">
+                PHP基础知识易错点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Mine-MuYan">
+            
+              <p class="site-author-name" itemprop="name">Mine-MuYan</p>
+              <p class="site-description motion-element" itemprop="description">MuYan博客小栈</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Mine-MuYan" title="GitHub &rarr; https://github.com/Mine-MuYan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/u/3076081223" title="Weibo &rarr; http://weibo.com/u/3076081223" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://music.163.com/#/user/home?id=73379717" title="Music &rarr; http://music.163.com/#/user/home?id=73379717" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>Music</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jeffjade.com/" title="http://jeffjade.com/" rel="noopener" target="_blank">晚晴幽草轩</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.hscbook.com/" title="https://www.hscbook.com/" rel="noopener" target="_blank">HscBook</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://laod.cn" title="https://laod.cn" rel="noopener" target="_blank">老D</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一幕：在很久很久以前…"><span class="nav-number">1.</span> <span class="nav-text">第一幕：在很久很久以前…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二幕：痛改前非"><span class="nav-number">2.</span> <span class="nav-text">第二幕：痛改前非</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三幕：毛很多的使用者"><span class="nav-number">3.</span> <span class="nav-text">第三幕：毛很多的使用者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四幕：行销团队的暴怒"><span class="nav-number">4.</span> <span class="nav-text">第四幕：行销团队的暴怒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终幕：前端的未来"><span class="nav-number">5.</span> <span class="nav-text">最终幕：前端的未来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">6.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转载说明"><span class="nav-number">7.</span> <span class="nav-text">转载说明</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mine-MuYan</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@2/dist/jquery.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
